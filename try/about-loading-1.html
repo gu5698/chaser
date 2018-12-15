@@ -1,0 +1,98 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+        <head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/Zeindelf/pen/vZbyEg" />
+        
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+        <style class="cp-pen-styles">@-webkit-keyframes stripe-slide {
+          0% {
+            background-position: 0% 0;
+          }
+          100% {
+            background-position: 100% 0;
+          }
+        }
+        @keyframes stripe-slide {
+          0% {
+            background-position: 0% 0;
+          }
+          100% {
+            background-position: 100% 0;
+          }
+        }
+        body {
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          font-family: sans-serif;
+        }
+        
+        .btn {
+          overflow: visible;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          font: inherit;
+          line-height: normal;
+          cursor: pointer;
+          -moz-user-select: text;
+          display: block;
+          text-decoration: none;
+          text-transform: uppercase;
+          padding: 16px 36px 22px;
+          background-color: #fff;
+          color: #666;
+          border: 2px solid #666;
+          border-radius: 6px;
+          margin-bottom: 16px;
+          transition: all .5s ease;
+        }
+        .btn:-moz-focus-inner {
+          padding: 0;
+          border: 0;
+        }
+        .btn--stripe {
+          overflow: hidden;
+          position: relative;
+        }
+        .btn--stripe:after {
+          content: '';
+          display: block;
+          height: 7px;
+          width: 100%;
+          background-image: repeating-linear-gradient(45deg, #666, #666 1px, transparent 2px, transparent 5px);
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          border-top: 1px solid #666;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background-size: 7px 7px;
+        }
+        .btn--stripe:hover {
+          background-color: #666;
+          color: #fff;
+          border-color: #000;
+        }
+        .btn--stripe:hover:after {
+          background-image: repeating-linear-gradient(45deg, #fff, #fff 1px, transparent 2px, transparent 5px);
+          border-top: 1px solid #000;
+          -webkit-animation: stripe-slide 12s infinite linear forwards;
+                  animation: stripe-slide 12s infinite linear forwards;
+        }
+        .btn--large {
+          width: 50%;
+        }
+        .btn--radius {
+          border-radius: 36px;
+        }
+        </style></head><body>
+        <button class="btn btn--stripe">Button</button>
+        <a href="#" class="btn btn--stripe">Link</a>
+        <button class="btn btn--stripe btn--radius">Aggressive Radius</button>
+        <button class="btn btn--stripe btn--large">Large Button</button>
+        
+        </body></html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="images/customize/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/css-reset.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/productDesign.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <title>Chaser</title>
+</head>
+
+<body>
+    <!-- start navbar -->
+    <nav id="navbar" class="navbar">
+        <a href="#" id="navbar-toggle" class="navbar-toggle"><i class="fas fa-bars"></i></a>
+        <ul>
+            <li class="navbar-item navbar-logo"><a href="index.html"><img id="img-logo" src="images/customize/logo.svg"
+                        alt="logo"></a></li>
+            <li class="navbar-item"><a href="#">裝備客製<span class="d-block fz-6">CUSTOMIZE</span></a></li>
+            <li class="navbar-item"><a href="#">裝備商城<span class="d-block fz-6">MARKET</span></a></li>
+            <li class="navbar-item"><a href="#">傳奇特務藝廊<span class="d-block fz-6">GALLERY</span></a></li>
+            <li class="navbar-item"><a href="#">關於我們<span class="d-block fz-6">ABOUT</span></a></li>
+            <li class="navbar-item navbar-icon icon-member"><a href="#"><i class="fas fa-user-secret"></i></a></li>
+            <li class="navbar-item navbar-icon icon-cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+        </ul>
+    </nav>
+    <!-- end navbar -->
+
+
+
+
+
+
+
+    <div id="fullscreen">
+        <div class="step_wrap">
+            <div class="step">
+                <div class="circle circle_1">
+                    <img class="circle_1" src="images/customize/circle_2.png" alt="circle1">
+                    <!-- <img class="shot" src="images/customize/000.png" alt="shot"> -->
+                    <span class="statement_01 fz-6">選擇商品</span>
+                    <span class="number fz-4">1</span>
+                </div>
+                <div class="line"></div>
+
+                <div class="circle circle_2">
+                    <img src="images/customize/circle_1.png" alt="circle2">
+                    <img class="shot" src="images/customize/000.png" alt="shot">
+                    <span class="statement_02 fz-6">設計商品</span>
+                    <span class="number fz-4">2</span>
+                </div>
+                <div class="line"></div>
+
+                <div class="circle circle_3">
+                    <img src="images/customize/circle_2.png" alt="circle2">
+                    <span class="statement_03 fz-6">填寫資訊</span>
+                    <span class="number fz-4">3</span>
+                </div>
+                <div class="line"></div>
+
+                <div class="circle circle_4">
+                    <img src="images/customize/circle_2.png" alt="circle2">
+                    <span class="statement_04 fz-6">成功下單</span>
+                    <span class="number fz-4">4</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="left_part">
+                <div class="item_wrap">
+                    <div class="item item01">
+                        <div class="item_title">
+                            <p class="fz-4">款式</p><i class="fas fa-angle-down fz-4"></i>
+                        </div>
+                        <div class="item_content_wrap">
+                            <div class="item_content">
+                                <button class="item_content_option item_content_option01">
+                                </button>
+                                <button class="item_content_option item_content_option02"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item item02">
+                        <div class="item_title">
+                            <p class="fz-4">錶帶</p><i class="fas fa-angle-down fz-4"></i>
+                        </div>
+                        <div class="item_content_wrap">
+                            <div class="item_content">
+                                <button class="item_content_option item_content_option03"></button>
+                                <button class="item_content_option item_content_option04"></button>
+                                <button class="item_content_option item_content_option05"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item item03">
+                        <div class="item_title">
+                            <p class="fz-4">內置武器</p><i class="fas fa-angle-down fz-4"></i>
+                        </div>
+                        <div class="item_content_wrap">
+                            <div class="item_content">
+                                <button class="item_content_option item_content_option06"></button>
+                                <button class="item_content_option item_content_option07"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item item04">
+                        <div class="item_title">
+                            <p class="fz-4">圖案</p><i class="fas fa-angle-down fz-4"></i>
+                        </div>
+                        <div class="item_content_wrap">
+                            <div class="item_content">
+                                <p class="dragpic_statement fz-small">請將圖片拖曳至虛線框內</p>
+                                <div class="first_part">
+                                    <div class="item_content_option">
+                                        <img src="images/customize/logo_1.png" alt="logo_1" id="drag_logo01">
+                                    </div>
+                                    <div class="item_content_option">
+                                        <img src="images/customize/logo_2.png" alt="logo_2" id="drag_logo02">
+                                    </div>
+                                    <div class="item_content_option">
+                                        <img src="images/customize/logo_3.png" alt="logo_3" id="drag_logo03">
+                                    </div>
+                                </div>
+                                <div class="second_part">
+                                    <div class="function_btn">
+                                        <div id="scaleBigger" class="bigger">
+                                                <img src="images/customize/cuControlBig.png" alt="bigger">
+                                        </div>
+                                        <div id="scaleSmaller" class="smaller">
+                                            <img src="images/customize/cuControlSmall.png" alt="smaller">
+                                        </div>
+                                        <div  id="del_btn" class="delete">
+                                            <img src="images/customize/cuControlDelete.png" alt="Delete">
+                                        </div>
+                                    </div>
+                                    
+                                    <label class="upload_pic">
+                                        <input type="file" accept=".png,.jpg" class="upload_pic" />
+                                        <p class="fz-small">上傳圖片<span class="fz-small">(png/jpg)</span></p>
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="btn_wrap">
+                    <a href="#" class="btn">
+                        <p>上一步</p>
+                    </a>
+                    <a href="#" class="btn">
+                        <p>下一步</p>
+                    </a>
+                </div>
+
+
+            </div>
+            <div class="mid_part">
+                <div class="tech_circle_wrap">
+                    <img class="tecCircle01" src="images/customize/tech_circle.png" alt="tech_circle">
+                    <img class="tecCircle02" src="images/customize/tech_circle_2.png" alt="tech_circle_2">
+                    <div class="cuProduct">
+                        <img src="images/customize/watch/watch12/png/navy_y_blk.png" alt="">
+                        <div id="pic_dropPostion"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right_part">
+                <div class="name_wrap">
+                    <p class="name">射擊手錶</p>
+                    <p class="price">售價：460,000 USD</p>
+                    <div class="name_wrap_line"></div>
+                    <div class="name_wrap_line-circle"></div>
+                </div>
+                <div class="cu_chart">
+                    <canvas id="ability"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- start footer -->
+    <footer class="footer">
+        <div class="fz-small">© 2018 Chaser. All Rights Reserved.</div>
+    </footer>
+    <!-- end footer -->
+
+
+    <!-- start chatbot -->
+    <div id="chatbot" class="chatbot">
+        <div id="avatar" class="avatar">
+            <img src="images/customize/chatbot-body.svg" alt="chatbot-body" class="chatbot-body">
+            <img src="images/customize/chatbot-head-1.svg" alt="chatbot-head-1" class="chatbot-head">
+            <img src="images/customize/chatbot-hat.svg" alt="chatbot-hat" class="chatbot-hat">
+        </div>
+        <div id="greeting" class="greeting fz-p">
+            <div class="message">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</div>
+            <i id="greeting-close" class="far fa-times-circle"></i>
+        </div>
+        <div class="message-window">
+            <div id="message-head" class="message-head">
+                <div class="title fz-6">CHASER</div>
+                <i class="fas fa-comments icon-message"></i>
+                <i class="fas fa-angle-up icon-minimize"></i>
+            </div>
+            <div class="message-body">
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-user">你好</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER</div>
+                <div class="message message-bot">歡迎來到CHASER歡迎來到CHASER歡迎來到CHASER歡迎來到CHASER歡迎來到CHASER歡迎來到CHASER</div>
+                <div class="message message-user">你好</div>
+            </div>
+            <div class="message-input">
+                <textarea></textarea>
+                <i class="fab fa-telegram-plane icon-submit"></i>
+            </div>
+        </div>
+    </div>
+    <!-- end chatbot -->
+
+
+</body>
+<script src="js/chart.js"></script>
+<script src="js/cuShowItem.js"></script>
+<script src="js/dragdrop.js"></script>
+<script src="js/common.js"></script>
+<script src="js/scale.js"></script>
+<script src="js/del_pic.js"></script>
+</html>

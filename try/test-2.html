@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #f00;
+        }
+    .square{
+        width: 300px;
+        height: 250px;
+        background-color: #00f;
+        position: relative;
+        margin: auto;
+    }
+
+    .triangle{
+        width: 0px;
+        height: 0px;
+        /*margin: 20px;*/
+        /*border-top: 30px solid #f00;*/
+        /*border-right: 30px solid #0f0;*/
+        border-bottom: 100px solid transparent;
+        border-left: 130px solid #ccc;
+        /*border-left: 130px solid transparent;*/
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+
+    </style>
+    
+</head>
+<body>
+    <div class="square" id="square">
+        <div class="triangle"></div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+            moveCenter();
+
+            $(window).resize(function () {
+                moveCenter();
+            });
+
+            function moveCenter() {
+                var winWidth = $(window).width();
+                var winHeight = $(window).height();
+
+                var divWidth = $('#login-center').width();
+                var divHeight = $('#login-center').height();
+
+                $('#square').css({
+                    left: (winWidth - divWidth) / 2,
+                    top: (winHeight - divHeight) / 2,
+                });
+            }
+        });
+</script>
+</body>
+</html>

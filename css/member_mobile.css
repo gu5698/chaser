@@ -1,0 +1,121 @@
+@media only screen and (max-width: 768px) {
+
+    .wrap-main {
+        height: 100vh;
+        background-color: #444;
+    }
+
+    .wrap-member-body {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .section {
+        height: unset;
+        background-color: #444;
+        background-image: none;
+        border: 1px solid #ccc;
+        min-width: unset;
+        padding-top: unset;
+        flex-basis: 25%;
+    }
+
+    .section.active {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 25%;
+    }
+
+    .section.active .section-body {
+        display: block;
+        opacity: 1;
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        top: 50px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .section.section-1.active .section-body {
+        background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)),
+        url(../images/member/section-member-05.jpg) no-repeat center;
+        background-size: 3px 3px, auto, cover;
+    }
+
+    .section.section-2.active .section-body {
+        background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)),
+        url(../images/member/section-member-02.jpg) no-repeat center;
+        background-size: 3px 3px, auto, cover;
+    }
+
+    .section.section-3.active .section-body {
+        background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)),
+        url(../images/member/section-member-09.jpg) no-repeat center;
+        background-size: 3px 3px, auto, cover;
+    }
+
+    .section.section-4.active .section-body {
+        background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)),
+        url(../images/member/section-member-07.jpg) no-repeat center;
+        background-size: 3px 3px, auto, cover;
+    }
+
+    .section .section-header {
+        position: unset;
+        height: 60px;
+        min-height: 60px;
+        min-width: 60px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .section.active .section-header {
+        display: block;
+    }
+
+    .section.active .section-header h2 {
+        visibility: unset;
+    }
+
+    .section .section-header h2 {
+        writing-mode: unset;
+    }
+
+    .member-form {
+        flex-direction: column;
+    }
+
+    .member-picture {
+        margin-bottom: 20px;
+    }
+
+}
+
+/* QR_Cdoe ticket 開始*/
+.ticketbox{
+    
+}
+
+}
+
+.showticket{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.showticket img{
+    margin: 20px;
+}
+/* QR_Cdoe ticket 結束*/

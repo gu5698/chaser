@@ -1,0 +1,273 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+    <head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/jgonzo127/pen/pJJyrG" />
+    
+    
+    <style class="cp-pen-styles">body {
+      background-color:#10191F;
+    }
+    
+    .content {
+     box-sizing: border-box;
+      width: 100%;
+     font-family:"Orbitron";
+      color:white;
+    
+    
+    }
+    
+    .nav {
+      background-color:black;
+      height: 80px;
+     margin:0px;
+     position:fixed-top;
+     width:100%;
+      z-index:1;
+    }
+    
+    .top-info {
+    padding-top: 20px;
+    text-align:center;
+    }
+    
+    .hud:hover {
+     box-shadow: 0 0 30px #9DFCF0;
+     cursor: pointer;
+      
+    }
+    
+    .hud {
+      width:300px;
+     height: 300px;
+      background-color:#146EA3;
+      margin:150px auto 200px auto;
+      border-radius: 150px;
+      border: 3px solid  #9DFCF0;
+      text-align:center;
+      
+    }
+    
+    .options a {
+      color: white;
+    }
+    
+    .about {
+      text-align:center;
+      margin-right: 600px;
+      margin-top: -500px;
+          -webkit-animation:bounce 1.5s linear alternate infinite;
+        -moz-animation:bounce 1.5s linear alternate infinite;
+        animation:bounce 1.5s linear alternate infinite;
+    }
+    
+    .about-line  {
+        width: 70px;
+        height: 47px;
+        border-bottom: 1px solid white;
+        -webkit-transform:
+            translateY(-8px)
+            translateX(108px)
+            rotate(27deg); 
+        position: absolute;
+    
+    }
+    
+    .contact-line {
+          width: 70px;
+        height: 47px;
+        border-bottom: 1px solid white;
+        -webkit-transform:
+            translateY(36px)
+            translateX(-53px)
+            rotate(150deg); 
+        position: absolute;
+    
+    }
+    
+    .contact {
+    margin-top: -450px;
+     text-align:center;
+      margin-left: 570px;
+        -webkit-animation:bounce 1.5s linear alternate infinite;
+        -moz-animation:bounce 1.5s linear alternate infinite;
+        animation:bounce 1.5s linear alternate infinite;
+      
+    }
+    
+    .portfolio {
+      margin-top: 395px;
+       text-align:center;
+          -webkit-animation:bounce 1.5s linear alternate infinite;
+        -moz-animation:bounce 1.5s linear alternate infinite;
+        animation:bounce 1.5s linear alternate infinite;
+      
+    }
+    
+    .portfolio-line {
+      width: 70px;
+        height: 47px;
+        border-bottom: 1px solid white;
+        -webkit-transform:
+            translateY(-60px)
+            translateX(35px)
+            rotate(90deg); 
+        position: absolute;
+    
+    }
+    
+    .title {
+      margin-top:100px;
+      text-align:center;
+    
+    }
+    
+    
+    .border {
+      border: 5px dotted white;
+      border-radius: 230px;
+      width: 400px;
+      height: 400px;
+      margin-top: -279px;
+      margin-left: -54px;
+      -webkit-animation:spin 110s linear infinite;
+        -moz-animation:spin 110s linear infinite;
+        animation:spin 110s linear infinite;
+    }
+    
+    .sub-border {
+        border: 2px dotted white;
+      border-radius: 230px;
+      width: 345px;
+      height: 345px;
+      margin-top: -377px;
+      margin-left: -23px;
+      -webkit-animation:spin-counter 110s linear infinite;
+        -moz-animation:spin-counter 110s linear infinite;
+        animation:spin-counter 110s linear infinite;
+    }
+    
+    .text-container {
+      margin: -100px auto 0px auto;
+      width: 1000px;
+      text-align:center;
+    }
+    
+    .about-content {
+      margin-top:-150px;
+      display:none;
+    }
+    
+    .portfolio-content {
+       margin-top: -150px;
+      display:none;
+    }
+    
+    .contact-content {
+      margin-top: -150px;
+    
+    }
+    
+    /* animation */
+    
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+    
+    @-moz-keyframes spin-counter { 100% { -moz-transform: rotate(-360deg); } }
+    @-webkit-keyframes spin-counter { 100% { -webkit-transform: rotate(-360deg); } }
+    @keyframes spin-counter { 100% { -webkit-transform: rotate(-360deg); transform:rotate(360deg); } }
+    
+     @-moz-keyframes bounce { 100% {-moz-transform:translateX(8px) translateY(5px); } }
+    
+     @-webkit-keyframes  bounce { 100% {-webkit-transform:translateX(8px) translateY(5px); } }
+    
+     @keyframes bounce  { 100% {transform:translateX(8px), translateY(5px); } }
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    
+    
+    </style></head><body>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron:400,700' rel='stylesheet' type='text/css'>
+    
+    <div class="content">
+      
+      <div class="nav">
+        <p class="top-info">Jordan Gonzales: Web Designer</p>
+    </div>
+      
+        <div class="hud">
+         <h1 class="title">Push The Button!</h1>
+               <div class="border"></div>
+          <div class="sub-border"></div>
+      </div>
+            
+      
+      <div  class="options">
+        <a href= " " ><p class="about"><span class="about-line"></span> About Me</p></a>
+        <a href= " " ><p class="portfolio"><span class="portfolio-line"></span>Portfolio</p></a>
+            <a href= " " ><p class="contact"><span class="contact-line"></span>Contact</p></a>
+           </div>
+      
+      <div class="text-container">
+     
+    <div class="about-content">
+            <h1>A Little Bit About Myself:</h1>
+            <p>I&#39m a Front End web designer interested in learning as much as I can about the art of coding. The idea of combining design and content on something as powerful and frequently used as the web is fascinating to me.</p>
+            <p>Working in web design is an idea that dawned on me very recently. I didn't realize how much myself and everyone around me relied on the internet for so many things. Of course I need to make stuff on the web!</p>
+            <p>Friendship, stability, and hard work are all very important to me. I feel that one&#39s greatest challenges lie within one&#39s self, and overcoming those challenges are the most rewarding of lifelong goals.</p>
+        </div>
+      
+      <div class="contact-content">
+        <h1 >Say Hi To Me!</h1>
+                <ul class="icons">
+                <li><a href="https://github.com/jgonzo127"><i class="fa fa-github fa-2x"></i></a></li>
+                <li><a href="https://www.facebook.com/jordan.gonzales1"><i class="fa fa-facebook fa-2x"></i></a></li>
+                <li><a href="https://plus.google.com/u/0/100514688037886973756/posts"><i class="fa fa-google-plus fa-2x"></i></a></li>
+            </ul>
+                <h2>Or send me an email:</h2>
+                <a href="https://jgonzo127.wufoo.com/forms/z16pricx1az39c4/"><img src="img/email.png" height= "128px" width = "128px" alt=""></a>
+      </div>
+      
+      <div class="portfolio-content">
+        <h1>Take a Look at My Work!</h1>
+            <ul class="port-work">
+                <li><a href="https://jgonzo127.github.io/startup_clone"><img src="img/startup-page.jpg">Startup Page Clone</a></li>
+                <li><a href="https://jgonzo127.github.io/animated_page/"><img src="img/tugboat-anm.jpg">Tugboat Animation</a></li>
+                <li><a href="https://jgonzo127.github.io/mars_page/"><img src="img/mars-page.jpg"><br>Mars Info Page<br></a></li>
+                <li><a href="https://jgonzo127.github.io/streetfighter-jquery/"><img src="img/streetfighter.jpg"><br>Street Fighter with jQuery<br></a></li>
+                <li><a href="https://jgonzo127.github.io/shopping_list/"><img src="img/shopping-list.jpg"><br>Shopping List<br></a></li>
+                <li><a href="https://jgonzo127.github.io/Hot-or-Cold/"><img src="img/hotorcold.jpg"><br>Hot or Cold Game<br></a></li>
+                <li><a href="https://jgonzo127.github.io/quizGame/"><img src="img/starwarsquiz.jpg"><br>Star Wars Quiz<br></a></li>
+                <li><a href="https://jgonzo127.github.io/googlemapproject/"><img src="img/googlemap.jpg"><br>Google Maps Image Project<br></a></li>
+            </ul>	
+      </div>
+    
+      
+    </div>
+      
+    </div>
+    
+      
+    
+          
+    
+    
+    
+    
+    <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script >$(document).ready(function () {
+      $(".contact").on('click', function () {
+    
+        $(".contact-content").hide();
+      });
+    });
+    //# sourceURL=pen.js
+    </script>
+    </body></html>

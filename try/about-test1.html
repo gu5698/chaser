@@ -1,0 +1,94 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+    <head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/chris22smith/pen/YZPrjr" />
+    
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Fira+Mono'>
+    <style class="cp-pen-styles">body {
+      background-color:#000;
+      margin:0;
+      overflow:hidden;
+      padding:0;
+    }
+    
+    .screen {
+      animation:colorPulse 5s infinite ease-in-out;
+      background-image:radial-gradient(#444, #111);
+      box-shadow:0 0 5vmin 1vmin #000 inset;
+      box-sizing:border-box;
+      font-family:'Fira Mono', monospace;
+      font-size:20px;
+      height:100vh;
+      overflow:hidden;
+      padding:10vmin;
+      width:100vw;
+    }
+    
+    .screen:before {
+      animation:wave 10s infinite ease-in-out;
+      content:"";
+      height:20vh;
+      left:0;
+      opacity:.5;
+      position:absolute;
+      right:0;
+      z-index:1;
+    }
+    
+    .screen:after {
+      background-image:linear-gradient(transparent, transparent 3px, #222);
+      background-size:4px 4px;
+      bottom:0;
+      content:"";
+      left:0;
+      pointer-events:none;
+      position:absolute;
+      right:0;
+      top:0;
+      z-index:2;
+    }
+    
+    p:last-child:after {
+      animation:blink 1s infinite;
+      content:"_";
+    }
+    
+    @keyframes colorPulse {
+      0%, 100% {
+        color:#0c0;
+      }
+      48%, 52% {
+        color:#090;
+      }
+      50% {
+        color:#060;
+      }
+    }
+    
+    @keyframes wave {
+      0% {
+        box-shadow:0 -10vh 20vh #0c0;
+        top:-100vh;
+      }
+      48%, 52% {
+        box-shadow:0 -10vh 20vh #090;
+      }
+      50% {
+        box-shadow:0 -10vh 20vh #060;
+      }
+      100% {
+        box-shadow:0 -10vh 20vh #0c0;
+        top:200vh;
+      }
+    }
+    
+    @keyframes blink {
+      50% {
+        opacity:0;
+      }
+    }</style></head><body>
+    <div class="screen">
+      <p>中文字測試It was this howling and firing of the guns at Ripley and St. George's Hill that we had heard at Upper Halliford. The Ripley gunners, unseasoned artillery volunteers who ought never to have been placed in such a position, fired one wild, premature, ineffectual volley, and bolted on horse and foot through the deserted village, while the Martian, without using his Heat-Ray, walked serenely over their guns, stepped gingerly among them, passed in front of them, and so came unexpectedly upon the guns in Painshill Park, which he destroyed.</p>
+      <p style="text-align:right">H. G. Wells - The War of the Worlds, Chapter 15</p>
+    </div>
+    
+    </body></html>

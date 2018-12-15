@@ -1,0 +1,500 @@
+/* 會員專區樣式 開始 */
+
+ul, li {
+    list-style: none;
+}
+
+.navbar {
+    /* z-index: 98; */
+}
+
+.wrap-main {
+    width: 100%;
+}
+
+/* 外層4個section的flex設定 */
+.wrap-member-body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+/* section 共用的樣式 開始*/
+.section {
+    position: relative;
+    min-width: 100px;
+    /*border: 1px solid #000;*/
+    height: 100vh;
+    flex: 1;
+    cursor: pointer;
+    padding-top: 90px;
+
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+
+    transition: all 500ms ease-in-out;
+}
+
+.section .section-header {
+    position: absolute;
+    top: calc(50% - 116px / 2);
+    left: calc(50% - 53px / 2);
+
+    /*background-color: rgba(25, 101, 38, .7);*/
+    padding: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.section .section-header h2 {
+    -webkit-writing-mode: tb-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: tb-rl;
+
+    color: #fdd084;
+    font-weight: normal;
+}
+
+.section .section-body {
+    opacity: 0;
+    display: none;
+}
+
+.section-1 {
+    background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255,.1),rgba(255, 255, 255,.1)),
+                url(../images/member/section-member-05.jpg) no-repeat center;
+    background-size: 3px 3px, auto, cover;
+    /* background-image: url(../images/member/section-member-01.jpg); */
+}
+
+.section-2 {
+    background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255,.1),rgba(255, 255, 255,.1)),
+                url(../images/member/section-member-02.jpg) no-repeat center;
+    background-size: 3px 3px, auto, cover;
+    /* background-image: url(../images/member/section-member-02.jpg); */
+}
+
+.section-3 {
+    background: radial-gradient(circle, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255,.1),rgba(255, 255, 255,.1)),
+                url(../images/member/section-member-09.jpg) no-repeat center;
+    background-size: 3px 3px, auto, cover;
+    /* background-image: url(../images/member/section-member-03.jpg); */
+}
+
+.section-4 {
+    background: radial-gradient(circle, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1) 1px, transparent 1px),
+                linear-gradient(rgba(0, 0, 0,.3),rgba(0, 0, 0,.3)),
+                url(../images/member/section-member-07.jpg) no-repeat center;
+    background-size: 3px 3px, auto, cover;
+    /* background-image: url(../images/member/section-member-04.jpg); */
+}
+
+/* section 共用的樣式 結束*/
+
+/* section .active 的樣式 開始*/
+.section.active {
+    opacity: 1;
+    flex-grow: 2;
+    flex-shrink: 1;
+    flex-basis: 100%;
+
+    cursor: default;
+}
+
+.section.active .section-header {
+    display: none;
+    position: unset;
+    -webkit-writing-mode: unset;
+    -ms-writing-mode: unset;
+    writing-mode: unset;
+    -webkit-border-radius: unset;
+    -moz-border-radius: unset;
+    border-radius: unset;
+    background-color: unset;
+}
+
+.section.active .section-header h2 {
+    -webkit-writing-mode: unset;
+    -ms-writing-mode: unset;
+    writing-mode: unset;
+    text-align: center;
+    visibility: hidden;
+}
+
+.section h3.form-title {
+    color: #fdd084;
+}
+
+h3.form-title {
+    color: #fdd084;
+    margin: 10px;
+    /*font-weight: 200;*/
+    font-size: 1.5em;
+}
+
+.section.active .section-body {
+    opacity: 1;
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: 80vh;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, .6);
+    border-radius: 25px;
+    overflow: auto;
+}
+
+/* section .active 的樣式 結束*/
+
+/* 修改會員資料表格 開始*/
+.member-form {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.member-picture {
+    flex: 1;
+}
+
+.member-rows {
+    flex: 1;
+}
+
+.member-bottom {
+    text-align: center;
+}
+
+.form-group {
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+.form-group > label {
+    /*opacity: 0.3;*/
+    color: #fdd084;
+    font-weight: 200;
+    position: absolute;
+    top: 7px;
+    left: 34px;
+}
+
+.form-group > input {
+    color: #fdd084;
+}
+
+.form-group > input[type="text"], .form-group > input[type="email"], .form-group > input[type="tel"], .form-group > input[type="password"] {
+    width: 100%;
+    border: 0;
+    padding: 10px 5px 10px 35px;
+    background-color: transparent;
+}
+
+.form-group > input[type="text"]:focus, .form-group > input[type="email"]:focus, .form-group > input[type="tel"]:focus, .form-group > input[type="password"]:focus {
+    outline: 0;
+    background-color: transparent;
+}
+
+.form-group > input[type="text"]:focus + label, .form-group > input[type="email"]:focus + label, .form-group > input[type="tel"]:focus + label, .form-group > input[type="password"]:focus + label {
+    opacity: 0;
+    /*top: -10px;*/
+    /*font-size: 8px;*/
+}
+
+.form-group > input[type="text"]:valid, .form-group > input[type="email"]:valid, .form-group > input[type="tel"]:valid, .form-group > input[type="password"]:valid {
+    background: url(../images/svg/check.svg);
+    /*background-size: 20px;*/
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+
+.form-group > input[type="text"]:valid + label, .form-group > input[type="email"]:valid + label, .form-group > input[type="tel"]:valid + label, .form-group > input[type="password"]:valid + label {
+    opacity: 0;
+}
+
+.form-group > input[type="text"]:invalid:not(:focus):not(:placeholder-shown), .form-group > input[type="email"]:invalid:not(:focus):not(:placeholder-shown), .form-group > input[type="tel"]:invalid:not(:focus):not(:placeholder-shown), .form-group > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
+    background: pink;
+    color: #f00;
+}
+
+.form-group > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label, .form-group > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) + label, .form-group > input[type="tel"]:invalid:not(:focus):not(:placeholder-shown) + label, .form-group > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) + label {
+    opacity: 0;
+}
+
+.form-group > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements, .form-group > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements, .form-group > input[type="tel"]:invalid:focus:not(:placeholder-shown) ~ .requirements, .form-group > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
+    max-height: 200px;
+    padding: 0 30px 20px 50px;
+}
+
+.form-group .requirements {
+    padding: 0 30px 0 50px;
+    color: #999;
+    max-height: 0;
+    transition: 0.28s;
+    overflow: hidden;
+    color: red;
+    font-style: italic;
+}
+
+/* 修改會員資料表格 結束*/
+
+.member-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .9);
+    z-index: 101;
+}
+
+.login-lightbox, .register-lightbox {
+    width: 400px;
+    height: 300px;
+    position: fixed;
+    top: calc(50vh - 150px);
+    left: calc(50vw - 200px);
+    z-index: 102;
+}
+
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 102;
+}
+
+.loading::after {
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    /* background-image: url(../images/svg/loading.svg); */
+    background-repeat: no-repeat;
+    -webkit-background-size: auto;
+    background-size: auto;
+    background-position: center;
+}
+
+.register-lightbox {
+    top: calc(50vh - 193px);
+}
+
+.login-lightbox p, .register-lightbox p {
+    color: #fff;
+}
+
+.login-lightbox .text-center, .register-lightbox .text-center {
+    text-align: center;
+}
+
+.login-lightbox p a, .register-lightbox p a {
+    color: #fdd084;
+}
+
+/* 票券登箱樣式*/
+
+.login-lightbox.ticket {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.login-lightbox.ticket .close {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    color: #fff;
+    font-size: 22px;
+}
+
+.login-lightbox p {
+    color: #fff;
+}
+
+/* 表格樣式 開始 */
+
+.table * {
+    color: #ffffff;
+}
+
+.table {
+    width: 100%;
+    border-bottom: 1px solid #fdd084;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+.table tr > th, .table tr > td {
+    border-bottom: 1px solid #fdd084;
+    padding: 5px;
+}
+
+.table button {
+    min-height: 25px;
+    color: #fdd084;
+    border: 1px solid #fdd084;
+    background-color: transparent;
+    padding: 3px 10px;
+}
+
+.table button:hover {
+    min-height: 25px;
+    color: rgba(62, 58, 57, 1);
+    border: 1px solid #fdd084;
+    background-color: #fdd084;
+    padding: 3px 10px;
+}
+
+/* 表格樣式 結束 */
+
+/* 修改會員資料的表格外框 開始 */
+fieldset {
+    border: 1px solid #000;
+    background-color: rgba(62, 58, 57, .6);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+fieldset legend {
+    /*background: #1F497D;*/
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 32px;
+    border-radius: 5px;
+    /*box-shadow: 0 0 0 5px #fff;*/
+    margin-left: 20px;
+}
+
+/* 修改會員資料的表格外框 結束 */
+
+/* 圖片上傳預覽 開始 */
+#image-preview {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ecf0f1;
+    color: #ecf0f1;
+}
+
+#image-preview input {
+    line-height: 200px;
+    font-size: 200px;
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+    max-width: 0;
+}
+
+#image-preview label {
+    position: absolute;
+    z-index: 5;
+    opacity: 0.8;
+    cursor: pointer;
+    background-color: #bdc3c7;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-transform: uppercase;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+}
+
+/* 圖片上傳預覽 結束 */
+
+/* 表格按妞的樣式 開始 */
+.btn {
+    position: relative;
+
+    margin: 10px auto;
+    padding: 0;
+
+    overflow: hidden;
+
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+
+    background-color: rgba(62, 58, 57, .5);
+    color: #fdd084;
+
+    transition: background-color .3s;
+}
+
+.btn:hover, .btn:focus {
+    /*background-color: #27ae60;*/
+}
+
+.btn > * {
+    position: relative;
+}
+
+.btn span {
+    display: block;
+    padding: 12px 24px;
+}
+
+.btn:before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+    width: 0;
+    padding-top: 0;
+
+    border-radius: 100%;
+
+    background-color: rgba(236, 240, 241, .3);
+
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+    width: 120%;
+    padding-top: 120%;
+
+    transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.btn.primary {
+    /*background-color: #2196f3;*/
+}
+
+/* 表格按妞的樣式 結束 */
+
+/* 會員專區樣式 結束 */
+
+/* QR_Cdoe ticket 開始*/
+
+.showticket{
+    margin-top: 60px;
+    text-align: center;
+}
+/* QR_Cdoe ticket 結束*/

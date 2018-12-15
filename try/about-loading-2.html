@@ -1,0 +1,51 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+        <head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/nfj525/pen/vEpkL" />
+        
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js'></script>
+        <style class="cp-pen-styles">body {
+            color: #333;
+        }
+        #progressbar{
+          height: 26px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 200px;
+          background: rgba(159, 159, 159, 0.5);
+          border-radius: 10px;
+          margin: -20px 0 0 -100px;
+          padding: 2px;
+        }
+        #loading{
+          transition: all 500ms ease;
+          height: 20px;
+          width: calc(100% - 10px);
+          border-radius: 8px;
+          background: #474747;
+          position: absolute;
+          margin: 3px;
+          display: inline-block;
+          animation: load 15s ease infinite;
+        }
+        #load{
+          font-family: Arial;
+          font-weight: bold;
+          text-align: center;
+          margin-top: -30px;
+        }
+        
+        @keyframes load{
+          0%{
+            width: 2%;
+          }
+          10%{
+            width: 10%;
+          }
+        }</style></head><body>
+        <div id="progressbar">
+          <span id="loading"></span>
+          <div id="load">loading</div>
+        </div>
+        
+        </body></html>

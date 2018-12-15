@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <body onload='rwd()'>
+        <div id="text"></div>
+    </body>
+    
+    <script>
+        function rwd() {
+            if ($(window).width() < 767) {
+                document.getElementById('text').innerHTML = '手機版';
+                // 當視窗寬度小於767px時執行
+            } else {
+                document.getElementById('text').innerHTML = '桌機版';
+                // 當視窗寬度不小於767px時執行
+            }
+        }
+        //當畫面有變動時會驅動
+        $(window).resize(function () {
+            rwd();
+        });
+    </script>
+</body>
+
+</html>

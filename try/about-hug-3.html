@@ -1,0 +1,328 @@
+
+<!DOCTYPE html><html lang='en' class=''>
+    <head><script src='//static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/derekjp/pen/VKXqjJ" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Text+Me+One" rel="stylesheet">
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
+    <style class="cp-pen-styles">* {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -ms-text-size-adjust: 100%;
+      text-rendering: optimizelegibility;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      height: 100%;
+      width: 100%;
+      background: #8f2f4d;
+      background: radial-gradient(ellipse at center, #8f2f4d 0%, #2d0012 100%);
+      color: #FA80FE;
+      font-family: 'Text Me One', sans-serif;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+    }
+    
+    img {
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    
+    body {
+      overflow: hidden;
+    }
+    
+    #scene {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100%;
+    }
+    
+    .layer {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .neon-pink {
+      box-shadow: 0 0 10px 2px #A12648 inset, 0 0 0px 3px #FA80FE, 0 0 10px 4px #A12648;
+      border-radius: 30px;
+    }
+    
+    .neon-red {
+      box-shadow: 0 0 10px 2px #A12648 inset, 0 0 0px 3px #F51827, 0 0 10px 4px #A12648;
+    }
+    
+    .plain {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+    }
+    
+    .tetromino-wall {
+      height: 125px;
+      width: 125px;
+      background: #FFFB4E;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      opacity: 0.45;
+    }
+    .tetromino-wall .tetromino-whole {
+      width: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+    }
+    
+    .large-text {
+      font-size: 2.5rem;
+    }
+    
+    .level {
+      position: absolute;
+      top: -30px;
+      left: 5px;
+      text-shadow: 2px 2px 5px #A12648;
+    }
+    
+    .cube-num {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      text-shadow: 2px 2px 5px #A12648;
+    }
+    
+    .streak {
+      position: absolute;
+      bottom: 5px;
+      left: 15px;
+      text-shadow: 2px 2px 5px #A12648;
+    }
+    
+    .total-score {
+      position: absolute;
+      bottom: -65px;
+      right: 5px;
+      text-shadow: 2px 2px 5px #A12648;
+      font-size: 3.5rem;
+    }
+    
+    .play-field {
+      height: 400px;
+      width: 400px;
+    }
+    
+    .tetromino-piece .tetromino {
+      width: 150px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+    }
+    .tetromino-piece .tetromino .st0 {
+      stroke: #FA80FE;
+      fill: #FA80FE;
+    }
+    
+    #scene-bg {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    #scene-bg .layer:nth-child(1) {
+      opacity: 0.8;
+    }
+    #scene-bg .layer:nth-child(2) {
+      opacity: 0.6;
+    }
+    #scene-bg .layer:nth-child(3) {
+      opacity: 0.6;
+    }
+    #scene-bg .layer:nth-child(4) {
+      opacity: 0.5;
+    }
+    #scene-bg .layer:nth-child(5) {
+      opacity: 0.4;
+    }
+    #scene-bg .layer:nth-child(6) {
+      opacity: 0.3;
+    }
+    #scene-bg .layer:nth-child(7) {
+      opacity: 0.2;
+    }
+    #scene-bg .layer:nth-child(8) {
+      opacity: 0.1;
+    }
+    #scene-bg .layer:nth-child(1) .vr-space {
+      width: 120%;
+      height: 95vh;
+      border-radius: 150px;
+    }
+    #scene-bg .layer:nth-child(2) .vr-space {
+      width: 90%;
+      height: 78vh;
+      border-radius: 120px;
+    }
+    #scene-bg .layer:nth-child(3) .vr-space {
+      width: 70%;
+      height: 60vh;
+      border-radius: 110px;
+    }
+    #scene-bg .layer:nth-child(4) .vr-space {
+      width: 61%;
+      height: 51vh;
+      border-radius: 100px;
+    }
+    #scene-bg .layer:nth-child(5) .vr-space {
+      width: 52%;
+      height: 42vh;
+      border-radius: 90px;
+    }
+    #scene-bg .layer:nth-child(6) .vr-space {
+      width: 45%;
+      height: 35vh;
+      border-radius: 80px;
+    }
+    #scene-bg .layer:nth-child(7) .vr-space {
+      width: 40%;
+      height: 30vh;
+      border-radius: 70px;
+    }
+    #scene-bg .layer:nth-child(8) .vr-space {
+      width: 35%;
+      height: 25vh;
+      border-radius: 60px;
+    }
+    
+    .vr-space {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+    }
+    </style></head><body>
+    <div id="container" class="container">
+            <ul id="scene-bg" class="scene">
+                <li class="layer" data-depth="0.1">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.2">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.3">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.4">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.5">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.6">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.7">
+                    <div class="vr-space neon-red"></div>
+                </li>
+                <li class="layer" data-depth="0.8">
+                    <div class="vr-space neon-red"></div>
+                </li>
+            </ul>
+            <ul id="scene" class="scene">
+                <li class="layer" data-depth="0.40">
+                    <div class="plain">
+                        <span class="level">Level 2</span>
+                        <div class="cube-num">
+                            <span class="large-text">6</span>
+                            <span class="small-text">cubes</span>
+                        </div>
+                        <div class="streak">
+                            <span class="large-text">x4</span>
+                            <span class="small-text">Walls in a Row</span>
+                        </div>
+                        <span class="total-score">178</span>
+                        <div class="play-field neon-pink"></div>
+                    </div>
+                </li>
+                <li class="layer" data-depth="0.50">
+                    <div class="tetromino-wall">
+                        <div class="tetromino-whole">
+                            
+                        <svg version="1.1" class="tetromino" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 136.8 181.1"  xml:space="preserve">
+                            
+                        <polygon class="st0" points="8.4,171.6 88.4,171.6 88.4,91.6 128.4,91.6 128.4,51.6 88.4,51.6 88.4,11.6 48.4,11.6 48.4,131.6 
+                            8.4,131.6 "/>
+                        </svg>
+                    </div>
+                    </div>
+                </li>
+                <li class="layer" data-depth="0.90">
+                    <div class="tetromino-piece">
+                        <svg version="1.1" class="tetromino" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 136.8 181.1"  xml:space="preserve">
+                        <filter id = "i1">
+                          <feOffset result = "offOut" in = "SourceGraphic" dx = "0" dy = "0"/>
+                          <feColorMatrix result = "matrixOut" in = "offOut" type = "matrix" values = "0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0"/>
+                          <feGaussianBlur result = "blurOut" in = "matrixOut" stdDeviation = "3"/>
+                          <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
+                     </filter>
+                        <polygon class="st0" points="8.4,171.6 88.4,171.6 88.4,91.6 128.4,91.6 128.4,51.6 88.4,51.6 88.4,11.6 48.4,11.6 48.4,131.6 
+                            8.4,131.6 " filter="url(#i1)"/>
+                        </svg>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    <script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/parallax/2.1.3/parallax.min.js'></script>
+    <script >!function (t, i, e) {"use strict";function s(t, i) {this.element = t, this.layers = t.getElementsByClassName("layer");var e = { calibrateX: this.data(this.element, "calibrate-x"), calibrateY: this.data(this.element, "calibrate-y"), invertX: this.data(this.element, "invert-x"), invertY: this.data(this.element, "invert-y"), limitX: this.data(this.element, "limit-x"), limitY: this.data(this.element, "limit-y"), scalarX: this.data(this.element, "scalar-x"), scalarY: this.data(this.element, "scalar-y"), frictionX: this.data(this.element, "friction-x"), frictionY: this.data(this.element, "friction-y"), originX: this.data(this.element, "origin-x"), originY: this.data(this.element, "origin-y") };for (var s in e) null === e[s] && delete e[s];this.extend(this, r, i, e), this.calibrationTimer = null, this.calibrationFlag = !0, this.enabled = !1, this.depths = [], this.raf = null, this.bounds = null, this.ex = 0, this.ey = 0, this.ew = 0, this.eh = 0, this.ecx = 0, this.ecy = 0, this.erx = 0, this.ery = 0, this.cx = 0, this.cy = 0, this.ix = 0, this.iy = 0, this.mx = 0, this.my = 0, this.vx = 0, this.vy = 0, this.onMouseMove = this.onMouseMove.bind(this), this.onDeviceOrientation = this.onDeviceOrientation.bind(this), this.onOrientationTimer = this.onOrientationTimer.bind(this), this.onCalibrationTimer = this.onCalibrationTimer.bind(this), this.onAnimationFrame = this.onAnimationFrame.bind(this), this.onWindowResize = this.onWindowResize.bind(this), this.initialise();}var n = "Parallax",o = 30,r = { relativeInput: !1, clipRelativeInput: !1, calibrationThreshold: 100, calibrationDelay: 500, supportDelay: 500, calibrateX: !1, calibrateY: !0, invertX: !0, invertY: !0, limitX: !1, limitY: !1, scalarX: 10, scalarY: 10, frictionX: .1, frictionY: .1, originX: .5, originY: .5 };s.prototype.extend = function () {if (arguments.length > 1) for (var t = arguments[0], i = 1, e = arguments.length; e > i; i++) {var s = arguments[i];for (var n in s) t[n] = s[n];}}, s.prototype.data = function (t, i) {return this.deserialize(t.getAttribute("data-" + i));}, s.prototype.deserialize = function (t) {return "true" === t ? !0 : "false" === t ? !1 : "null" === t ? null : !isNaN(parseFloat(t)) && isFinite(t) ? parseFloat(t) : t;}, s.prototype.camelCase = function (t) {return t.replace(/-+(.)?/g, function (t, i) {return i ? i.toUpperCase() : "";});}, s.prototype.transformSupport = function (s) {for (var n = i.createElement("div"), o = !1, r = null, a = !1, h = null, l = null, p = 0, c = this.vendors.length; c > p; p++) if (null !== this.vendors[p] ? (h = this.vendors[p][0] + "transform", l = this.vendors[p][1] + "Transform") : (h = "transform", l = "transform"), n.style[l] !== e) {o = !0;break;}switch (s) {case "2D":a = o;break;case "3D":if (o) {var m = i.body || i.createElement("body"),u = i.documentElement,y = u.style.overflow;i.body || (u.style.overflow = "hidden", u.appendChild(m), m.style.overflow = "hidden", m.style.background = ""), m.appendChild(n), n.style[l] = "translate3d(1px,1px,1px)", r = t.getComputedStyle(n).getPropertyValue(h), a = r !== e && r.length > 0 && "none" !== r, u.style.overflow = y, m.removeChild(n);}}return a;}, s.prototype.ww = null, s.prototype.wh = null, s.prototype.wcx = null, s.prototype.wcy = null, s.prototype.wrx = null, s.prototype.wry = null, s.prototype.portrait = null, s.prototype.desktop = !navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|mobi|tablet|opera mini|nexus 7)/i), s.prototype.vendors = [null, ["-webkit-", "webkit"], ["-moz-", "Moz"], ["-o-", "O"], ["-ms-", "ms"]], s.prototype.motionSupport = !!t.DeviceMotionEvent, s.prototype.orientationSupport = !!t.DeviceOrientationEvent, s.prototype.orientationStatus = 0, s.prototype.propertyCache = {}, s.prototype.initialise = function () {s.prototype.transform2DSupport === e && (s.prototype.transform2DSupport = s.prototype.transformSupport("2D"), s.prototype.transform3DSupport = s.prototype.transformSupport("3D")), this.transform3DSupport && this.accelerate(this.element);var i = t.getComputedStyle(this.element);"static" === i.getPropertyValue("position") && (this.element.style.position = "relative"), this.updateLayers(), this.updateDimensions(), this.enable(), this.queueCalibration(this.calibrationDelay);}, s.prototype.updateLayers = function () {this.layers = this.element.getElementsByClassName("layer"), this.depths = [];for (var t = 0, i = this.layers.length; i > t; t++) {var e = this.layers[t];this.transform3DSupport && this.accelerate(e), e.style.position = t ? "absolute" : "relative", e.style.display = "block", e.style.left = 0, e.style.top = 0, this.depths.push(this.data(e, "depth") || 0);}}, s.prototype.updateDimensions = function () {this.ww = t.innerWidth, this.wh = t.innerHeight, this.wcx = this.ww * this.originX, this.wcy = this.wh * this.originY, this.wrx = Math.max(this.wcx, this.ww - this.wcx), this.wry = Math.max(this.wcy, this.wh - this.wcy);}, s.prototype.updateBounds = function () {this.bounds = this.element.getBoundingClientRect(), this.ex = this.bounds.left, this.ey = this.bounds.top, this.ew = this.bounds.width, this.eh = this.bounds.height, this.ecx = this.ew * this.originX, this.ecy = this.eh * this.originY, this.erx = Math.max(this.ecx, this.ew - this.ecx), this.ery = Math.max(this.ecy, this.eh - this.ecy);}, s.prototype.queueCalibration = function (t) {clearTimeout(this.calibrationTimer), this.calibrationTimer = setTimeout(this.onCalibrationTimer, t);}, s.prototype.enable = function () {this.enabled || (this.enabled = !0, this.orientationSupport ? (this.portrait = null, t.addEventListener("deviceorientation", this.onDeviceOrientation), setTimeout(this.onOrientationTimer, this.supportDelay)) : (this.cx = 0, this.cy = 0, this.portrait = !1, t.addEventListener("mousemove", this.onMouseMove)), t.addEventListener("resize", this.onWindowResize), this.raf = requestAnimationFrame(this.onAnimationFrame));}, s.prototype.disable = function () {this.enabled && (this.enabled = !1, this.orientationSupport ? t.removeEventListener("deviceorientation", this.onDeviceOrientation) : t.removeEventListener("mousemove", this.onMouseMove), t.removeEventListener("resize", this.onWindowResize), cancelAnimationFrame(this.raf));}, s.prototype.calibrate = function (t, i) {this.calibrateX = t === e ? this.calibrateX : t, this.calibrateY = i === e ? this.calibrateY : i;}, s.prototype.invert = function (t, i) {this.invertX = t === e ? this.invertX : t, this.invertY = i === e ? this.invertY : i;}, s.prototype.friction = function (t, i) {this.frictionX = t === e ? this.frictionX : t, this.frictionY = i === e ? this.frictionY : i;}, s.prototype.scalar = function (t, i) {this.scalarX = t === e ? this.scalarX : t, this.scalarY = i === e ? this.scalarY : i;}, s.prototype.limit = function (t, i) {this.limitX = t === e ? this.limitX : t, this.limitY = i === e ? this.limitY : i;}, s.prototype.origin = function (t, i) {this.originX = t === e ? this.originX : t, this.originY = i === e ? this.originY : i;}, s.prototype.clamp = function (t, i, e) {return t = Math.max(t, i), t = Math.min(t, e);}, s.prototype.css = function (t, i, s) {var n = this.propertyCache[i];if (!n) for (var o = 0, r = this.vendors.length; r > o; o++) if (n = null !== this.vendors[o] ? this.camelCase(this.vendors[o][1] + "-" + i) : i, t.style[n] !== e) {this.propertyCache[i] = n;break;}t.style[n] = s;}, s.prototype.accelerate = function (t) {this.css(t, "transform", "translate3d(0,0,0)"), this.css(t, "transform-style", "preserve-3d"), this.css(t, "backface-visibility", "hidden");}, s.prototype.setPosition = function (t, i, e) {i += "px", e += "px", this.transform3DSupport ? this.css(t, "transform", "translate3d(" + i + "," + e + ",0)") : this.transform2DSupport ? this.css(t, "transform", "translate(" + i + "," + e + ")") : (t.style.left = i, t.style.top = e);}, s.prototype.onOrientationTimer = function () {this.orientationSupport && 0 === this.orientationStatus && (this.disable(), this.orientationSupport = !1, this.enable());}, s.prototype.onCalibrationTimer = function () {this.calibrationFlag = !0;}, s.prototype.onWindowResize = function () {this.updateDimensions();}, s.prototype.onAnimationFrame = function () {this.updateBounds();var t = this.ix - this.cx,i = this.iy - this.cy;(Math.abs(t) > this.calibrationThreshold || Math.abs(i) > this.calibrationThreshold) && this.queueCalibration(0), this.portrait ? (this.mx = this.calibrateX ? i : this.iy, this.my = this.calibrateY ? t : this.ix) : (this.mx = this.calibrateX ? t : this.ix, this.my = this.calibrateY ? i : this.iy), this.mx *= this.ew * (this.scalarX / 100), this.my *= this.eh * (this.scalarY / 100), isNaN(parseFloat(this.limitX)) || (this.mx = this.clamp(this.mx, -this.limitX, this.limitX)), isNaN(parseFloat(this.limitY)) || (this.my = this.clamp(this.my, -this.limitY, this.limitY)), this.vx += (this.mx - this.vx) * this.frictionX, this.vy += (this.my - this.vy) * this.frictionY;for (var e = 0, s = this.layers.length; s > e; e++) {var n = this.layers[e],o = this.depths[e],r = this.vx * o * (this.invertX ? -1 : 1),a = this.vy * o * (this.invertY ? -1 : 1);this.setPosition(n, r, a);}this.raf = requestAnimationFrame(this.onAnimationFrame);}, s.prototype.onDeviceOrientation = function (t) {if (!this.desktop && null !== t.beta && null !== t.gamma) {this.orientationStatus = 1;var i = (t.beta || 0) / o,e = (t.gamma || 0) / o,s = this.wh > this.ww;this.portrait !== s && (this.portrait = s, this.calibrationFlag = !0), this.calibrationFlag && (this.calibrationFlag = !1, this.cx = i, this.cy = e), this.ix = i, this.iy = e;}}, s.prototype.onMouseMove = function (t) {var i = t.clientX,e = t.clientY;!this.orientationSupport && this.relativeInput ? (this.clipRelativeInput && (i = Math.max(i, this.ex), i = Math.min(i, this.ex + this.ew), e = Math.max(e, this.ey), e = Math.min(e, this.ey + this.eh)), this.ix = (i - this.ex - this.ecx) / this.erx, this.iy = (e - this.ey - this.ecy) / this.ery) : (this.ix = (i - this.wcx) / this.wrx, this.iy = (e - this.wcy) / this.wry);}, t[n] = s;}(window, document), function () {for (var t = 0, i = ["ms", "moz", "webkit", "o"], e = 0; e < i.length && !window.requestAnimationFrame; ++e) window.requestAnimationFrame = window[i[e] + "RequestAnimationFrame"], window.cancelAnimationFrame = window[i[e] + "CancelAnimationFrame"] || window[i[e] + "CancelRequestAnimationFrame"];window.requestAnimationFrame || (window.requestAnimationFrame = function (i, e) {var s = new Date().getTime(),n = Math.max(0, 16 - (s - t)),o = window.setTimeout(function () {i(s + n);}, n);return t = s + n, o;}), window.cancelAnimationFrame || (window.cancelAnimationFrame = function (t) {clearTimeout(t);});}();
+    
+    
+    
+    
+    
+    //HUD/Game
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
+    
+    //Background
+    var sceneBG = document.getElementById('scene-bg');
+    var parallax = new Parallax(sceneBG);
+    //# sourceURL=pen.js
+    </script>
+    </body></html>

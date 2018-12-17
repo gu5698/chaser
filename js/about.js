@@ -180,13 +180,15 @@ TweenMax.to('#about-gear-04', 20, {
 function aboutDataTrans(){
     var oUl = document.getElementById('aboutDataTransmission');//获取多个里的第1个
     var oDiv = document.getElementById('aboutArea6');
-    var disTop = oUl.offsetHeight - oDiv.offsetHeight;  // 移動最大範圍的值
+    // var disTop = oUl.offsetHeight - oDiv.offsetHeight;  // 移動最大範圍的值
     //document.querySelectorAll();//獲取多個,返回nodeList(類似於陣列(array)的使用)
 
 //    console.log('disTop');
      // 使用元素往上移動
     function moveUp(){
         var s = 1;  // 移動的距離
+        var disTop = oUl.offsetHeight - oDiv.offsetHeight; //// 移動最大範圍的值
+        console.log(oUl.ooffsetTop, disTop);  
         if (oUl.offsetTop < -disTop){
             oUl.style.top = '0px';
         }
@@ -195,8 +197,8 @@ function aboutDataTrans(){
 
         oUl.style.top = oUl.offsetTop - s + 'px';
     }
-    console.log(oUl);
     setInterval(moveUp, 20);
+    // moveUp;
 }
 window.addEventListener('load',aboutDataTrans);
 
@@ -205,28 +207,56 @@ window.addEventListener('load',aboutDataTrans);
 /********************************************************
                 // about-member - switch//
 *********************************************************/
+//button
+$(".about-member").click(function(){
+    $(".about-techframe-teamgroup").addClass("d-none");
+    $(this).find('.about-techframe-teamgroup').removeClass("d-none");
+    let imgpath = $(this).attr('imgpath');
+    $('#big-img').attr('src',imgpath);
+    var aboutMember = $(this).attr('id');
+    studyno(aboutMember);
+});
+//text
+function studyno(number){
+    if(number=='aboutMember1'){
+        totext('O1800251','杜傳皓','JULY 31 2018','裝備客製');
+    }else if(number=='aboutMember2'){
+        totext('O1800256','邱楷燁','JULY 31 2018','特務藝廊、後端整合');
+    }else if(number=='aboutMember3'){
+        totext('O1800271','陳崇民','JULY 31 2018','關於我們');
+    }else if(number=='aboutMember4'){
+        totext('O1800260','曾彥儒','JULY 31 2018','裝備商城、前台頁面');
+    }else if(number=='aboutMember5'){
+        totext('O1800265','周良彥','JULY 31 2018','首頁、前台整合');
+    }else if(number=='aboutMember6'){
+        totext('O1800269','古阡華','JULY 31 2018','購物車');
+    }else if(number=='aboutMember7'){
+        totext('O1800263','廖靜妙','JULY 31 2018','會員中心');
+    }
+}
+//action
+function totext(text1,text2,text3,text4){
+       $('#text1').text(text1);
+        $('#text2').text(text2);
+        $('#text3').text(text3);
+        $('#text4').text(text4);
+}
 
-// $('#about-member1').click(function(){
-//     $('#about-number-id').innerHTML == "O1800251"; 
-// });
 
-// $('#about-member2').click(function(){
-//     var n =$(this).attr("id")
-//     $('#about-number-id').replace.innerHTML == "O1800256"; 
-//     $('#about-profile').attr.replace.("src","images/about/about-number-" + 2 + ".png");
-//     // $('#about-profile').src.replace
-// });
 
-// $(function(){
-//     $("#small img").click(function(){
-//         var N =$(this).attr("id").substr(2);
-//         $("#BIG").attr("src","images/dog" + N + ".jpg");
-//     });
-// });
+/********************************************************
+                // about-service-connect - hover//
+*********************************************************/
+// var tl = new TimelineMax({paused:true})
 
-// function shownumber(e){
-//     var small = e.target;
-//     // target 事件屬性可返回事件的目標節點（觸發該事件的節點），如生成事件的元素、文檔或窗口。
-//     document.getElementById("large").src =
-//     small.src.replace() 
-// }
+// tl.to("#test", 0.5, {scale:1.2, transformOrigin:"50% 50%", ease:Linear.easeNone})
+// tl.timeScale(2);
+
+// $("#test").hover(function(){
+//   tl.play();
+// },function(){
+//   tl.reverse();
+// })
+
+
+

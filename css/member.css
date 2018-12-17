@@ -4,9 +4,9 @@ ul, li {
     list-style: none;
 }
 
-.navbar {
-    /* z-index: 98; */
-}
+/* .navbar {
+    z-index: 98;
+} */
 
 .wrap-main {
     width: 100%;
@@ -252,7 +252,7 @@ h3.form-title {
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .9);
-    z-index: 101;
+    z-index: 998;
 }
 
 .login-lightbox, .register-lightbox {
@@ -261,7 +261,7 @@ h3.form-title {
     position: fixed;
     top: calc(50vh - 150px);
     left: calc(50vw - 200px);
-    z-index: 102;
+    z-index: 999;
 }
 
 
@@ -272,7 +272,7 @@ h3.form-title {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 102;
+    z-index: 999;
 }
 
 .loading::after {
@@ -318,6 +318,8 @@ h3.form-title {
     right: 50px;
     color: #fff;
     font-size: 22px;
+    background-color: transparent;
+    border:0;
 }
 
 .login-lightbox p {
@@ -326,23 +328,23 @@ h3.form-title {
 
 /* 表格樣式 開始 */
 
-.table * {
+.member_order_table * {
     color: #ffffff;
 }
 
-.table {
+.member_order_table {
     width: 100%;
     border-bottom: 1px solid #fdd084;
     border-collapse: collapse;
     background-color: rgba(0, 0, 0, .7);
 }
 
-.table tr > th, .table tr > td {
+.member_order_table tr > th, .member_order_table tr > td {
     border-bottom: 1px solid #fdd084;
     padding: 5px;
 }
 
-.table button {
+.member_order_table button {
     min-height: 25px;
     color: #fdd084;
     border: 1px solid #fdd084;
@@ -350,7 +352,7 @@ h3.form-title {
     padding: 3px 10px;
 }
 
-.table button:hover {
+.member_order_table button:hover {
     min-height: 25px;
     color: rgba(62, 58, 57, 1);
     border: 1px solid #fdd084;
@@ -396,13 +398,13 @@ fieldset legend {
     font-size: 200px;
     position: absolute;
     opacity: 0;
-    z-index: 10;
+    z-index: 999;
     max-width: 0;
 }
 
 #image-preview label {
     position: absolute;
-    z-index: 5;
+    z-index: 999;
     opacity: 0.8;
     cursor: pointer;
     background-color: #bdc3c7;
@@ -411,7 +413,6 @@ fieldset legend {
     font-size: 20px;
     line-height: 50px;
     text-transform: uppercase;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -441,9 +442,7 @@ fieldset legend {
     transition: background-color .3s;
 }
 
-.btn:hover, .btn:focus {
-    /*background-color: #27ae60;*/
-}
+
 
 .btn > * {
     position: relative;
@@ -483,9 +482,7 @@ fieldset legend {
     transition: width .2s ease-out, padding-top .2s ease-out;
 }
 
-.btn.primary {
-    /*background-color: #2196f3;*/
-}
+
 
 /* 表格按妞的樣式 結束 */
 
@@ -495,6 +492,13 @@ fieldset legend {
 
 .showticket{
     margin-top: 60px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 /* QR_Cdoe ticket 結束*/
+
+.member_order_table,.member_order_table_list,{
+    margin-top: 60px;
+}

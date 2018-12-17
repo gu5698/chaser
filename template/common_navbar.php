@@ -15,7 +15,7 @@
     <ul class="navbar-menu">
         <li class="navbar-item navbar-logo"><a href="main.php"><img id="img-logo" src="images/common/logo.svg" alt="logo"></a></li>
         <li class="navbar-item navbar-link">
-            <a href="#">
+            <a href="produtSelect.php">
                 <img class="navbar-link-icon" src="images/common/navbar-customize.svg" alt="navbar-customize">
                 <div class="title">裝備客製<span class="d-block fz-6">CUSTOMIZE</span></div>
             </a>
@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="navbar-item navbar-link">
-            <a href="#">
+            <a href="gallery.php">
                 <img class="navbar-link-icon" src="images/common/navbar-gallery.svg" alt="navbar-customize">
                 <div class="title">傳奇特務藝廊<span class="d-block fz-6">GALLERY</span></div>
             </a>
@@ -54,7 +54,7 @@
                     <div class="product-price">2000</div>
                     <i class="far fa-trash-alt icon-delete"></i>
                 </li>
-               <a href="#" class="cart-btn btn-solid">結帳</a>
+               <a href="cart1.php" class="cart-btn btn-solid">結帳</a>
             </ol>
             <div class="list-counter">2</div>
         </li>

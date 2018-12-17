@@ -1,0 +1,95 @@
+div#main {
+    margin: 0 auto;
+    width: 600px;
+    height: 420px;
+    position: relative;
+}
+
+div.key {
+    position: absolute;
+    float: left;
+    top: 40px;
+    text-align: center;
+    font-size: 16px;
+    background-position: bottom left;
+    background-repeat: repeat-x;
+}
+
+div.whiteKey {
+    width: 60px;
+    height: 360px;
+    color: #666;
+    background-color: #eee;
+    border: 2px solid #999;
+    background-image: url("../images/gallery-img/key_back_white.png");
+}
+
+div.blackKey {
+    width: 36px;
+    height: 200px;
+    color: #ccc;
+    background-color: #666;
+    border: 2px solid #666;
+    background-image: url("../images/gallery-img/key_back_black.png");
+}
+
+div.whiteKey span {
+    position: relative;
+    top: 300px;
+}
+
+div#all {
+    display: none;
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    width: 600px;
+    height: 420px;
+    padding: 5px;
+    border: 1px solid #666;
+    margin: 40px -300px;
+    background-color: #DAAB3B;
+}
+
+#closepiano {
+    cursor: pointer;
+    color: #000;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+}
+
+#test {
+    opacity: 0;
+}
+
+@media(max-width:767px) {
+
+    #closepiano {
+        cursor: pointer;
+        color: #000;
+        position: absolute;
+        top: 5px;
+        right: 50px;
+        font-size: 2em;
+    }
+
+    div#main {
+        margin-left: -15px;
+        /* width: 100%; */
+        position: relative;
+        transform: scale(0.9)
+    }
+
+    div#all {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        transform: scale(0.8);
+        /* width: 100%; */
+        /* height: 420px; */
+        /* padding: 5px; */
+        background-color: #DAAB3B;
+    }
+}

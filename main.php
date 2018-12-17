@@ -23,33 +23,22 @@
 <?php require_once 'template/common_navbar.php';?>
 
 <!-- 主內容 START -->
-    <!-- start chatbot -->
-    <div id="chatbot" class="chatbot">
-        <div id="avatar" class="avatar">
-            <img src="images/common/chatbot-body.svg" alt="chatbot-body" class="chatbot-body">
-            <img src="images/common/chatbot-head-1.svg" alt="chatbot-head-1" id="chatbot-head" class="chatbot-head">
-            <img src="images/common/chatbot-hat.svg" alt="chatbot-hat" class="chatbot-hat">
-        </div>
-        <div id="greeting" class="greeting fz-p">
-            <div class="message">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</div>
-            <i id="greeting-close" class="far fa-times-circle"></i>
-        </div>
-        <div class="message-window">
-            <div id="message-head" class="message-head">
-                <div class="title fz-6">CHASER</div>
-                <i class="fas fa-comments icon-message"></i>
-                <i class="fas fa-angle-up icon-minimize"></i>
+<?php include_once 'chatbot.php'; ?>
+
+    <!-- start coupon -->
+    <div id="get-coupon" class="get-coupon">
+        <div class="coupon">
+            <div class="corner-decor-l"></div>
+            <div class="corner-decor-r"></div>
+            <div class="title fz-4">優惠券序號</div>
+            <div id="coupon-number" class="coupon-number fz-5">
+                happynewyear2019
+                <div class="flash"></div>
             </div>
-            <div id="message-body" class="message-body">
-                <div class="message message-bot"><a href="#">歡迎來到CHASER</a></div>
-            </div>
-            <div class="message-input">
-                <textarea id="message-textarea"></textarea>
-                <i id="message-submit" class="fab fa-telegram-plane icon-submit"></i>
-            </div>
+            <div class="coupon-timer fz-6">此訊息將在<span id="coupon-timer-sec" class="coupon-timer-sec fz-4"></span>秒後銷毀</div>
         </div>
     </div>
-    <!-- end chatbot -->
+    <!-- end coupon -->
 
 
     <!-- ======================= -->
@@ -68,9 +57,13 @@
             </div>
         </div>
         <!-- ====================== -->
-        <div class="mission-group">
-            <div class="mission mission-1 mission-hover">
-                <div class="stripes"></div>
+        <div id="mission-group" class="mission-group">
+            <!-- ====================== -->
+            <!-- <div class="mission mission-1 mission-hover">
+                <div class="wave"></div>
+                <div class="stripes">
+                    <div class="stripes-running"></div>
+                </div>
                 <img src="images/index/mission-1.jpg" alt="mission-1">
                 <div class="bg"></div>
                 <div class="mission-code fz-6">
@@ -88,70 +81,9 @@
                     <a href="#" class="btn btn-border">添購裝備</a>
                     <a href="#" class="btn btn-solid">前往客製</a>
                 </div>
-            </div>
+                <div class="dashed-circle"></div>
+            </div> -->
             <!-- ====================== -->
-            <div class="mission mission-2 mission-hover">
-                <div class="stripes"></div>
-                <img src="images/index/mission-1.jpg" alt="mission-2">
-                <div class="bg"></div>
-                <div class="mission-code fz-6">
-                    MISSION CODE:<span class="d-block">AL75D</span>
-                    <div class="corner-decor-l"></div>
-                    <div class="corner-decor-r"></div>
-                </div>
-                <i class="fas fa-exclamation icon-exclamation"></i>
-                <i class="fas fa-backspace mission-close"></i>
-                <p class="mission-content fz-p">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</p>
-                <div class="chart-wrapper">
-                    <canvas class="attr-chart"></canvas>
-                </div>
-                <div class="link-group">
-                    <a href="#" class="btn btn-border">添購裝備</a>
-                    <a href="#" class="btn btn-solid">前往客製</a>
-                </div>
-            </div>
-            <!-- ====================== -->
-            <div class="mission mission-3 mission-hover">
-                <div class="stripes"></div>
-                <img src="images/index/mission-1.jpg" alt="mission-3">
-                <div class="bg"></div>
-                <div class="mission-code fz-6">
-                    MISSION CODE:<span class="d-block">AL75D</span>
-                    <div class="corner-decor-l"></div>
-                    <div class="corner-decor-r"></div>
-                </div>
-                <i class="fas fa-exclamation icon-exclamation"></i>
-                <i class="fas fa-backspace mission-close"></i>
-                <p class="mission-content fz-p">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</p>
-                <div class="chart-wrapper">
-                    <canvas class="attr-chart"></canvas>
-                </div>
-                <div class="link-group">
-                    <a href="#" class="btn btn-border">添購裝備</a>
-                    <a href="#" class="btn btn-solid">前往客製</a>
-                </div>
-            </div>
-            <!-- ====================== -->
-            <div class="mission mission-4 mission-hover">
-                <div class="stripes"></div>
-                <img src="images/index/mission-1.jpg" alt="mission-4">
-                <div class="bg"></div>
-                <div class="mission-code fz-6">
-                    MISSION CODE:<span class="d-block">AL75D</span>
-                    <div class="corner-decor-l"></div>
-                    <div class="corner-decor-r"></div>
-                </div>
-                <i class="fas fa-exclamation icon-exclamation"></i>
-                <i class="fas fa-backspace mission-close"></i>
-                <p class="mission-content fz-p">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</p>
-                <div class="chart-wrapper">
-                    <canvas class="attr-chart"></canvas>
-                </div>
-                <div class="link-group">
-                    <a href="#" class="btn btn-border">添購裝備</a>
-                    <a href="#" class="btn btn-solid">前往客製</a>
-                </div>
-            </div>
         </div>
         <!-- ====================== -->
         <div id="welcome-message" class="welcome-message fz-5">
@@ -174,14 +106,14 @@
                 <div class="col-left col-md-4">
                     <div class="title-group">
                         <div class="customize-no fz-4">
-                            <span id="customize-no">no. 1</span>
+                            <span id="now-no" class="now-no">no. 1</span>
                             <span class="progress">
                                 <div id="progress-running" class="progress-running"></div>
                             </span>
                             <span>3</span>
                         </div>
                         <div class="customize-name fz-4">特務腕錶</div>
-                        <a href="#" class="btn btn-solid">立即客製</a>
+                        <a href="produtSelect.php" class="btn btn-solid">立即客製</a>
                     </div>
                 </div>
                 <div class="col-middle col-md-4">
@@ -255,7 +187,7 @@
                     <div class="wrapper">
                         <div class="fz-4">裝備商城</div>
                         <p class="fz-p">CHASER 提供優良的裝備，以應付各種任務。</p>
-                        <a href="#" class="btn btn-solid">前往商城</a>
+                        <a href="mall.php" class="btn btn-solid">前往商城</a>
                     </div>
                 </div>
             </div>
@@ -311,11 +243,11 @@
         </video>
         <div class="wrapper">
             <div class="tittle fz-4">關於我們</div>
-            <div id="enter-about" class="enter-about">
+            <a href="about.php" id="enter-about" class="enter-about">
                 <svg id="svgShield" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 146.14"><g><path d="M87.93,17.75A179.34,179.34,0,0,1,58,.62,179.34,179.34,0,0,1,28.07,17.75C12.75,24.42.5,25.05.5,25.05V75.82c0,14,2.18,29.19,20,46.32A108.56,108.56,0,0,0,58,145.62a108.56,108.56,0,0,0,37.49-23.48c17.83-17.13,20-32.36,20-46.32V25.05S103.25,24.42,87.93,17.75Z"/></g></svg>
                 <div class="lock-hole"></div>
                 <div class="access fz-6">ACCESS DENIED</div>
-            </div>
+            </a>
         </div>
     </section>
     <!-- end sec-about -->
@@ -357,6 +289,7 @@
     <script src="https://cdn.rawgit.com/felixturner/bad-tv-shader/master/BadTVShader.js"></script>
     <!-- custom -->
     <!-- <script src="js/common.js"></script> -->
+    <script src="js\chatbot.js"></script>
     <script src="js/index.js"></script>
 
 <!-- 個人js END -->

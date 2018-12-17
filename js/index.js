@@ -1,15 +1,40 @@
 window.addEventListener('load', init);
 
 function init(){
-    console.log('init');
+    // console.log('init');
+    // =======================================================missions
+
+    let missionGroup = document.getElementById('mission-group');
+    for(let i=0; i<4; i++){
+        // console.log(i);
+        missionGroup.innerHTML += `
+        <div class="mission mission-${i+1} mission-hover">
+            <div class="wave"></div>
+            <div class="stripes">
+                <div class="stripes-running"></div>
+            </div>
+            <img src="images/index/mission-${i+1}.jpg" alt="mission-${i+1}">
+            <div class="bg"></div>
+            <div class="mission-code fz-6">
+                MISSION CODE:<span class="d-block">AL75D</span>
+                <div class="corner-decor-l"></div>
+                <div class="corner-decor-r"></div>
+            </div>
+            <i class="fas fa-exclamation icon-exclamation"></i>
+            <i class="fas fa-backspace mission-close"></i>
+            <p class="mission-content fz-p">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</p>
+            <div class="chart-wrapper">
+                <canvas class="attr-chart"></canvas>
+            </div>
+            <div class="link-group">
+                <a href="mall.php" class="btn btn-border">添購裝備</a>
+                <a href="produtSelect.php" class="btn btn-solid">前往客製</a>
+            </div>
+            <div class="dashed-circle"></div>
+        </div>`;
+    } // end missions
     
-
-
-
-
-
-
-
+    
     // =======================================================sec-market
     // img.src = 'images/mall/item6.png';
     let prevProduct = document.getElementById('prev-product');
@@ -72,23 +97,90 @@ function init(){
     });
 
 
-    
+    // ====================
+    getCoupon();
     // ====================
     missionEvent();
     // ====================
     customizeEvent()
     // ====================
     tweenMax();
-}
+} // end init
+
+
+function getCoupon(){
+    let getCoupon = document.getElementById('get-coupon');
+    let couponTimerSec = document.getElementById('coupon-timer-sec');
+    // 倒數時間
+    let nowSec = 5;
+    let nowSecFixed = nowSec.toFixed(2);
+    couponTimerSec.innerText = nowSecFixed;
+
+    // 密碼
+    let keys = [38,38,40,40,37,39,37,39,66,65];
+    let keysLeft;
+    
+    window.addEventListener( 'keydown', keyCodeMatch );
+    // 重置密碼
+    reset();
+
+    function reset(){
+        keysLeft = keys.slice(0);
+        // console.log(keysLeft);
+    }
+    
+    function keyCodeMatch( e ){
+        if( e.keyCode === keysLeft[0] ){
+            keysLeft.shift();
+
+            if( keysLeft.length > 0 ){
+                return;
+            }
+            window.removeEventListener( 'keydown', keyCodeMatch );
+            getCoupon.style.visibility = 'visible';
+            getCoupon.style.opacity = 1;
+            TweenMax.to('#coupon-number .flash', .5, {right: '-200%', delay: .5});
+            setTimeout(countdown, 1300);
+        } else {            
+            // console.log('keysLeft', keysLeft);
+            if( keysLeft.length === keys.length ){
+                return;
+            }
+            reset();            
+            // console.log('keysLeft', keysLeft);
+        }
+    }
+
+    function countdown(){
+        let countdownTimer = setInterval(() => {
+            nowSec -= 0.04;
+            nowSecFixed = nowSec.toFixed(2);
+            // console.log(nowSec, nowSecFixed);
+            
+            couponTimerSec.innerText = nowSecFixed;
+
+            if(nowSec <= 0){
+                clearInterval(countdownTimer);
+                couponTimerSec.innerText = '0.00';
+                getCoupon.querySelector('.coupon').style.background = 'rgba(200,0,0,.8) repeating-linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1) 1px, transparent 1px, transparent 3px)';
+                setTimeout(()=>{
+                    getCoupon.style.visibility = 'hidden';
+                    getCoupon.style.opacity = 0;
+                }, 500);
+            }
+        }, 40);
+    }
+} // end getCoupon
+
+
 
 function missionEvent(){
-    console.log('missionEvent');
+    // console.log('missionEvent');
     // ===========================================================missions
     let missions = document.querySelectorAll('.mission');
     let missionsLen = missions.length;
     let missionCloseBtns = document.querySelectorAll('.mission-close');
     // console.log(missions, missionsLen);
-
 
     function missionOpen(e){
         // 先關其他開啟的
@@ -109,7 +201,7 @@ function missionEvent(){
         this.parentNode.classList.remove('active');
         setTimeout(() => {
             this.parentNode.addEventListener('click', missionOpen);
-            console.log('add missionOpen');
+            // console.log('add missionOpen');
         }, 300);
         // console.log(this, this.parentNode);
     }
@@ -228,6 +320,9 @@ function customizeEvent(){
     let degClosetBlock1 = 0;
     let degClosetBlock2 = 120;
     let degClosetBlock3 = 240;
+    let nowNo = document.getElementById('now-no');
+    let nowNoNum = 1;
+    let widthTimer;
 
     let arrClosetBlock = [closetBlock1, closetBlock2, closetBlock3];
     let arrDegClosetBlock = [degClosetBlock1, degClosetBlock2, degClosetBlock3];
@@ -255,15 +350,23 @@ function customizeEvent(){
     let nextCustomize = document.getElementById('btn-next');
     prevCustomize.addEventListener('click', ()=>{
         for(let i=0; i<arrClosetBlockLen; i++){
-            arrDegClosetBlock[i] -= 120;
-        }
-        closetBlockCarousel();
-    });
-    nextCustomize.addEventListener('click', ()=>{
-        for(let i=0; i<arrClosetBlockLen; i++){
             arrDegClosetBlock[i] += 120;
         }
         closetBlockCarousel();
+        nowNoNum--;
+        changeNowNoNum();
+        clearInterval(widthTimer);
+        nextTimer();
+    });
+    nextCustomize.addEventListener('click', ()=>{
+        for(let i=0; i<arrClosetBlockLen; i++){
+            arrDegClosetBlock[i] -= 120;
+        }
+        closetBlockCarousel();
+        nowNoNum++;
+        changeNowNoNum();
+        clearInterval(widthTimer);
+        nextTimer();
     });
 
 
@@ -283,32 +386,46 @@ function customizeEvent(){
 
     carouselReveal.setTween(TweenMax.from('.closet-block', .5,
     {top: '+=20', opacity: 0})).on('enter', ()=>{
-
+        nextTimer();
     })
-    .addIndicators({name: 'carousel'})
+    // .addIndicators({name: 'carousel'})
     .addTo(smController);
 
-
-
-    // 寬度增加
-    let nowWidth = 0;
-    let widthTimer = setInterval(() => {
-        nowWidth ++;
-        console.log(nowWidth);
-        
-        if(nowWidth == 100){
-            clearInterval(widthTimer);
-            console.log('stop');
-            for(let i=0; i<arrClosetBlockLen; i++){
-                arrDegClosetBlock[i] -= 120;
+    // nextTimer
+    function nextTimer(){
+        // 寬度增加
+        let nowWidth = 0;
+        widthTimer = setInterval(() => {
+            nowWidth ++;
+            // console.log(nowWidth);
+            
+            // 滿了換下一個
+            if(nowWidth == 100){
+                clearInterval(widthTimer);
+                // console.log('stop');
+                for(let i=0; i<arrClosetBlockLen; i++){
+                    arrDegClosetBlock[i] -= 120;
+                }
+                closetBlockCarousel();
+                nowNoNum ++;
+                changeNowNoNum();
+                nextTimer();
             }
-            closetBlockCarousel();
+            
+            progressRunning.style.width = `${nowWidth}%`;
+        }, 50);
+        // console.log(widthTimer);   
+    } // end nextTimer
+    
+
+    function changeNowNoNum(){
+        if(nowNoNum == 4){
+            nowNoNum = 1;
+        }else if(nowNoNum == 0){
+            nowNoNum = 3;
         }
-        
-        progressRunning.style.width = `${nowWidth}%`;
-    }, 50);
-
-
+        nowNo.innerText = `no. ${nowNoNum}`;
+    }
 
 
 
@@ -421,7 +538,7 @@ function holographicProjection(imgSrc){
       };
       
     //   ================================================================================
-    console.log('holographicProjection');
+    // console.log('holographicProjection');
     
 
     let colProduct = document.getElementById('sec-market').querySelector('.col-product');
@@ -787,7 +904,7 @@ function holographicProjection(imgSrc){
 
 
 function tweenMax(){
-    console.log('tweenMax');
+    // console.log('tweenMax');
     // Controller
     let smController = new ScrollMagic.Controller();
 
@@ -829,31 +946,19 @@ function tweenMax(){
     });
 
     // radar mission
-    let missionBefore = CSSRulePlugin.getRule('.sec-mission .mission-group .mission::before');
-    let twnMissionBefore = TweenMax.fromTo(missionBefore, 1, {
-        cssRule:{      //from
-            opacity: 1
-        }
-    },{
-        cssRule:{      //to
-            scale: 3,
-            opacity: 0
-        },
+    let twnWave = TweenMax.to('.wave', 1, {
+        scale: 3,
+        opacity: 0,
         repeat: -1
     });
-    let stripesBefore = CSSRulePlugin.getRule('.sec-mission .mission-group .mission .stripes:before');
-    let twnStripesBefore = TweenMax.to(stripesBefore, 20,{
-        cssRule:{
-            left: '0%'
-        },
+    let twnStripes = TweenMax.to('.stripes-running', 20,{
+        left: '0%',
         repeat: -1,
         ease: Linear.easeNone,
     });
-    let missionAfter = CSSRulePlugin.getRule('.sec-mission .mission-group .mission::after');
-    let twnMissionAfter = TweenMax.to(missionAfter, 20,{
-        cssRule:{
-            rotation: 360
-        },
+    // 虛線
+    let twnDashedCircle = TweenMax.to('.dashed-circle', 20,{
+        rotation: 360,
         repeat: -1,
         ease: Linear.easeNone,
     });
@@ -872,24 +977,24 @@ function tweenMax(){
     let twnMarquee = TweenMax.to('#marquee', marqueeDur, {repeat: -1, x: -1 * mDistance, ease: Linear.easeNone, repeatDelay: marqueeDelay - (marqueeDur - marqueeDelay)});
     let twnMarquee2 = TweenMax.to('#marquee-2', marqueeDur, {repeat: -1, x: -1 * mDistance, ease: Linear.easeNone, repeatDelay: marqueeDelay - (marqueeDur - marqueeDelay), delay: marqueeDelay});
 
+
     missionReveal.on('enter', ()=>{
         tlScanner.pause();
-        twnMissionBefore.pause();
-        twnStripesBefore.pause();
-        twnMissionAfter.pause();
+        twnWave.pause();
+        twnStripes.pause();
+        twnDashedCircle.pause();
         twnMarquee.pause();
         twnMarquee2.pause();
     }).on('leave', ()=>{
         tlScanner.play();
-        twnMissionBefore.play();
-        twnStripesBefore.play();
-        twnMissionAfter.play();
+        twnWave.play();
+        twnStripes.play();
+        twnDashedCircle.play();
         twnMarquee.play();
         twnMarquee2.play();
     })
-    .addIndicators({name: 'mission-2', colorStart: '#fff'})
+    // .addIndicators({name: 'mission-2', colorStart: '#fff'})
     .addTo(smController);
-
 
 
     // customizeReveal
@@ -905,9 +1010,8 @@ function tweenMax(){
         triggerHook: 0
     });
     customizeReveal.setTween(tlCustomize).setPin('.sec-customize')
-    .addIndicators({name: 'customize'})
+    // .addIndicators({name: 'customize'})
     .addTo(smController);
-
 
 
     // market
@@ -934,7 +1038,7 @@ function tweenMax(){
     twnGear4.pause();
 
     marketReveal.setPin('.sec-market')
-    .addIndicators({name: 'market'})
+    // .addIndicators({name: 'market'})
     .addTo(smController); //fixed
 
 
@@ -949,7 +1053,7 @@ function tweenMax(){
         twnGear3.pause();
         twnGear4.pause();
     })
-    .addIndicators({name: 'market-2'})
+    // .addIndicators({name: 'market-2'})
     .addTo(smController);
 
 
@@ -968,7 +1072,7 @@ function tweenMax(){
         triggerHook: 1
     });
     galleryReveal.setTween(TweenMax.to('.scroll-buffer-market', 1, {})).setPin('.sec-gallery')
-    .addIndicators({name: 'gallery'})
+    // .addIndicators({name: 'gallery'})
     .addTo(smController);
 
 
@@ -986,7 +1090,7 @@ function tweenMax(){
     }).on('leave', ()=>{
         twnSpiral.pause();
     })
-    .addIndicators({name: 'gallery-2'})
+    // .addIndicators({name: 'gallery-2'})
     .addTo(smController);
 
 
@@ -1017,7 +1121,7 @@ function tweenMax(){
         aboutVideo.pause();
         twnSvgShield.pause();
     })
-    .addIndicators({name: 'about'})
+    // .addIndicators({name: 'about'})
     .addTo(smController);
 
     

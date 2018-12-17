@@ -1,8 +1,11 @@
 <?php
-  $dsn = "mysql:host=localhost;dbname=chaser;port=3306;charset=utf8";
-  $user = "root";
-  $password = "root";
-  $options = array( PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-  $pdo = new PDO($dsn, $user, $password, $options);
-
+try{
+	$dsn = "mysql:host=localhost;port=3306;dbname=chaser;charset=utf8";
+	$user = "root";
+	$password = "amin0978";
+	$pdo = new PDO($dsn,$user,$password);
+}catch(PDOException $e){
+	echo "error reason : ",$e->getMessage(),"<br>";
+	echo "error line : ",$e->getLine(),"<br>";
+}
 ?>

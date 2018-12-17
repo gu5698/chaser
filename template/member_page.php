@@ -7,47 +7,11 @@
 
     <title>會員專區</title>
 
-    <!--    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">-->
-    <!--    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">-->
-    <!--    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">-->
-    <!--    <link rel="manifest" href="/images/favicon/site.webmanifest">-->
-    <!--    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">-->
-    <!--    <meta name="msapplication-TileColor" content="#da532c">-->
-    <!--    <meta name="theme-color" content="#ffffff">-->
-
-    <!-- fontawesome -->
-    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">-->
-
-    <!--    <link rel="stylesheet" href="css/css-reset.min.css">-->
-    <!--    <link rel="stylesheet" href="css/navbar.css">-->
-    <!--    <link rel="stylesheet" href="css/grid.css">-->
-    <!--    <link rel="stylesheet" href="css/fonts.css">-->
-    <!--    <link rel="stylesheet" href="css/member.css">-->
-    <!--    <link rel="stylesheet" href="css/member_mobile.css">-->
     <?php require_once 'template/common_css.php'; ?>
 
 </head>
 <body>
-<!-- start navbar -->
-<!--<nav class="navbar">-->
-<!--    <ul>-->
-<!--        <li class="navbar-item navbar-logo">-->
-<!--            <a href="index.html"><img src="images/logo.svg" alt="logo"></a>-->
-<!--        </li>-->
-<!--        <li class="navbar-item"><a href="#">裝備客製<span class="d-block fz-6">CUSTOMIZE</span></a></li>-->
-<!--        <li class="navbar-item"><a href="#">裝備商城<span class="d-block fz-6">MARKET</span></a></li>-->
-<!--        <li class="navbar-item"><a href="#">傳奇特務藝廊<span class="d-block fz-6">GALLERY</span></a></li>-->
-<!--        <li class="navbar-item"><a href="#">關於我們<span class="d-block fz-6">ABOUT</span></a></li>-->
-<!--        <li class="navbar-item navbar-icon icon-member">-->
-<!--            --><?php //if (is_login()): ?>
-<!--                --><?php //echo login_user('username'); ?><!--您好-->
-<!--            --><?php //endif; ?>
-<!--            <a href="#"><i class="fas fa-user-secret"></i></a>-->
-<!--        </li>-->
-<!--        <li class="navbar-item navbar-icon icon-cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></li>-->
-<!--    </ul>-->
-<!--</nav>-->
-<!-- end navbar -->
+
 <?php require_once 'template/common_navbar.php'; ?>
 
 <!-- 主內容 START -->
@@ -62,14 +26,14 @@
             </div>
             <div class="section-body">
                 <h3 class="form-title">修改會員資料</h3>
-                <form name="editForm" id="editForm" method="post">
+                <form name="editForm" id="editForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="do_edit">
                     <fieldset>
                         <!--                        <legend>修改會員資料</legend>-->
                         <div class="member-form">
                             <div class="member-picture">
                                 <div id="image-preview">
-                                    <input type="file" name="image" id="image-upload"/>
+                                    <input type="file" name="file" id="image-upload"/>
                                     <label for="image-upload" id="image-label">上傳照片</label>
                                 </div>
                             </div>
@@ -124,7 +88,7 @@
             <div class="section-body">
                 <h3 class="form-title">一般訂單</h3>
                 <?php if (isset($order)): ?>
-                    <table class="table">
+                    <table class="member_order_table">
                         <thead>
                         <tr>
                             <th>訂單編號</th>
@@ -143,7 +107,9 @@
                                 <td><?php echo $order_item['order_stat']; ?></td>
                                 <td>
                                     <button type="button" onclick="get_order('<?php echo $order_item['order_id']; ?>')">明細</button>
-                                    <button type="button">取消訂單</button>
+                                    <?php if('未出貨'== $order_item['order_stat']):?> 
+                                    <button type="button" onclick="cancel_order('<?php echo $order_item['order_id']; ?>')">取消訂單</button>
+                                    <?php endif;?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -162,7 +128,7 @@
             <div class="section-body">
                 <h3 class="form-title">客製訂單</h3>
                 <?php if (isset($cu_order)): ?>
-                    <table class="table">
+                    <table class="member_order_table">
                         <thead>
                         <tr>
                             <th>訂單編號</th>
@@ -195,7 +161,7 @@
             <div class="section-body">
                 <h3 class="form-title">藝廊票券</h3>
                 <?php if (isset($t_order)): ?>
-                    <table class="table">
+                    <table class="member_order_table">
                         <thead>
                         <tr>
                             <th>購票編號</th>
@@ -227,24 +193,24 @@
     </div>
 
 </div>
+
+<?php require_once 'template/common_chatbot.php';?>
+
 <!-- 主內容 END -->
 
-<!--<div id="login-mask" class="login-mask"></div>-->
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
-<!--<script src="js/plugins/jquery.uploadPreview.min.js" type="text/javascript"></script>-->
-<!--<script src="js/plugins/jquery.burn.min.js" type="text/javascript"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>-->
-<!--<script src="js/member.js" type="text/javascript"></script>-->
 <?php require_once 'template/common_js.php'; ?>
+<script src="js/plugins/jquery.uploadPreview.min.js" type="text/javascript"></script>
 
-<?php if (!is_login()): ?>
-    <script>
-        $(function () {
-            $.login();
-        });
-    </script>
-<?php endif; ?>
+<script>
+    $(function () {
+        <?php if (!is_login()): ?>
+        $.login();
+        <?php else:?>
+        $('#image-preview').attr('style','background-image: url(<?php echo login_user('image2');?>);background-size:cover;background-position:center;')
+        <?php endif; ?>
+    });
+</script>
 
 <script>
     function get_ticket(t_order_id) {
@@ -259,35 +225,19 @@
         $('.login-lightbox').load('member.php?action=get_order&id=' + order_id);
     }
 
-    $(document).ready(function () {
-        // navbar
-        let navbar = document.getElementById('navbar');
-        let navbarIcon = document.querySelectorAll('.navbar-icon');
-
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            for(let i=0; i<navbarIcon.length; i++){
-                navbar.appendChild(navbarIcon[i]);
+    function cancel_order(order_id) {
+        $.post('member.php', {action:'do_cancle_order', id:order_id}, function (res) {
+            if (!res.status) {
+                alert('取消失敗:' + res.msg);
+            } else {
+                alert('訂單已取消')
+                window.location.reload();
             }
-        }
-        window.addEventListener('resize', ()=>{
-            if (window.matchMedia('(max-width: 768px)').matches) {
-                for(let i=0; i<navbarIcon.length; i++){
-                    navbar.appendChild(navbarIcon[i]);
-                }
-            }else{
-                for(let i=0; i<navbarIcon.length; i++){
-                    navbar.querySelector('ul').appendChild(navbarIcon[i]);
-                }
-
-                navbar.querySelector('ul').classList.remove('op1-vv');
-            }
+        }, 'json').error(function () {
+            alert('系統異常!!')
         });
-        // 漢堡
-        let navbarToggle = document.getElementById('navbar-toggle');
-        navbarToggle.addEventListener('click', () => {
-            navbar.querySelector('ul').classList.toggle('op1-vv');
-        });
-    });
+    }
+    
 </script>
 </body>
 </html>

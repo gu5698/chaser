@@ -230,21 +230,22 @@
      */
     $('body').on('submit', '#editForm', function () {
         // jQuery 的 ajax 方法
-        $.post('member.php', $(this).serialize(), function (res) {
-            if (!res.status) {
-                alert('變更失敗:' + res.msg);
-            } else {
-                alert('已變更成功')
-                clearAllPopup();
-                // window.location.reload();
-            }
-        }, 'json').error(function () {
-            alert('系統異常!!')
-        });
-        return false;
+        // $.post('member.php', $(this).serialize(), function (res) {
+        //     if (!res.status) {
+        //         alert('變更失敗:' + res.msg);
+        //     } else {
+        //         alert('已變更成功')
+        //         clearAllPopup();
+        //         // window.location.reload();
+        //     }
+        // }, 'json').error(function () {
+        //     alert('系統異常!!')
+        // });
+        // return false;
     });
 
     $(document).ready(function () {
+        var md = new MobileDetect(window.navigator.userAgent);
 
         // 呼叫初始化函式
         init(jQuery);
@@ -259,6 +260,11 @@
         } else if (hash == '#page3') {
             $('.wrap-member-body .section:eq(3)').click();
         }
+
+        if(hash=='' && md.mobile()!=null) {
+            $('.wrap-member-body .section:eq(0)').click();
+        }
+
         $('.member-menu-main').click(function () {
             window.location = 'member.php#main';
             if (window.location.pathname.endsWith('/member.php')) {

@@ -5,7 +5,7 @@
  */
 define('MY_DB_HOST', 'localhost');   // 填入資料庫IP
 define('MY_DB_USER', 'root');   // 填入資料庫使用者
-define('MY_DB_PASS', 'root');   // 填入資料庫密碼
+define('MY_DB_PASS', 'amin0978');   // 填入資料庫密碼
 define('MY_DB_NAME', 'Chaser');   // 填入資料庫名稱
 
 /**
@@ -16,30 +16,45 @@ define('MEMBER_FIELD_ID', 'mem_id');
 define('MEMBER_FIELD_USERNAME', 'mem_name');
 define('MEMBER_FIELD_PASSWORD', 'mem_password');
 define('MEMBER_FIELD_IMAGE', 'mem_image');
+define('MEMBER_FIELD_IMAGE2', 'mem_image2');
 define('MEMBER_FIELD_EMAIL', 'mem_email');
 define('MEMBER_FIELD_PHONE', 'mem_phone');
 define('MEMBER_FIELD_STATUS', 'status');
 
-session_start();
+@session_start();
 
 if (!function_exists('db_connect')) {
     /**
      * 建立資料庫連結
      *
-     * @return mysqli
+     * @return pdo
      */
     function db_connect()
     {
-        $connection = mysqli_init();
-        if (!$connection) {
-            die('mysqli_init failed');
-        }
+        //=========== mysqli 初始化語法 開始
+        // $connection = mysqli_init();
+        // if (!$connection) {
+        //     die('mysqli_init failed');
+        // }
 
-        if (!mysqli_real_connect($connection, MY_DB_HOST, MY_DB_USER, MY_DB_PASS, MY_DB_NAME)) {
-            die("Connect Error: " . mysqli_connect_error());
-        }
+        // if (!mysqli_real_connect($connection, MY_DB_HOST, MY_DB_USER, MY_DB_PASS, MY_DB_NAME)) {
+        //     die("Connect Error: " . mysqli_connect_error());
+        // }
 
-        return $connection;
+        // return $connection;
+
+        // ========   mysqli 初始化語法 結束
+
+         //=========== pdo 初始化語法 開始       
+        $dsn = "mysql:host=".MY_DB_HOST.";port=3306;dbname=".MY_DB_NAME.";charset=utf8";
+        // $user = "root";
+        // $password = "root";
+        $options = array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION);
+        $pdo = new PDO( $dsn, MY_DB_USER, MY_DB_PASS, $options);
+        return $pdo;
+
+         //=========== pdo 初始化語法 結束 
+
     }
 }
 
@@ -61,7 +76,7 @@ if (!function_exists('login_user')) {
      * 取得登入的會員資料
      *
      * @param mixed $data
-     * @return array
+     * @return mixed
      */
     function login_user($data = [])
     {
@@ -73,7 +88,8 @@ if (!function_exists('login_user')) {
                     'email' => $data[MEMBER_FIELD_EMAIL],
                     'phone' => $data[MEMBER_FIELD_PHONE],
                     'status' => $data[MEMBER_FIELD_STATUS],
-                    'image' => $data[MEMBER_FIELD_IMAGE]
+                    'image' => $data[MEMBER_FIELD_IMAGE],
+                    'image2' => $data[MEMBER_FIELD_IMAGE2]
                 ];
                 $_SESSION['member'] = $user_data;
             } else {    // 取得會員的某個資料
@@ -87,4 +103,17 @@ if (!function_exists('login_user')) {
         return $_SESSION['member'];
     }
 
+}
+
+// ========判斷show_message是否被註冊
+if (!function_exists('show_message')) {
+    function show_message($text, $ref = '') {
+        if(empty($ref)){
+            $ref = $_SERVER['HTTP_REFERER'];
+        }
+        echo "<script>
+                alert('{$text}');
+                window.location = '{$ref}';
+            </script>";
+    }
 }

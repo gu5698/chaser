@@ -22,7 +22,7 @@
         <section class="section section-1">
 
             <div class="section-header">
-                <h2>會員管理</h2>
+                <h2 class="fz-2">會員管理</h2>
             </div>
             <div class="section-body">
                 <h3 class="form-title">修改會員資料</h3>
@@ -54,17 +54,17 @@
                                     <div class="requirements">請輸入正確的手機號碼</div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" id="password" name="password" required placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                                    <input type="password" id="password" name="password" required placeholder=" " >
                                     <label for="password">密碼</label>
                                     <div class="requirements">您的密碼必需要包含大、小寫字母以及數字，長度超過6碼</div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" id="password-new" name="password_new" required placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                                    <input type="password" id="password-new" class="changepwd" name="password_new" placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                                     <label for="password-new">請輸入新密碼</label>
                                     <div class="requirements">您設定的密碼必需要包含大、小寫字母以及數字，長度超過6碼</div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" id="password-confirm" name="password_confirm" required placeholder=" ">
+                                    <input type="password" id="password-confirm" class="changepwd" name="password_confirm" placeholder=" ">
                                     <label for="password-confirm">再次確認密碼</label>
                                     <div class="requirements">兩次輸入的密碼不相同</div>
                                 </div>
@@ -83,7 +83,7 @@
         <section class="section section-2">
 
             <div class="section-header">
-                <h2>一般訂單</h2>
+                <h2 class="fz-2">一般訂單</h2>
             </div>
             <div class="section-body">
                 <h3 class="form-title">一般訂單</h3>
@@ -101,10 +101,10 @@
                         <tbody>
                         <?php foreach ($order as $order_item): ?>
                             <tr>
-                                <td><?php echo $order_item['order_id']; ?></td>
-                                <td><?php echo $order_item['order_time']; ?></td>
-                                <td><?php echo $order_item['grand_total']; ?></td>
-                                <td><?php echo $order_item['order_stat']; ?></td>
+                                <td class="center"><?php echo $order_item['order_id']; ?></td>
+                                <td class="center"><?php echo $order_item['order_time']; ?></td>
+                                <td class="center"><?php echo $order_item['grand_total']; ?></td>
+                                <td class="center"><?php echo $order_item['order_stat']; ?></td>
                                 <td>
                                     <button type="button" onclick="get_order('<?php echo $order_item['order_id']; ?>')">明細</button>
                                     <?php if('未出貨'== $order_item['order_stat']):?> 
@@ -123,7 +123,7 @@
         <section class="section section-3">
 
             <div class="section-header">
-                <h2>客製訂單</h2>
+                <h2 class="fz-2">客製訂單</h2>
             </div>
             <div class="section-body">
                 <h3 class="form-title">客製訂單</h3>
@@ -140,10 +140,10 @@
                         <tbody>
                         <?php foreach ($cu_order as $cu_order_item): ?>
                             <tr>
-                                <td><?php echo $cu_order_item['cu_order_id']; ?></td>
-                                <td><?php echo $cu_order_item['cu_order_time']; ?></td>
-                                <td><?php echo $cu_order_item['total']; ?></td>
-                                <td><?php echo $cu_order_item['cu_order_stat']; ?></td>
+                                <td class="center"><?php echo $cu_order_item['cu_order_id']; ?></td>
+                                <td class="center"><?php echo $cu_order_item['cu_order_time']; ?></td>
+                                <td class="center"><?php echo $cu_order_item['total']; ?></td>
+                                <td class="center"><?php echo $cu_order_item['cu_order_stat']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -156,7 +156,7 @@
         <section class="section section-4">
 
             <div class="section-header">
-                <h2>藝廊票券</h2>
+                <h2 class="fz-2">藝廊票券</h2>
             </div>
             <div class="section-body">
                 <h3 class="form-title">藝廊票券</h3>
@@ -174,11 +174,11 @@
                         <tbody>
                         <?php foreach ($t_order as $t_order_item): ?>
                             <tr>
-                                <td><?php echo $t_order_item['t_order_id']; ?></td>
-                                <td><?php echo $t_order_item['t_order_addtime']; ?></td>
-                                <td><?php echo $t_order_item['t_order_much']; ?></td>
-                                <td><?php echo $t_order_item['t_order_total_price']; ?></td>
-                                <td>
+                                <td class="center"><?php echo $t_order_item['t_order_id']; ?></td>
+                                <td class="center"><?php echo $t_order_item['t_order_addtime']; ?></td>
+                                <td class="center"><?php echo $t_order_item['t_order_much']; ?></td>
+                                <td class="center"><?php echo $t_order_item['t_order_total_price']; ?></td>
+                                <td class="center">
                                     <button type="button" onclick="get_ticket('<?php echo $t_order_item['t_order_id']; ?>')">QR Code</button>
                                 </td>
                             </tr>
@@ -194,7 +194,9 @@
 
 </div>
 
-<?php require_once 'template/common_chatbot.php';?>
+<?php include_once 'chatbot.php'; ?>
+
+<script src="js\chatbot.js"></script>
 
 <!-- 主內容 END -->
 
@@ -207,7 +209,7 @@
         <?php if (!is_login()): ?>
         $.login();
         <?php else:?>
-        $('#image-preview').attr('style','background-image: url(<?php echo login_user('image2');?>);background-size:cover;background-position:center;')
+        $('#image-preview').attr('style','background-image: url(images/mem_images/<?php echo login_user('image');?>);background-size:cover;background-position:center;')
         <?php endif; ?>
     });
 </script>

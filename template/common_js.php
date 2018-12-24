@@ -4,6 +4,6 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script src="js/member.js" type="text/javascript"></script>
 <script src="js/common.js"></script>
-<!-- <script src="js/chatbot.js"></script> -->
+<script src="js/coupon.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.3/mobile-detect.min.js"></script>
 

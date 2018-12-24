@@ -2,52 +2,72 @@ window.addEventListener('load', init);
 
 function init(){
     // console.log('init');
+        
+    // console.log(missionsJson);
+    // console.log(productsJson);
     // =======================================================missions
 
     let missionGroup = document.getElementById('mission-group');
-    for(let i=0; i<4; i++){
+    let missionsJsonLen = missionsJson.length;
+    // console.log(missionsJsonLen);
+    
+    for(let i=0; i<missionsJsonLen; i++){
         // console.log(i);
         missionGroup.innerHTML += `
-        <div class="mission mission-${i+1} mission-hover">
+        <div class="mission mission-${missionsJson[i]['mission_id']} mission-hover" style="left:${missionsJson[i]['x_axis']}%;top:${missionsJson[i]['y_axis']}%;">
             <div class="wave"></div>
             <div class="stripes">
                 <div class="stripes-running"></div>
             </div>
-            <img src="images/index/mission-${i+1}.jpg" alt="mission-${i+1}">
+            <img src="images/index/${missionsJson[i]['img']}" alt="${missionsJson[i]['img']}">
             <div class="bg"></div>
             <div class="mission-code fz-6">
-                MISSION CODE:<span class="d-block">AL75D</span>
+                MISSION CODE:<span class="d-block">${missionsJson[i]['mission_code']}</span>
                 <div class="corner-decor-l"></div>
                 <div class="corner-decor-r"></div>
             </div>
             <i class="fas fa-exclamation icon-exclamation"></i>
             <i class="fas fa-backspace mission-close"></i>
-            <p class="mission-content fz-p">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</p>
+            <p class="mission-content fz-p">${missionsJson[i]['content']}</p>
             <div class="chart-wrapper">
-                <canvas class="attr-chart"></canvas>
+                <canvas class="attr-chart" data-attr="${missionsJson[i]['atk']},${missionsJson[i]['def']},${missionsJson[i]['hide']},${missionsJson[i]['dur']},${missionsJson[i]['dex']}"></canvas>
             </div>
             <div class="link-group">
-                <a href="mall.php" class="btn btn-border">添購裝備</a>
-                <a href="produtSelect.php" class="btn btn-solid">前往客製</a>
+                <a href="#" class="btn btn-border">添購裝備</a>
+                <a href="#" class="btn btn-solid">前往客製</a>
             </div>
             <div class="dashed-circle"></div>
         </div>`;
     } // end missions
     
-    
+
     // =======================================================sec-market
     // img.src = 'images/mall/item6.png';
     let prevProduct = document.getElementById('prev-product');
     let nextProduct = document.getElementById('next-product');
+    let productName = document.getElementById('product-name');
+    let productPrice = document.getElementById('product-price');
 
-    let curImgNo = 6; //第一張照片
-    let totalImg = 6; //全部有幾張
-    let imgSrc = `images/mall/item${curImgNo}.png`;
+
+    let productsJsonLen = productsJson.length;
+    // console.log(productsJsonLen);
+
+    let curImgNo = 5; //第一張照片
+    let imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
     // console.log(imgSrc);
+    prodChangeInfo();
+
+    function prodChangeInfo() {
+        productName.innerText = `${productsJson[curImgNo]['product_name']}`;
+        productPrice.innerText = `US$ ${productsJson[curImgNo]['product_price']}`;
+    }
+    
 
     // ====================
     // 起
     holographicProjection(imgSrc);
+
+    
     let marketCanvas;
 
     let tmotNo;
@@ -61,30 +81,47 @@ function init(){
         marketCanvas = document.getElementById('sec-market').querySelector('canvas');
         marketCanvas.classList.remove('op1');
         curImgNo--;
-        if(curImgNo >= 1){
+        if(curImgNo >= 0){
             // console.log(curImgNo);
-            imgSrc = `images/mall/item${curImgNo}.png`;
-            setTimeout(holographicProjection, 200, imgSrc)
-        }else if(curImgNo == 0){
-            curImgNo = totalImg;
-            imgSrc = `images/mall/item${curImgNo}.png`;
-            setTimeout(holographicProjection, 200, imgSrc)
+            imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
+            setTimeout(()=>{
+                holographicProjection(imgSrc);
+                prodChangeInfo();
+            }, 200);
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '100%'}, {right: '-300%'});
+        }else{
+            curImgNo = productsJsonLen - 1;
+            imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
+            setTimeout(()=>{
+                holographicProjection(imgSrc);
+                prodChangeInfo();
+            }, 200);
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '100%'}, {right: '-300%'});
         }
     });
     nextProduct.addEventListener('click', ()=>{
         marketCanvas = document.getElementById('sec-market').querySelector('canvas');
         marketCanvas.classList.remove('op1');
         curImgNo++;
-        if(curImgNo <= totalImg){
+        if(curImgNo <= productsJsonLen - 1){
             // console.log(curImgNo);
-            imgSrc = `images/mall/item${curImgNo}.png`;
-            setTimeout(holographicProjection, 200, imgSrc)
-        }else if(curImgNo == totalImg + 1){
-            curImgNo = 1;
-            imgSrc = `images/mall/item${curImgNo}.png`;
-            setTimeout(holographicProjection, 200, imgSrc)
+            imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
+            setTimeout(()=>{
+                holographicProjection(imgSrc);
+                prodChangeInfo();
+            }, 200);
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '-300%'}, {right: '100%'});
+        }else{
+            curImgNo = 0;
+            imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
+            setTimeout(()=>{
+                holographicProjection(imgSrc);
+                prodChangeInfo();
+            }, 200);
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '-300%'}, {right: '100%'});
         }
     });
+    // =======================================================end sec-market
 
 
     // =======================================================sec-about
@@ -98,7 +135,7 @@ function init(){
 
 
     // ====================
-    getCoupon();
+    // getCoupon(); //拆出來
     // ====================
     missionEvent();
     // ====================
@@ -108,69 +145,69 @@ function init(){
 } // end init
 
 
-function getCoupon(){
-    let getCoupon = document.getElementById('get-coupon');
-    let couponTimerSec = document.getElementById('coupon-timer-sec');
-    // 倒數時間
-    let nowSec = 5;
-    let nowSecFixed = nowSec.toFixed(2);
-    couponTimerSec.innerText = nowSecFixed;
+// function getCoupon(){
+//     let getCoupon = document.getElementById('get-coupon');
+//     let couponTimerSec = document.getElementById('coupon-timer-sec');
+//     // 倒數時間
+//     let nowSec = 5;
+//     let nowSecFixed = nowSec.toFixed(2);
+//     couponTimerSec.innerText = nowSecFixed;
 
-    // 密碼
-    let keys = [38,38,40,40,37,39,37,39,66,65];
-    let keysLeft;
+//     // 密碼
+//     let keys = [38,38,40,40,37,39,37,39,66,65];
+//     let keysLeft;
     
-    window.addEventListener( 'keydown', keyCodeMatch );
-    // 重置密碼
-    reset();
+//     window.addEventListener( 'keydown', keyCodeMatch );
+//     // 重置密碼
+//     reset();
 
-    function reset(){
-        keysLeft = keys.slice(0);
-        // console.log(keysLeft);
-    }
+//     function reset(){
+//         keysLeft = keys.slice(0);
+//         // console.log(keysLeft);
+//     }
     
-    function keyCodeMatch( e ){
-        if( e.keyCode === keysLeft[0] ){
-            keysLeft.shift();
+//     function keyCodeMatch( e ){
+//         if( e.keyCode === keysLeft[0] ){
+//             keysLeft.shift();
 
-            if( keysLeft.length > 0 ){
-                return;
-            }
-            window.removeEventListener( 'keydown', keyCodeMatch );
-            getCoupon.style.visibility = 'visible';
-            getCoupon.style.opacity = 1;
-            TweenMax.to('#coupon-number .flash', .5, {right: '-200%', delay: .5});
-            setTimeout(countdown, 1300);
-        } else {            
-            // console.log('keysLeft', keysLeft);
-            if( keysLeft.length === keys.length ){
-                return;
-            }
-            reset();            
-            // console.log('keysLeft', keysLeft);
-        }
-    }
+//             if( keysLeft.length > 0 ){
+//                 return;
+//             }
+//             window.removeEventListener( 'keydown', keyCodeMatch );
+//             getCoupon.style.visibility = 'visible';
+//             getCoupon.style.opacity = 1;
+//             TweenMax.to('#coupon-number .flash', .5, {right: '-200%', delay: .5});
+//             setTimeout(countdown, 1300);
+//         } else {            
+//             // console.log('keysLeft', keysLeft);
+//             if( keysLeft.length === keys.length ){
+//                 return;
+//             }
+//             reset();            
+//             // console.log('keysLeft', keysLeft);
+//         }
+//     }
 
-    function countdown(){
-        let countdownTimer = setInterval(() => {
-            nowSec -= 0.04;
-            nowSecFixed = nowSec.toFixed(2);
-            // console.log(nowSec, nowSecFixed);
+//     function countdown(){
+//         let countdownTimer = setInterval(() => {
+//             nowSec -= 0.04;
+//             nowSecFixed = nowSec.toFixed(2);
+//             // console.log(nowSec, nowSecFixed);
             
-            couponTimerSec.innerText = nowSecFixed;
+//             couponTimerSec.innerText = nowSecFixed;
 
-            if(nowSec <= 0){
-                clearInterval(countdownTimer);
-                couponTimerSec.innerText = '0.00';
-                getCoupon.querySelector('.coupon').style.background = 'rgba(200,0,0,.8) repeating-linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1) 1px, transparent 1px, transparent 3px)';
-                setTimeout(()=>{
-                    getCoupon.style.visibility = 'hidden';
-                    getCoupon.style.opacity = 0;
-                }, 500);
-            }
-        }, 40);
-    }
-} // end getCoupon
+//             if(nowSec <= 0){
+//                 clearInterval(countdownTimer);
+//                 couponTimerSec.innerText = '0.00';
+//                 getCoupon.querySelector('.coupon').style.background = 'rgba(200,0,0,.8) repeating-linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1) 1px, transparent 1px, transparent 3px)';
+//                 setTimeout(()=>{
+//                     getCoupon.style.visibility = 'hidden';
+//                     getCoupon.style.opacity = 0;
+//                 }, 500);
+//             }
+//         }, 40);
+//     }
+// } // end getCoupon
 
 
 
@@ -214,7 +251,10 @@ function missionEvent(){
 
         // index canvas
         let ctx = missions[i].querySelector('canvas');
-        // console.log(ctx);
+        let arrDataAttr = ctx.dataset.attr.split(',');
+
+
+        // console.log(arrDataAttr);
 
         Chart.defaults.global.defaultFontFamily = 'NotoSerifCJKtc';
         Chart.defaults.global.defaultFontColor = '#fff';
@@ -224,7 +264,7 @@ function missionEvent(){
             data: {
                 labels: ["攻擊", "防禦", "隱匿", "耐久", "速度"],
                 datasets: [{
-                    data: [8, 1, 3, 5, 10],
+                    data: arrDataAttr,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.5)',
                         'rgba(54, 162, 235, 0.5)',
@@ -332,7 +372,7 @@ function customizeEvent(){
     function closetBlockCarousel(){
         for(let i=0; i<arrClosetBlockLen; i++){
             // rotateY
-            arrClosetBlock[i].style.transform = `rotateY(${arrDegClosetBlock[i]}deg)`;
+            arrClosetBlock[i].style.transform = `translateY(-50%) rotateY(${arrDegClosetBlock[i]}deg)`;
 
             // opacity
             if(arrDegClosetBlock[i] % 360 == 0){
@@ -595,10 +635,6 @@ function holographicProjection(imgSrc){
         lightSource,
         vlShaderUniforms;
 
-
-
-    
-    
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({
@@ -880,11 +916,6 @@ function holographicProjection(imgSrc){
     // }
     // ========================================================================gui
     
-
-    
-
-    
-
     setupScene();
     setupPostprocessing();
     onFrame();
@@ -899,9 +930,8 @@ function holographicProjection(imgSrc){
     setTimeout(()=>{
         marketCanvas.classList.add('op1');
     }, 100);
-
 }
-
+// ========================================================================end holographicProjection
 
 function tweenMax(){
     // console.log('tweenMax');

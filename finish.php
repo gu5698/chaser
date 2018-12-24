@@ -38,7 +38,7 @@
 
                 <div class="circle circle_3">
                     <img src="images/customize/circle_2.png" alt="circle2">
-                    <span class="statement_03 fz-5">填寫資訊</span>
+                    <span class="statement_03 fz-5">交貨資訊</span>
                     <span class="number fz-4">3</span>
                 </div>
                 <div class="line"></div>
@@ -46,7 +46,7 @@
                 <div class="circle circle_4">
                     <img src="images/customize/circle_1.png" alt="circle2">
                     <img class="shot" src="images/customize/000.png" alt="shot">
-                    <span class="statement_04 fz-5">成功下單</span>
+                    <span class="statement_04 fz-5">成功訂貨</span>
                     <span class="number fz-4">4</span>
                 </div>
             </div>
@@ -57,8 +57,8 @@
                     <img src="images/customize/logo_1.png" alt="logo">
                 </div>
                 <div class="part02">
-                    <p class="fz-3">下單成功，感謝您的購買!!!</p>
-                    <a href="mall.php" class="gotomall fz-6">前往裝備商城</a>
+                    <p class="fz-3">訂貨成功，感謝您的購買!!!</p>
+                    <a href="#" class="gotomall fz-6">前往裝備商城</a>
                     <a href="#" class="gotogallery fz-6">參觀傳奇特務藝廊</a>
                 </div>
             </div>

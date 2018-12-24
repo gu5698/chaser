@@ -1,44 +1,84 @@
+<?php
+    try {
+        require_once "connect.php";
+
+        $sqlMission = "SELECT * FROM mission";
+
+        $pdostmMission = $pdo -> query($sqlMission);
+        $missions = $pdostmMission -> fetchAll(PDO::FETCH_ASSOC);
+
+        // print_r($missions);
+        $missionsLen = count($missions);
+        // echo "missionsLen:", $missionsLen;
+        $missionsJson = json_encode($missions); //!!!
+
+        //======================================================
+        $sqlProduct = "SELECT * FROM product";
+
+        $pdostmProduct = $pdo -> query($sqlProduct);
+        $products = $pdostmProduct -> fetchAll(PDO::FETCH_ASSOC);
+
+        // print_r($products);
+        $productsLen = count($products);
+        // echo "productsLen:", $productsLen;
+        $productsJson = json_encode($products); //!!!
+ 
+        //======================================================
+        
+    } catch (PDOException $e) {
+        echo "錯誤原因:", $e->getMessage(), "<hr>";
+        echo "錯誤行號:", $e->getLine(), "<hr>";
+    }
+?>
+
 <?php include_once 'function/member.php'; ?>
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chaser</title>
-
+    <!-- common -->
     <?php require_once 'template/common_css.php';?>
-    <!-- 個人連結start -->
+    <!-- loading -->
+    <link rel="stylesheet" type="text/css" href="css/loading.css" />
     <!-- favicon -->
     <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
-   <!-- custom -->
-   <link rel="stylesheet" href="css/index.css">
-   
-    <!-- 個人連結end -->
-
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- custom -->
+    <link rel="stylesheet" href="css/scroll.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script>
+        let missionsJson = JSON.parse(`<?php echo $missionsJson; ?>`);
+        let productsJson = JSON.parse(`<?php echo $productsJson; ?>`);
+    </script>
 </head>
 <body>
-
-<?php require_once 'template/common_navbar.php';?>
-
-<!-- 主內容 START -->
-<?php include_once 'chatbot.php'; ?>
-
-    <!-- start coupon -->
-    <div id="get-coupon" class="get-coupon">
-        <div class="coupon">
-            <div class="corner-decor-l"></div>
-            <div class="corner-decor-r"></div>
-            <div class="title fz-4">優惠券序號</div>
-            <div id="coupon-number" class="coupon-number fz-5">
-                happynewyear2019
-                <div class="flash"></div>
+    <!-- start loading -->
+    <div id="ip-container" class="ip-container">
+        <header class="ip-header">
+            <h1 class="ip-logo"><img id="loading-logo" class="ip-inner" src="images/logo.png" /></h1>
+            <div class="ip-loader">
+                <svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
+                    <path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" />
+                    <path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" />
+                </svg>
             </div>
-            <div class="coupon-timer fz-6">此訊息將在<span id="coupon-timer-sec" class="coupon-timer-sec fz-4"></span>秒後銷毀</div>
-        </div>
+        </header>
     </div>
-    <!-- end coupon -->
+    <!-- end loading -->
+
+
+    <!-- start navbar -->
+    <?php require_once 'template/common_navbar.php';?>
+    <!-- end navbar -->
+
+    <!-- start chatbot -->
+    <?php include_once 'chatbot.php'; ?>
+    <!-- end chatbot -->
 
 
     <!-- ======================= -->
@@ -57,32 +97,14 @@
             </div>
         </div>
         <!-- ====================== -->
+        <div class="mall_scroll">
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+        </div>
+        <!-- ====================== -->
         <div id="mission-group" class="mission-group">
             <!-- ====================== -->
-            <!-- <div class="mission mission-1 mission-hover">
-                <div class="wave"></div>
-                <div class="stripes">
-                    <div class="stripes-running"></div>
-                </div>
-                <img src="images/index/mission-1.jpg" alt="mission-1">
-                <div class="bg"></div>
-                <div class="mission-code fz-6">
-                    MISSION CODE:<span class="d-block">AL75D</span>
-                    <div class="corner-decor-l"></div>
-                    <div class="corner-decor-r"></div>
-                </div>
-                <i class="fas fa-exclamation icon-exclamation"></i>
-                <i class="fas fa-backspace mission-close"></i>
-                <p class="mission-content fz-p">取進電例報日到會但，爭什費高企分聽樣裡時黨不腦音面靜，手防親，臺一麼不請路女……易去然了不難次多因不，展人語古始關過？都文早實而正開。多現影大，終不分外汽有地算正看成八留呢足保子。馬工統好系強們，學建理了好生的明為題</p>
-                <div class="chart-wrapper">
-                    <canvas class="attr-chart"></canvas>
-                </div>
-                <div class="link-group">
-                    <a href="#" class="btn btn-border">添購裝備</a>
-                    <a href="#" class="btn btn-solid">前往客製</a>
-                </div>
-                <div class="dashed-circle"></div>
-            </div> -->
             <!-- ====================== -->
         </div>
         <!-- ====================== -->
@@ -113,7 +135,7 @@
                             <span>3</span>
                         </div>
                         <div class="customize-name fz-4">特務腕錶</div>
-                        <a href="produtSelect.php" class="btn btn-solid">立即客製</a>
+                        <a href="#" class="btn btn-solid">立即客製</a>
                     </div>
                 </div>
                 <div class="col-middle col-md-4">
@@ -121,15 +143,15 @@
                     <div class="closet-block-group">
                         <!-- =================== -->
                         <div id="closet-block-1" class="closet-block closet-block-1">
-                            <img src="images/index/custom-watch.png" alt="custom-watch">
+                            <img src="images\customize\watch\watch12/png/killy_b_blk.png" alt="custom-watch">
                         </div>
                         <!-- =================== -->
                         <div id="closet-block-2" class="closet-block closet-block-2">
-                            <img src="images/index/custom-watch.png" alt="custom-watch">
+                            <img src="images/customize/glasses/sq-black-scan.gif" alt="custom-glasses">
                         </div>
                         <!-- =================== -->
                         <div id="closet-block-3" class="closet-block closet-block-3">
-                            <img src="images/index/custom-watch.png" alt="custom-watch">
+                            <img src="images/customize/suit/png/double-b-a.png" alt="custom-suit">
                         </div>
                         <!-- =================== -->
                     </div>
@@ -180,14 +202,19 @@
                         <div class="corner-decor-r"></div>   
                         <div id="prev-product" class="prev-product"><i class="fas fa-caret-left"></i></i></div>
                         <div id="next-product" class="next-product"><i class="fas fa-caret-right"></i></div>
-                        <div class="btn btn-border btn-add-cart">加入購物車</div>
+                        <div class="title">
+                            <div class="btn btn-border btn-add-cart">加入購物車</div>
+                            <div id="product-name" class="product-name fz-5"></div>
+                            <div id="product-price" class="product-price fz-5"></div>
+                            <div class="flash"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-intro col-md-5">
                     <div class="wrapper">
                         <div class="fz-4">裝備商城</div>
                         <p class="fz-p">CHASER 提供優良的裝備，以應付各種任務。</p>
-                        <a href="mall.php" class="btn btn-solid">前往商城</a>
+                        <a href="#" class="btn btn-solid">前往商城</a>
                     </div>
                 </div>
             </div>
@@ -243,11 +270,11 @@
         </video>
         <div class="wrapper">
             <div class="tittle fz-4">關於我們</div>
-            <a href="about.php" id="enter-about" class="enter-about">
+            <div id="enter-about" class="enter-about">
                 <svg id="svgShield" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 146.14"><g><path d="M87.93,17.75A179.34,179.34,0,0,1,58,.62,179.34,179.34,0,0,1,28.07,17.75C12.75,24.42.5,25.05.5,25.05V75.82c0,14,2.18,29.19,20,46.32A108.56,108.56,0,0,0,58,145.62a108.56,108.56,0,0,0,37.49-23.48c17.83-17.13,20-32.36,20-46.32V25.05S103.25,24.42,87.93,17.75Z"/></g></svg>
                 <div class="lock-hole"></div>
                 <div class="access fz-6">ACCESS DENIED</div>
-            </a>
+            </div>
         </div>
     </section>
     <!-- end sec-about -->
@@ -262,9 +289,12 @@
 
 
 
-<!-- 主內容 END -->
 
-<!-- 個人js START -->
+    <!-- loading -->
+    <script src="js/loading/modernizr.custom.js"></script>
+    <script src="js/loading/classie.js"></script>
+    <script src="js/loading/pathLoader.js"></script>
+    <script src="js/loading/main.js"></script>
     <!-- chart.js -->
     <script src="node_modules\chart.js\dist\Chart.min.js"></script>
     <!-- tweenmax -->
@@ -289,12 +319,10 @@
     <script src="https://cdn.rawgit.com/felixturner/bad-tv-shader/master/BadTVShader.js"></script>
     <!-- custom -->
     <!-- <script src="js/common.js"></script> -->
-    <script src="js\chatbot.js"></script>
+    <script src="js/chatbot.js"></script>
     <script src="js/index.js"></script>
 
-<!-- 個人js END -->
-
-<?php require_once 'template/common_js.php';?>
+    <?php require_once 'template/common_js.php';?>
 
 </body>
 </html>

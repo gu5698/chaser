@@ -12,10 +12,28 @@
      $(window).ready(function () {//loading時執行這個function
         setTimeout(function () {
             hide_loader()
-        }, 11000);
+        }, 8500);
     }); 
 
    	
+/********************************************************
+                // about-palmprint-animation skip-button//
+*********************************************************/
+function skip(){
+    // var aboutSkip = document.getElementById("about-skip");
+    var as1 = document.getElementById("aboutSection1");
+    var as2 = document.getElementById("aboutSection2");
+    as1.style.display ="none";
+    console.log(as2);
+    as2.classList.remove("d-none");
+    // as2.style.transition = "0.5s";
+    console.log(as2);
+    }
+    
+    window.addEventListener('click',skip);
+
+
+
 
 /********************************************************
                 // 動畫 - 指紋辨識//
@@ -36,7 +54,7 @@ TweenMax.fromTo('#about-fingerscan1', 1, {
     opacity: 0,
 }, {
         // width: 400,
-        delay: 1.5,
+        delay: 1.2,
         opacity: 0.7,
         scale: 1.2,
         repeat: 0, //重複
@@ -48,7 +66,7 @@ TweenMax.fromTo('#about-fingerscan2', 1, {
     opacity: 0
 }, {
         // width: 400,
-        delay: 2,
+        delay: 1.7,
         opacity: 0.7,
         scale: 1.2,
         repeat: 0, //重複
@@ -60,7 +78,7 @@ TweenMax.fromTo('#about-fingerscan3', 1, {
     opacity: 0
 }, {
         // width: 400,
-        delay: 2.5,
+        delay: 2.2,
         opacity: 0.7,
         scale: 1.2,
         repeat: 0, //重複
@@ -72,7 +90,7 @@ TweenMax.fromTo('#about-fingerscan4', 1, {
     opacity: 0
 }, {
         // width: 400,
-        delay: 3,
+        delay: 2.7,
         opacity: 0.7,
         scale: 1.2,
         repeat: 0, //重複
@@ -83,7 +101,7 @@ TweenMax.fromTo('#about-fingerscan5', 1, {
     opacity: 0
 }, {
         // width: 400,
-        delay: 3.5,
+        delay: 3.2,
         opacity: 0.7,
         scale: 1.2,
         repeat: 0, //重複
@@ -97,7 +115,7 @@ TweenMax.fromTo('#about-fingerscan-area', 1, {
 }, {
         rotation: 270,
         // width: 400,
-        delay: 4,
+        delay: 3.4,
         opacity: 0.7,
         repeat: 0, //重複
 
@@ -110,12 +128,11 @@ TweenMax.fromTo('#about-alert-1', 1, {
         // y: '+=50',
         // scaleX: 2,
         // scaleY: 1.2,
-        delay: 8.5,
+        delay: 7,
         opacity: .8,
         //repeat: 0, //重複
         scaleX: 4,
         scaleY: 3
-
     })
 
 /********************************************************
@@ -188,7 +205,7 @@ function aboutDataTrans(){
     function moveUp(){
         var s = 1;  // 移動的距離
         var disTop = oUl.offsetHeight - oDiv.offsetHeight; //// 移動最大範圍的值
-        console.log(oUl.ooffsetTop, disTop);  
+        // console.log(oUl.ooffsetTop, disTop);  
         if (oUl.offsetTop < -disTop){
             oUl.style.top = '0px';
         }
@@ -243,20 +260,81 @@ function totext(text1,text2,text3,text4){
 }
 
 
-
 /********************************************************
                 // about-service-connect - hover//
 *********************************************************/
-// var tl = new TimelineMax({paused:true})
+if (window.matchMedia("(min-width: 1200px)").matches){
+    serviceConnectHover();
+}
+window.addEventListener('resize', function () {
+    console.log(window.matchMedia("(min-width: 1200px)"));
+    
+    if (window.matchMedia("(min-width: 1200px)").matches){
+        serviceConnectHover();
+    }
+})
 
-// tl.to("#test", 0.5, {scale:1.2, transformOrigin:"50% 50%", ease:Linear.easeNone})
-// tl.timeScale(2);
+// if (window.matchMedia("(min-width: 1200px)").matches){
+    // var tl = new TimelineMax({paused:true})
+    // tl.to("#ac1", 0.5, {scale:1.1, transformOrigin:"50% 50%", ease:Linear.easeNone})
+    // tl.timeScale(2);
 
-// $("#test").hover(function(){
-//   tl.play();
-// },function(){
-//   tl.reverse();
-// })
+    // $("#ac1").hover(function(){
+    // tl.play();
+    // },function(){
+    // tl.reverse();
+    // })
 
+    // var tl1 = new TimelineMax({paused:true})
+    // tl1.to("#ac3", 0.5, {scale:1.1, transformOrigin:"50% 50%", ease:Linear.easeNone})
+    // tl1.timeScale(2);
 
+    // $("#ac3").hover(function(){
+    // tl1.play();
+    // },function(){
+    // tl1.reverse();
+    // })
 
+    // var tl2 = new TimelineMax({paused:true})
+    // tl2.to("#ac7", 0.5, {scale:1.1, transformOrigin:"50% 50%", ease:Linear.easeNone})
+    // tl2.timeScale(2);
+
+    // $("#ac7").hover(function(){
+    // tl2.play();
+    // },function(){
+    // tl2.reverse();
+    // }) 
+
+// }
+
+function serviceConnectHover() {
+    var tl = new TimelineMax({paused:true})
+    tl.to("#ac1", 0.5, {scale:1.1, transformOrigin:"50% 50%", ease:Linear.easeNone})
+    tl.timeScale(2);
+
+    $("#ac1").hover(function(){
+    tl.play();
+    },function(){
+    tl.reverse();
+    })
+
+    var tl1 = new TimelineMax({paused:true})
+    tl1.to("#ac3", 0.5, {scale:1.1, transformOrigin:"50% 50%", ease:Linear.easeNone})
+    tl1.timeScale(2);
+
+    $("#ac3").hover(function(){
+    tl1.play();
+    },function(){
+    tl1.reverse();
+    })
+
+    var tl2 = new TimelineMax({paused:true})
+    tl2.to("#ac7", 0.5, {scale:1.1, transformOrigin:"50% 50%", ease:Linear.easeNone})
+    tl2.timeScale(2);
+
+    $("#ac7").hover(function(){
+    tl2.play();
+    },function(){
+    tl2.reverse();
+    }) 
+}

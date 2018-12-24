@@ -19,12 +19,20 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
+    <!-- favicon -->
     <!-- Bootstarp4 CSS -->
-    <link rel="stylesheet" href="css/backstage/bootstrap.min.css" />
+    <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- common -->
+    <link rel="stylesheet" href="css/backstage/backstage_common.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/backstage/gallery-backstage.min.css" />
+
+    
+    
+    
+    
 
     <script type="text/javascript">
 		function dodel(id){
@@ -38,7 +46,7 @@
 <body>
     <?php include_once 'backstage_navbar.php'; ?>
     
-    <div class="container-fluid main1">
+    <div class="container-fluid main1 pb-5">
         <div class="row">
             <div class="col-2">
                 <ul class="list-group">
@@ -50,7 +58,7 @@
             </div>
             <div class="col-10">
                 <table class="table table-striped">
-                    <thead class="th thead-dark">
+                    <thead id="thead">
                         <tr>
                             <th scope="col" width="80" style="text-align:center">展品ID</th>
                             <th scope="col" width="160" style="text-align:center">展品照片</th>
@@ -86,13 +94,16 @@
             </div>
         </div>
     </div>
+    <!-- start footer -->
+    <footer class="footer">© 2018 Chaser. All Rights Reserved.</footer>
+    <!-- end footer -->
 
-    <!-- Bootstarp4 CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
-    <!-- jQuery CDN -->
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- popper js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>

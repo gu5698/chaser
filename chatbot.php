@@ -16,7 +16,7 @@
             <i class="fas fa-angle-up icon-minimize"></i>
         </div>
         <div id="message-body" class="message-body">
-            <div class="message message-bot"><a href="#">歡迎來到CHASER</a></div>
+            <div class="message message-bot">歡迎來到CHASER</div>
         </div>
         <div class="message-input">
             <textarea id="message-textarea"></textarea>

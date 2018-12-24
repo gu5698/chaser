@@ -2,6 +2,11 @@
     width: 0px;
     background-color: transparent;
 }
+@media (max-width: 768px){
+    #loading-logo{
+        width: 70%;
+    }
+}
 
 .ip-header {
     position: fixed;

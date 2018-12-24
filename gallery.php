@@ -40,7 +40,7 @@ try {
     <!-- /anl -->
     <div id="ip-container" class="ip-container">
         <header class="ip-header">
-            <h1 class="ip-logo"><img class="ip-inner" src="images/logo.png" /></h1>
+            <h1 class="ip-logo"><img id="loading-logo" class="ip-inner" src="images/logo.png" /></h1>
             <div class="ip-loader">
                 <svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
                     <path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" />
@@ -237,7 +237,11 @@ try {
     <!-- <a href="#" class="" id="" name=""> -->
         <img src="images\gallery-img\buyticket.png" class="buyticket" id="buyticket" alt="">
     <!-- </a> -->
-    <img src="images\gallery-img\scroll.png" class="scroll-icon" alt="">
+    <div class="mall_scroll">
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+    </div>
     <div id="all">
         <div id="main">
             <i class="fas fa-times-circle" id="closepiano"></i>

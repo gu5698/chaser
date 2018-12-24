@@ -2,8 +2,11 @@
     opacity: 1 !important;
     visibility: visible !important; }
   .navbar .navbar-menu a{
-    text-decoration: none;
-  }
+    text-decoration: none;}
+  .btn-solid{
+    background-color: #fdd084;
+    color: #000;}
+    
   .navbar {
     position: fixed;
     top: 0;
@@ -24,7 +27,8 @@
     .navbar .navbar-toggle {
       display: none;
       line-height: 50px;
-      padding: 0 15px; }
+      padding: 0 15px;
+      cursor: pointer; }
       @media (max-width: 768px) {
         .navbar .navbar-toggle {
           display: inline-block; } }
@@ -103,6 +107,8 @@
     .navbar .navbar-item {
       position: relative;
       text-decoration: none; }
+      .navbar .navbar-item.active::after {
+        opacity: 1 !important; }
       @media (max-width: 768px) {
         .navbar .navbar-item:last-child {
           margin-bottom: 20px; } }
@@ -221,11 +227,9 @@
             cursor: pointer; }
         .navbar .icon-cart .sub-menu .cart-btn {
           display: block;
-          text-align: center; }
-        .btn-solid{
-            background-color: #fdd084;
-            color: #000;
-        }
+          text-align: center;
+          font-weight: 700; }
+
   
 /**
  * 會員專區使用
@@ -233,20 +237,37 @@
 @media (min-width: 768px) {
     .navbar ul.member-menu {
         display: none;
+        position: fixed;
+        font-size: 16px;
+        background-color: #fdd084;
+        width: initial;
+        top: initial;
+        right: 46px;
+        transform: initial;
+        text-align: center;
+        padding: initial;
     }
 
     .navbar ul.member-menu.op1-vv {
         display: inline-block;
-        position: fixed;
-        width: auto;
-        right: 0;
-        top: unset;
-        transform: none;
-        background-color: #aaaa;
     }
 
     .navbar ul.member-menu.op1-vv .navbar-item a {
-        transform: none;
+        display: block;
+        transform: initial;
+        color: #000;
+        padding: 12px 20px;
+        transition: .5s;
+    }
+    .navbar ul.member-menu.op1-vv .navbar-item:hover {
+        transform: initial;
+    }
+    .navbar ul.member-menu.op1-vv .navbar-item:hover a{
+        color: #fff;
+        background-color: #3e3a39;
+    }
+    .navbar ul.member-menu.op1-vv .navbar-item:hover::after {
+        opacity: 0;
     }
 }
 

@@ -4,9 +4,9 @@ ul, li {
     list-style: none;
 }
 
-/* .navbar {
-    z-index: 98;
-} */
+.navbar {
+    z-index: 9999;
+}
 
 .wrap-main {
     width: 100%;
@@ -40,21 +40,20 @@ ul, li {
     position: absolute;
     top: calc(50% - 116px / 2);
     left: calc(50% - 53px / 2);
-
-    /*background-color: rgba(25, 101, 38, .7);*/
+    /* background-color:  rgba(62, 58, 57, 0.9); */
     padding: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
 }
 
 .section .section-header h2 {
     -webkit-writing-mode: tb-rl;
     -ms-writing-mode: tb-rl;
     writing-mode: tb-rl;
-
     color: #fdd084;
+    text-shadow: 0 0 20px #000;
+    /*background-color:  rgba(62, 58, 57, 0.9);*/
     font-weight: normal;
+    /*font-size: 1.5rem; /* 24px */*/
+    line-height: 1.5;
 }
 
 .section .section-body {
@@ -157,6 +156,10 @@ h3.form-title {
     flex-direction: row;
     align-items: stretch;
 }
+.member-form input:focus{
+    border-color:#fcbd52;
+    box-shadow:0 0 5px 2px rgba(253, 203, 132, 1);
+}
 
 .member-picture {
     flex: 1;
@@ -183,17 +186,17 @@ h3.form-title {
     font-weight: 200;
     position: absolute;
     top: 7px;
-    left: 34px;
 }
 
 .form-group > input {
     color: #fdd084;
+    font-size: 16px;
 }
 
 .form-group > input[type="text"], .form-group > input[type="email"], .form-group > input[type="tel"], .form-group > input[type="password"] {
     width: 100%;
     border: 0;
-    padding: 10px 5px 10px 35px;
+    padding: 10px 5px 10px 120px;
     background-color: transparent;
 }
 
@@ -203,20 +206,23 @@ h3.form-title {
 }
 
 .form-group > input[type="text"]:focus + label, .form-group > input[type="email"]:focus + label, .form-group > input[type="tel"]:focus + label, .form-group > input[type="password"]:focus + label {
-    opacity: 0;
+    /* opacity: 0; */
     /*top: -10px;*/
     /*font-size: 8px;*/
 }
 
-.form-group > input[type="text"]:valid, .form-group > input[type="email"]:valid, .form-group > input[type="tel"]:valid, .form-group > input[type="password"]:valid {
+/* .form-group > input[type="text"]:valid, .form-group > input[type="email"]:valid, .form-group > input[type="tel"]:valid, .form-group > input[type="password"]:valid {
     background: url(../images/svg/check.svg);
-    /*background-size: 20px;*/
+    background-size: 20px;
     background-repeat: no-repeat;
     background-position: 100%;
 }
+.form-group > input.changepwd[type="password"]:valid{
+    background:unset;
+}
 
 .form-group > input[type="text"]:valid + label, .form-group > input[type="email"]:valid + label, .form-group > input[type="tel"]:valid + label, .form-group > input[type="password"]:valid + label {
-    opacity: 0;
+    opacity: 1;
 }
 
 .form-group > input[type="text"]:invalid:not(:focus):not(:placeholder-shown), .form-group > input[type="email"]:invalid:not(:focus):not(:placeholder-shown), .form-group > input[type="tel"]:invalid:not(:focus):not(:placeholder-shown), .form-group > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
@@ -231,7 +237,7 @@ h3.form-title {
 .form-group > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements, .form-group > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements, .form-group > input[type="tel"]:invalid:focus:not(:placeholder-shown) ~ .requirements, .form-group > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
     max-height: 200px;
     padding: 0 30px 20px 50px;
-}
+} */
 
 .form-group .requirements {
     padding: 0 30px 0 50px;
@@ -314,8 +320,8 @@ h3.form-title {
 
 .login-lightbox.ticket .close {
     position: absolute;
-    top: 50px;
-    right: 50px;
+    top: 100px;
+    right: 30px;
     color: #fff;
     font-size: 22px;
     background-color: transparent;
@@ -337,19 +343,32 @@ h3.form-title {
     border-bottom: 1px solid #fdd084;
     border-collapse: collapse;
     background-color: rgba(0, 0, 0, .7);
+    line-height: 1.5;
 }
 
 .member_order_table tr > th, .member_order_table tr > td {
     border-bottom: 1px solid #fdd084;
     padding: 5px;
+    font-size: 16px;
+    vertical-align: middle;
+    /* text-align: center; */
+}
+
+.center{
+    text-align: center;
+}
+.right{
+    text-align: right;
 }
 
 .member_order_table button {
     min-height: 25px;
-    color: #fdd084;
+    color: #fff;
     border: 1px solid #fdd084;
     background-color: transparent;
     padding: 3px 10px;
+    font-size: 16px;
+    transition: .3s;
 }
 
 .member_order_table button:hover {
@@ -425,21 +444,21 @@ fieldset legend {
 /* 表格按妞的樣式 開始 */
 .btn {
     position: relative;
-
     margin: 10px auto;
     padding: 0;
-
     overflow: hidden;
-
     border-width: 0;
     outline: none;
-    border-radius: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-
     background-color: rgba(62, 58, 57, .5);
-    color: #fdd084;
-
+    color: #fff;
+    border: 1px solid #fdd084;
     transition: background-color .3s;
+    font-size: 16px;
+}
+.btn:hover{
+    background-color: #fdd084;
+    color: rgba(62, 58, 57, 1);
 }
 
 
@@ -497,8 +516,59 @@ fieldset legend {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.member_ticket_wrap,.member_order_wrap{
+    margin-top: 100px;
+}
 /* QR_Cdoe ticket 結束*/
 
 .member_order_table,.member_order_table_list,{
     margin-top: 60px;
+}
+
+/* navbar 歡迎會員的設定 開始 */
+.text-member {
+    line-height: 4;
+    vertical-align: middle;
+    color: #fdd084;
+    font-size: 18px !important;
+}
+
+.navbar .navbar-item:not(.text-member) {
+    margin-left: unset;
+}
+/* navbar 歡迎會員的設定 結束 */
+
+
+/* 字型 */
+
+@font-face{
+    font-family: NotoSerifCJKtc;
+    src: url(../fonts/NotoSerifCJKtc-Regular.otf);
+    font-weight: 400;
+}
+@font-face{
+    font-family: NotoSerifCJKtc;
+    src: url(../fonts/NotoSerifCJKtc-Bold.otf);
+    font-weight: 700;
+}
+
+
+body{
+    font-family: 'Playfair Display', NotoSerifCJKtc, serif;
+}
+
+
+/* 訂單明細 */
+
+.member_order_table_list{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.member_order_table img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }

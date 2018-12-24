@@ -50,6 +50,7 @@
             if ($('.member-menu').length == 0) {
                 $.login();
             } else {
+                $('.main-navbar-menu.op1-vv').removeClass('op1-vv');
                 var menu = $('.member-menu');
                 if (menu.hasClass('op1-vv')) {
                     menu.removeClass('op1-vv');

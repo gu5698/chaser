@@ -1,3 +1,8 @@
+#message-body img{
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+}
 .chatbot {
   position: fixed;
   right: 0;
@@ -142,6 +147,8 @@
         width: 100%;
         padding: 4px;
         font-size: 14px;
+        background-color: transparent;
+        color: #fff;
         resize: none; }
         .chatbot .message-window .message-input textarea:focus {
           outline: none; }

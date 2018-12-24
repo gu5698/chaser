@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-10 offset-1 col-md-5 offset-md-0 whitebg">
                     <div class="cart-table">
-                        <form method="GET" action="rcvdetail.php">
+                        <form method="GET" action="cartRcvdetail.php">
                             <h2>訂購人資訊</h2>
                             <div class="cart-form-group">
                                 <label for="name">姓名</label>

@@ -1,6 +1,6 @@
 <?php include_once 'function/member.php' ;?>
 
-<?php
+<?php 
     $errorMsg = '';
     try{
         require_once("connect.php");
@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    
     <?php require_once 'template/common_css.php'; ?>
     <!-- 個人連結start -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -77,15 +77,14 @@
                                 <input class="mall_amount" type="text" value='1' min='1' max='99'>
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </h3>
-                            <div class="button" >
+                            <div class="button">
                                 <div class="triangle"></div>
-                                <a class="buy" href="cart1.php">
+                                <a class="buy" href="#">
                                     直接購買
                                 </a>
-                                <a class="addcart" href="#" id="P<?php echo $prodrow->product_id; ?>">
+                                <a class="addcart" href="#">
                                     加入購物車
                                 </a>
-                                <input type="hidden" value="<?php echo "$prodrow->product_name|"."$prodrow->product_image|"."$prodrow->product_price"; ?>">
                             </div>
                         </div>
                     </div>
@@ -104,7 +103,7 @@
                 <div id="mall_slider">
                     <ul id="slider_ul">
 
-<?php
+<?php 
     $errorMsg = '';
     try{
         require_once("connect.php");
@@ -125,7 +124,7 @@
     }//while
 }//else
 ?>
-                    </ul>
+                    </ul>  
                 </div>
             </div>
 
@@ -136,10 +135,10 @@
 
               <div id="mall_door">
                  <div id="mall_doorL">
-
+                        
                 </div>
                  <div id="mall_doorR">
-
+                        
                 </div>
             </div>
             <div id="mall_open">
@@ -148,7 +147,7 @@
             <div class="mall_scroll">
                 <div class="chevron"></div>
                 <div class="chevron"></div>
-                <div class="chevron"></div>
+                <div class="chevron"></div>  
             </div>
 
 <footer class="footer">
@@ -156,8 +155,6 @@
 </footer>
 <!-- end footer -->
 </body>
-<script src="js/submenu.js"></script>
-<script src="js/addItem.js"></script>
 <script src="js/mall.js"></script>
 <!-- 主內容 END -->
 

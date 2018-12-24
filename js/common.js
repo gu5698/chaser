@@ -28,9 +28,28 @@ function commonInit(){
     });
     // 漢堡
     let navbarToggle = document.getElementById('navbar-toggle');
+    let memberMenu = document.querySelector('.member-menu');
     navbarToggle.addEventListener('click', ()=>{
+        memberMenu.classList.remove('op1-vv');
+        console.log(memberMenu.classList);
         navbar.querySelector('ul').classList.toggle('op1-vv');
     });
+
+
+
+    // active
+    // console.log(window.location.href.includes('index'));
+
+    if(window.location.href.includes('product')){
+        document.getElementById('navbar-link-customize').classList.add('active');
+    }else if(window.location.href.includes('mall')){
+        document.getElementById('navbar-link-mall').classList.add('active');
+    }else if(window.location.href.includes('gallery')){
+        document.getElementById('navbar-link-gallery').classList.add('active');
+    }else if(window.location.href.includes('about')){
+        document.getElementById('navbar-link-about').classList.add('active');
+    }
+
     // =======================================================end navbar
     
     // 呼叫 function

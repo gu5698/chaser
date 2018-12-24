@@ -75,7 +75,6 @@ $(function () {
       500
     );
   });
-
   ////输入框失去焦点时
   $("input").blur(function (event) {
     //input內無字
@@ -92,24 +91,7 @@ $(function () {
         },
         500
       );
-    };
-  });
-
-  $("input").each(function (event) {
-    if ($(this).val() != "") {
-      //label动态上升，升至顶部
-      $(this).siblings("label").stop().animate({
-          top: "-1.5rem"
-        },
-        500
-      );
-      //div模拟的下边框伸出，其width动态改变至input的width
-      $(this).next(".bottom-line").stop().animate({
-          width: "60%"
-        },
-        500
-      );
-    };
+    }
   });
 });
 

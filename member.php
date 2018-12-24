@@ -164,7 +164,7 @@ switch ($action) {
 
         //pdo 寫法 開始
         try {
-            $sql = "select b.product_name, b.pruduct_image ,b.product_price ,a.quantity
+            $sql = "select b.product_name, b.product_image ,b.product_price ,a.quantity
                 from orderdetail a
                 join product b on a.product_id = b.product_id
                 where a.order_id = :value";
@@ -416,7 +416,7 @@ function edit()
     // if upload image   
     $imageFile = $_FILES['file'];
     $image1 = '';
-    $image2 = '';
+    // $image2 = '';
     if(!empty($imageFile) && 0==$imageFile['error']){   // 必須先判斷檔案是否是空的，再判斷是否有錯誤訊息
         // image1=要存入的檔案名稱，
         $image1 = time().
@@ -429,7 +429,7 @@ function edit()
         // __DIR__ = 目前檔案的實際路徑 =(/Applications/MAMP/htdocs/Chaser_1214)
         copy($imageFile['tmp_name'], __DIR__.'/'.$uploadPath.$image1);
 
-        $image2 = $uploadPath.$image1;
+        // $image2 = $uploadPath.$image1;
     }
 
     //======= pdo 寫法開始
@@ -437,7 +437,7 @@ function edit()
     try {
         $sql = "update " . MEMBER_TABLE . " set " .
                 MEMBER_FIELD_IMAGE    . "=:imageValue," .
-                MEMBER_FIELD_IMAGE2   . "=:image2Value," .
+                // MEMBER_FIELD_IMAGE2   . "=:image2Value," .
                 MEMBER_FIELD_USERNAME . "=:usernameValue," .
                 MEMBER_FIELD_EMAIL    . "=:emailValue," .
                 MEMBER_FIELD_PHONE    . "=:phoneValue," .
@@ -445,7 +445,7 @@ function edit()
                 " where ".MEMBER_FIELD_ID."=:memberId";
         $member = $db->prepare( $sql); 
         $member->bindValue(":imageValue", $image1);
-        $member->bindValue(":image2Value", $image2);
+        // $member->bindValue(":image2Value", $image2);
         $member->bindValue(":usernameValue", $username);
         $member->bindValue(":emailValue", $email);
         $member->bindValue(":phoneValue", $phone);
@@ -456,6 +456,23 @@ function edit()
         echo "錯誤原因 : ", $e->getMessage(), "<br>";
         echo "錯誤行號 : ", $e->getLine(), "<br>";
     }  
+
+
+    try {
+        $sql = "select * from ".MEMBER_TABLE." where ".MEMBER_FIELD_EMAIL." =:value";
+        $member = $db->prepare( $sql); 
+        $member->bindValue(":value", $email);
+        $member->execute();
+        $record = $member->fetch();
+    } catch (PDOException $e) {
+        echo json_encode(['status' => false, 'msg' => '帳號不存在!!']);
+        // echo "錯誤原因 : ", $e->getMessage(), "<br>";
+        // echo "錯誤行號 : ", $e->getLine(), "<br>";
+        return;
+    }  
+
+    // 修改成功，要把資料記在 session 裡面
+    login_user($record);
 
     //======= pdo 寫法結束
 

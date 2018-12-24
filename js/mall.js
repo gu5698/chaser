@@ -50,33 +50,6 @@
              //向下滾動
              index++;
              toPage(index);
-
-             //搭配Gear
-             
-            //  TweenMax.fromTo('#mall_main .gear1',1,{
-            //     rotation: 360,
-            // },{
-            //    rotation: 300,
-            //    ease: Power3.easeOut,
-            // })
-            //  TweenMax.fromTo('#mall_main .gear2',1,{
-            //     rotation: 300,
-            //  },{
-            //     rotation: 360,
-            //     ease: Power3.easeOut,
-            //  })
-            //  TweenMax.fromTo('#mall_main .gear3',1,{
-            //     rotation: 300,
-            //  },{
-            //     rotation: 360,
-            //     ease: Power3.easeOut,
-            //  })
-            //  TweenMax.fromTo('#mall_main .gear4',1,{
-            //     rotation: 360,
-            //  },{
-            //     rotation: 300,
-            //     ease: Power3.easeOut,
-            //  })
             //  //滾動向下搭配bar
             //  var bar = document.getElementById('bar');
             //  var imgs = bar.getElementsByClassName('pageimg');
@@ -87,32 +60,6 @@
              //向上滾動
              index--;
              toPage(index);
-
-             //搭配Gear
-            //  TweenMax.fromTo('#mall_main .gear1',1,{
-            //     rotation:300,
-            //  },{
-            //     rotation:360,
-            //     ease: Power4.easeOut,
-            //  })
-            //  TweenMax.fromTo('#mall_main .gear2',1,{
-            //     rotation:360,
-            //  },{
-            //     rotation:300,
-            //     ease: Power4.easeOut,
-            //  })
-            //  TweenMax.fromTo('#mall_main .gear3',1,{
-            //     rotation: 360,
-            //  },{
-            //     rotation: 300,
-            //     ease: Power3.easeOut,
-            //  })
-            //  TweenMax.fromTo('#mall_main .gear4',1,{
-            //     rotation: 360,
-            //  },{
-            //     rotation: 300,
-            //     ease: Power3.easeOut,
-            //  })
             //  //向上滾動搭配bar
             //  var bar = document.getElementById('bar');
             //  var imgs = bar.getElementsByClassName('pageimg');
@@ -136,12 +83,23 @@
          }, 1000);
          curIndex = index;
         //  //更改列表選項
-        $(".barimg").removeClass('border');
+        // $(".barimg").removeClass('border');
 
         // $(".barimg").css('filter','brightness(70%)');
         // $("#img"+index).css('filter','brightness(100%)');
      }
  }
+
+//一開始就到中間商品
+ // window.onload = function(){
+ //  pageTo = Math.round(pageNum/2);
+ //  toPage(pageTo);
+ //  index = pageTo;
+ //  var slideHeight = $('#mall_slider ul li').height();
+ //  $('#slider_ul').css('top',-slideHeight*2+'px');
+ //  return index;
+ // }
+
  //右側slider
  jQuery(document).ready(function ($) {
     // setInterval(function(){
@@ -163,32 +121,39 @@
       $('#mall_slider ul li:last-child').prependTo('#mall_slider ul');
   
       function movePre() {
-          $('#mall_slider ul').animate({
+          $('#slider_ul').animate({
               top: + slideHeight
           }, 300, function () {
-              $('#mall_slider ul li:last-child').prependTo('#mall_slider ul');
-              $('#mall_slider ul').css('top', '');
+              $('#slider_ul li:last-child').prependTo('#slider_ul');
+              $('#slider_ul').css('top', '');
           });
       };
   
       function moveNext() {
-          $('#mall_slider ul').animate({
+          $('#slider_ul').animate({
               top: - slideHeight
           }, 300, function () {
-              $('#mall_slider ul li:first-child').appendTo('#mall_slider ul');
-              $('#mall_slider ul').css('top', '');
+              $('#slider_ul li:first-child').appendTo('#slider_ul');
+              $('#slider_ul').css('top', '');
           });
       };
   
       $('.control_prev').click(function () {
           movePre();
+          // index--;
+          // toPage(index)
       });
   
       $('.control_next').click(function () {
           moveNext()
+          // index++;
+          // toPage(index)
       });
   });
 
+
+var capa_attr = [30,40,70,50,90];
+genChart();
 //barimg click
 var barimg = document.querySelectorAll('.barimg');
 var barcount = barimg.length;
@@ -197,26 +162,53 @@ for(var i = 0;i<barcount;i++){
     barimg[i].onclick = function(){
         index = this.index + 1;
         toPage(this.index + 1);
-        console.log(this.index + 1);
+        console.log(index);
+
+            let xhr = new XMLHttpRequest();
+            xhr.onload = () =>{
+              if(xhr.responseText == 'not found'){
+                console.log('not found');
+              }else if(xhr.responseText == 'error'){
+                console.log('系統錯誤');
+              }else{ //回傳
+                // console.log('result', xhr.responseText);
+                capa_attr = xhr.responseText.split(",");
+                console.log('capa_attr', capa_attr);
+                genChart();
+              }
+            }
+            //設定好所要連結的程式
+            var url = "changeChart.php";
+            xhr.open("POST", url, true);
+            
+            //送出資料
+            var id = `index=${index}`;
+            xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            xhr.send(id);
     }
-    barimg[0].classList.add('border');
 }
-$('.barimg').click(function(){
-  $(this).addClass('border');
-})
+
+// $('.barimg').click(function(){
+//   $(this).addClass('border');
+// })
 
 //能力圖
-Chart.defaults.global.defaultFontColor = '#fdd084'; 
-Chart.defaults.global.defaultFontSize = 0;
- var ctx = document.getElementById('mall_mychart').getContext('2d');
-	var chart = new Chart(ctx, {
+function genChart(){
+  Chart.defaults.global.defaultFontColor = '#fdd084'; 
+  Chart.defaults.global.defaultFontSize = 0;
+  // var mallMychart = document.getElementById('mall_mychart');
+  // var capability = mallMychart.dataset.capability;
+  // var capa_attr = xhr.responseText.split(",");
+  var ctx = document.getElementById('mall_mychart').getContext('2d');
+  var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'radar',
 
     // The data for our dataset
     data: {
-        labels: ["攻擊", "防禦", "隱匿", "耐久", "速度"],
-        datasets: [{
+        labels: ["攻擊", "防禦", "速度", "耐久", "隱匿"],
+        datasets: [
+            {
             label: '',
             data: [0, 100],
             },
@@ -225,10 +217,10 @@ Chart.defaults.global.defaultFontSize = 0;
             backgroundColor: 'rgba(116,210,161,.6)',
             borderColor:'#74D2A1',
             borderWidth:3,
-            data: [80, 60, 80, 75, 90],
+            data: capa_attr,
             pointStyle:'star',
             pointBorderColor:'#FFF',
-        }]
+            }]
     },
 
     // Configuration options go here
@@ -249,6 +241,8 @@ Chart.defaults.global.defaultFontSize = 0;
       }
   });
 
+}
+
 //科技圓圈
 TweenMax.fromTo('#mall_main .circle1-1',10,{
     rotation:360
@@ -265,9 +259,9 @@ TweenMax.fromTo('#mall_main .circle1-2',10,{
     ease: Power0.easeNone,
 })
 TweenMax.fromTo('#mall_main .circle2',12,{
-    rotation:360
+    rotation:0
 },{
-    rotation:0,
+    rotation:360,
     repeat:-1,
     ease: Power0.easeNone,
 })
@@ -354,33 +348,54 @@ window.addEventListener("load", function(){
 
 //購買數量增減
 $(document).ready(function(){
-
-  $('.fa-minus').click(function(){
-    var oldamount = $('.mall_amount').val();
-    if(oldamount>1){
-      var newamount = parseInt(oldamount) - 1;
-    }else{
-      newamount = 1;
-    }
-    $('.mall_amount').val(newamount);
-  });
+  var val = 1;
 
   $('.fa-plus').click(function(){
-    var oldamount = $('.mall_amount').val();
+    var oldamount = $(this).siblings('.mall_amount').val();
     if(oldamount<99){
       var newamount = parseInt(oldamount) + 1;
     }else{
       newamount = 99;
+      $(this).siblings('.fa-plus').css('color','#ccc');
     }
-    $('.mall_amount').val(newamount);
+    $(this).siblings('.mall_amount').val(newamount);
+  });
+
+  $('.fa-minus').click(function(){
+    var oldamount = $(this).siblings('.mall_amount').val();
+    if(oldamount>1){
+      var newamount = parseInt(oldamount) - 1;
+    }else{
+      newamount = 1;
+      $(this).siblings('.fa-minus').css('color','#ccc');
+    }
+    $(this).siblings('.mall_amount').val(newamount);
   });
 
 
 })
 
+$('.mall_amount').change(function(){
+  var val =  $('.mall_amount').val();
+  console.log(val);
+})
+
+
+// //ajax
+// $.ajax = ({
+//     url:'../mall.php',
+//     dataType:'JSON',
+//     type:'POST',
+//     data:{index:index},
+//     success:function(msg) {
+//       console.log(msg);
+//     },
+//     error:function(){alert('Ajax request 發生錯誤');},
+// });
+
 
 //RWD
 if($(window).width()<768){
     $('.hide_bar .barimg').removeClass('border');
-    $('.mall_bar').removeClass('down_bar');
+    $('.mall_bar').removeClass('dd_bar');
 }

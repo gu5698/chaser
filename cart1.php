@@ -73,70 +73,16 @@
                 </div>
             </div>
 
-            <?php
-                // $total = 0;
-                // if( isset($_SESSION["pname"]) === false){
-                // $msg = "<center> 尚無購物資料</center>";
-                // }else{
-                //     foreach($_SESSION["pname"] as $psn => $pname) {
-                //             $subTotal = $_SESSION["price"][$psn] * $_SESSION["qty"][$psn];
-                //             $total += $subTotal;
-            ?>
-
-            <!-- <div class="container products">
-                <div class="row">
-                    <div class="col-5 col-md-3">
-                        <img class="img" src="images/mall/<?php //echo $_SESSION["pimage"][$psn];?>" alt="">
-                    </div>
-                    <div class="col-6 list_border col-md-8">
-                        <div class="row">
-                            <div class="col-9 col-md-3">
-                                <h3><?php //echo $_SESSION["pname"][$psn];?></h3>
-                                <p>毒針</p>
-                                <p>錄音</p>
-                            </div>
-                            <div class="col-9 col-md-3">
-                                <p><?php //echo $_SESSION["price"][$psn];?></p>
-                            </div>
-                            <div class="col-9 col-md-3 quantity">
-                                <span class="g-c">
-                                    <i class="fas fa-minus"></i>
-                                </span>
-                                <div class="product_num"><?php //echo $_SESSION["qty"][$psn];?></div>
-                                <span class="g-c">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                            </div>
-                            <div class="col-md-2 dn">
-                                <p class="subTotal"><?php //echo $subTotal; ?></p>
-                                <input type="hidden" name="psn[]" value="<?php echo $prodRow->psn;?>">
-                                <input type="hidden" name="pname[]" value="<?php echo $prodRow->pname;?>">
-                                <input type="hidden" name="price[]" value="<?php echo $prodRow->price;?>">
-                            </div>
-                            <div class="col-1 col-md-1 drop">
-                                <span class="g-c">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-                <?php //} ?>
-
             <div class="container total c3">
                 <div class="row">
                     <div class="col-5 offset-1 col-md-2 offset-md-8">
                         <p>總計</p>
                     </div>
                     <div class="col-6 col-md-2">
-                        <p class="totalprice"><?php //echo number_format($total); ?></p>
+                        <p class="totalprice"></p>
                     </div>
                 </div>
             </div>
-
-            <?php //} ?>
 
             <div class="container finbtn">
                 <div class="row">

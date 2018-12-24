@@ -14,6 +14,10 @@
         flex-direction: row;
     }
 
+    .wrap-member-body h2{
+
+    }
+
     .section {
         height: unset;
         background-color: #444;
@@ -91,6 +95,9 @@
 
     .section .section-header h2 {
         writing-mode: unset;
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.5;
+        background-color: transparent;
     }
 
     .member-form {
@@ -99,6 +106,10 @@
 
     .member-picture {
         margin-bottom: 20px;
+    }
+
+    .form-group{
+        margin-bottom: 3px;
     }
 
 }

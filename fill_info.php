@@ -21,7 +21,7 @@
 
 <!-- 主內容 START -->
 
-<div id="fullscreen">
+    <div id="fullscreen">
         <div class="step_wrap">
             <div class="step">
                 <div class="circle circle_1">
@@ -48,7 +48,7 @@
 
                 <div class="circle circle_4">
                     <img src="images/customize/circle_2.png" alt="circle2">
-                    <span class="statement_04 fz-5">成功下單</span>
+                    <span class="statement_04 fz-5">成功訂貨</span>
                     <span class="number fz-4">4</span>
                 </div>
             </div>
@@ -57,14 +57,14 @@
         <div class="content">
             <div class="product_img_wrap">
                 <div class="product_img">
-                    <img src="images/customize/watch/watch12/png/navy_y_blk.png" alt="">
+                    <img src="images/customize/watch/watch12/png/killy_y_blk.png" alt="">
                 </div>
             </div>
             <div class="info_fill_wrap">
                 <div class="info_board">
                     <div class="info_title">
                         <h1 class="fz-1">填寫資料</h1>
-                        <p>總價：460,000 USD</p>
+                        <p>總價：7,600 USD</p>
                     </div>
                     <div class="info_content">
                         <form action="" method="POST">
@@ -115,7 +115,7 @@
                                </div>
                             </div>
                             <div class="info_btn_wrap">
-                                <a href="productDesign_watch.php" class="fz-6">上一步</a>
+                                <a class="fz-6 prePage" onclick="javascript:history.go(-1)"" >上一步</a>
                                 <a href="finish.php" class="fz-6">下一步</a>
                             </div>
                         </form>
@@ -124,7 +124,8 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
+
 
 
 
@@ -146,11 +147,6 @@
 
 <!-- 個人js START -->
 <script src="js\chatbot.js"></script>
-
-<!-- 更動開始 -->
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="js\fill_info.js"></script>
-<!-- 更動結束 -->
 
 <!-- 個人js END -->
 

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700");
 @font-face{
     font-family: NotoSerifCJKtc;
     src: url(../fonts/NotoSerifCJKtc-Regular.otf);
@@ -8,6 +9,9 @@
     src: url(../fonts/NotoSerifCJKtc-Bold.otf);
     font-weight: 700;
 }
+
+body {
+  font-family: 'Playfair Display', NotoSerifCJKtc, serif; }
 
 .fz-1, .fz-2, .fz-3, .fz-4, .fz-5, .fz-6{
     font-weight: 700;

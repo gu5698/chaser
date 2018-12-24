@@ -41,7 +41,7 @@
         <li class="navbar-item navbar-icon icon-member"><a href="#"><i class="fas fa-user-secret"></i></a></li>
         <li class="navbar-item navbar-icon icon-cart">
             <a href="#"><i class="fas fa-shopping-cart"></i></a>
-            <ol class="sub-menu fz-5">
+            <ol class="sub-menu fz-5" id="submenu">
                 <li class="shoplist">
                     <img class="product-img" src="images/mall/item4.png" alt="shoplist">
                     <div class="product-name">防彈傘</div>

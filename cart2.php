@@ -1,4 +1,6 @@
 <?php include_once 'function/member.php'; ?>
+<?php is_login();?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,49 +20,8 @@
 
     <div id="header"></div>
 
-    <div class="container title lightBox" id="lightBox" style="display:none;">
-        <div class="row">
-            <div class="col-10 offset-1 col-md-3 offset-md-4">
-                <div class="cart-table">
-                    <form method="POST" action="index.php" onsubmit="return check_select()">
-                        <div class="stamp">
-                            <h2 class="locnum">座標：51.49,-0.11</h2> <span class="shadow"></span>
-                        </div>
-                        <h2>訂購人資訊</h2>
-                        <div class="cart-form-group">
-                            <label for="name">接頭人</label>
-                            <input type="text" name="name" required="required" class="form-control" id="name">
-                            <div class="bottom-line"></div>
-                        </div>
-                        <div class="cart-form-group">
-                            <label for="tel">電話</label>
-                            <input type="tel" name="tel" required="required" class="form-control" id="tel">
-                            <div class="bottom-line"></div>
-                        </div>
-                        <div class="cart-form-group">
-                            <label for="email">電郵</label>
-                            <input type="email" name="email" required="required" class="form-control" id="email">
-                            <div class="bottom-line"></div>
-                        </div>
-                        <h2>優惠券</h2>
-                        <div class="cart-form-group lastfg">
-                            <label for="name">優惠券編號</label>
-                            <input type="text" name="coupon" required="required" class="form-control" id="coupon">
-                            <div class="bottom-line"></div>
-                        </div>
-                        <!-- <input type="submit" class="cart1-btn" value="送出"> -->
-                        <a href="cart3.php" class="cart1-btn">送出
-                            <i class="fas fa-caret-right"></i>
-                        </a>
-                    </form>
-                </div>
-            </div>
-            <div id="close"></div>
-        </div>
-    </div>
-
-    <div class="background mapimg">
-        <img src="images/cart/Image 18.png" alt="">
+    <div class="background">
+        <img src="images/cart/background.png" alt="">
     </div>
 
     <div class="step_wrap">
@@ -88,49 +49,70 @@
         </div>
     </div>
 
-    <div class="container title">
-        <div class="row">
-            <div class="col-12">
-                <div class="map">
-                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.944684012856!2d121.19001421451404!3d24.967996584003384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823c1ec904dcb%3A0xcdc129d4455ce456!2z5ZyL56uL5Lit5aSu5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1538460774215" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-                    <!-- <img src="images/cart/map.png" alt=""> -->
-                    <div class="pin blackprince">
-                        <i class="fas fa-truck-moving"></i>
-                        <img src="images/cart/blackprince.jpeg" alt="blackprince" onclick="showLoginForm(51.4902634,-0.1169246)">
-                    </div>
-                    <div class="pin huntsman">
-                        <i class="fas fa-truck-moving"></i>
-                        <img src="images/cart/huntsman.jpg" alt="huntsman&son" onclick="showLoginForm(51.510902,-0.1423517)">
-                    </div>
-                    <div class="pin hat">
-                        <i class="fas fa-truck-moving"></i>
-                        <img src="images/cart/hat.jpg" alt="lock&co" onclick="showLoginForm(51.5057266,-0.1404056)">
-                    </div>
-                    <div class="pin college">
-                        <i class="fas fa-truck-moving"></i>
-                        <img src="images/cart/colle.jpg" alt="college" onclick="showLoginForm(51.4987997,-0.1770659)">
+    <div class="container">
+        <div class="container title" id="lightBox">
+            <div class="row">
+                <div class="col-10 offset-1 col-md-5 offset-md-0 whitebg">
+                    <div class="cart-table">
+                        <form method="GET" action="rcvdetail.php">
+                            <h2>訂購人資訊</h2>
+                            <div class="cart-form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" name="rcvname" required="required" class="form-control" id="name" value="<?php echo login_user('username'); ?>">
+                                <div class="bottom-line"></div>
+                            </div>
+                            <div class="cart-form-group">
+                                <label for="tel">電話</label>
+                                <input type="tel" name="rcvtel" required="required" class="form-control" id="tel" value="<?php echo login_user('phone'); ?>">
+                                <div class="bottom-line"></div>
+                            </div>
+                            <div class="cart-form-group">
+                                <label for="email">電郵</label>
+                                <input type="email" name="rcvemail" required="required" class="form-control" id="email" value="<?php echo login_user('email'); ?>">
+                                <div class="bottom-line"></div>
+                            </div>
+                            <h2>優惠券</h2>
+                            <div class="cart-form-group lastfg">
+                                <label for="coupon">優惠券編號</label>
+                                <input type="text" name="coupon" required="required" class="form-control" id="coupon">
+                                <div class="bottom-line"></div>
+                            </div>
+                            <h2>請選交貨地點</h2>
+                            <p class="locnum fz-6">座標：51.49 , 0.17</p>
+                            <input type="hidden" name="locnum" value="51.49 , 0.17">
+                            <div class="map">
+                                <div class="pin blackprince">
+                                    <i class="fas fa-truck-moving"></i>
+                                    <img src="images/cart/blackprince.jpeg" alt="blackprince">
+                                </div>
+                                <div class="pin huntsman">
+                                    <i class="fas fa-truck-moving"></i>
+                                    <img src="images/cart/huntsman.jpg" alt="huntsman&son">
+                                </div>
+                                <div class="pin hat">
+                                    <i class="fas fa-truck-moving"></i>
+                                    <img src="images/cart/hat.jpg" alt="lock&co">
+                                </div>
+                                <div class="pin college">
+                                    <i class="fas fa-truck-moving"></i>
+                                    <img src="images/cart/colle.jpg" alt="college">
+                                </div>
+                            </div>
+                            <div class="finbtn">
+                                <div class="row">
+                                    <div class="col-9 offset-3 col-md-7 offset-md-5">
+                                        <a href="cart1.php" class="cart1-btn">上一步</a>
+                                        <a href="#" class="cart1-btn rcvnext">送出</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container finbtn">
-        <div class="row">
-            <div class="col-5 col-md-2 offset-md-1">
-                <a href="cart1.php" class="cart1-btn">
-                    <i class="fas fa-caret-left"></i>上一步
-                </a>
-            </div>
-            <div class="col-7 col-md-3 offset-md-5">
-                <!-- <input class="cart1-btn" type="submit" value="結帳"> -->
-                <p class="fz-3">請選交貨地點</p>
-                <!-- <a href="#" class="cart1-btn">
-                    <i class="fas fa-caret-right"></i>
-                </a> -->
-            </div>
-        </div>
-    </div>
     <?php include_once 'chatbot.php'; ?>
 
     <!-- start footer -->
@@ -146,7 +128,7 @@
     <!-- custom -->
     <script src="js/cart.js"></script>
 
-    <script src="js\chatbot.js"></script>
+    <script src="js/chatbot.js"></script>
     <?php require_once 'template/common_navbar.php';?>
 
 </body>

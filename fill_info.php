@@ -70,22 +70,30 @@
                         <form action="" method="POST">
                             <div class="form_content_wrap">
                                 <div class="info_data_wrap">
-                                    <span class="fz-5">姓名：</span><input type="text" placeholder="請輸入姓名">
+                                    <!-- 更動開始 -->
+                                    <label for="name" class="fz-5">姓名</label>
+                                    <input type="text" name="name" required="required" class="form-control" id="name">
+                                    <div class="bottom-line"></div>
                                 </div>
                             </div>
                             <div class="form_content_wrap">
                                 <div class="info_data_wrap">
-                                    <span class="fz-5">電話：</span><input type="text" placeholder="請輸入電話">
+                                    <label for="tel" class="fz-5">電話</label>
+                                    <input type="tel" name="tel" required="required" class="form-control" id="tel">
+                                    <div class="bottom-line"></div>
                                 </div>
                             </div>
                             <div class="form_content_wrap">
                                 <div class="info_data_wrap">
-                                    <span class="fz-5">電郵：</span><input type="text" placeholder="請輸入電子信箱">
+                                <label for="email" class="fz-5">電郵</label>
+                                <input type="email" name="email" required="required" class="form-control" id="email">
+                                <div class="bottom-line"></div>
+                                <!-- 更動結束 -->
                                 </div>
                             </div>
                             <div class="form_content_wrap">
                                 <div class="info_data_wrap">
-                                    <span class="transaction_place" fz-5">請選擇交貨地點</span><p class="location fz-6">座標：51.49 , 0.17</p>
+                                    <span class="transaction_place fz-5">請選擇交貨地點</span><p class="location fz-6">座標：51.49 , 0.17</p>
                                 </div>
                             </div>
                             <div class="map">
@@ -112,7 +120,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -138,6 +146,11 @@
 
 <!-- 個人js START -->
 <script src="js\chatbot.js"></script>
+
+<!-- 更動開始 -->
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="js\fill_info.js"></script>
+<!-- 更動結束 -->
 
 <!-- 個人js END -->
 

@@ -1,4 +1,62 @@
 <?php include_once 'function/member.php'; ?>
+<?php
+$msg = $errMsg = "";
+// $orderMemNo = 1;
+// $email = "Sara168@gmail.com";  //如果有$_SESSION["pname"]
+if( isset($_SESSION["memName"]) === false){  //尚未登入
+	$_SESSION["where"] = $_SERVER["PHP_SELF"];
+	//$msg = "尚未登入, 請<a href='login.html'>登入</a>";
+	$msg = "<script>window.alert('尚未登入,請登入');location.href='cart1.html';</script>";
+}else{ //己登入
+	if( isset($_SESSION["pname"]) === false || count($_SESSION["pname"]) === 0){ //無購物資料
+		$msg = "無購物資料";
+	}else{ //寫入購物資料
+		try {
+			require_once("connectBooks.php");
+			//啟動交易管理
+			$pdo->beginTransaction();
+
+			$total = 0;
+			foreach($_SESSION["pname"] as $psn => $pname) {
+				$subTotal = $_SESSION["price"][$psn] * $_SESSION["qty"][$psn];
+				$total += $subTotal;
+			}
+			//寫入訂單主檔
+			// INSERT INTO `orders` (`order_id`, `total`, `grand_total`, `mem_id`, `rcv_name`, `rcv_tel`, `rcv_email`, `loc_num`, `coupon_id`, `order_stat`, `order_time`)
+			$sql = "insert into orders values( null, $total, $total, :mem_id, :rcv_name, :rcv_tel, :rcv_email, :loc_num, :coupon_id, '0', now() )";
+			$bookorder = $pdo->prepare($sql);
+		    $bookorder->bindValue(":mem_id", $_SESSION["memNo"]);
+		    $bookorder->bindValue(":rcv_name", $_SESSION["rcvname"]);
+		    $bookorder->bindValue(":rcv_tel", $_SESSION["rcvtel"]);
+		    $bookorder->bindValue(":rcv_email", $_SESSION["rcvemail"]);
+		    $bookorder->bindValue(":coupon_id", $_SESSION["coupon"]);
+		    $bookorder->bindValue(":loc_num", $_SESSION["locnum"]);
+		    $bookorder->execute();
+		    //取得訂單編號
+			$orderNo = $pdo->lastInsertId();
+
+			//寫入訂單明細
+			// INSERT INTO `orderdetail` (`order_detail_id`, `order_id`, `product_id`, `quantity`)
+			$sql = "insert into orderdetail values( null, $orderNo, :productNo, :quantity )";
+			$orderitems = $pdo->prepare( $sql );
+			foreach( $_SESSION["qty"] as $psn => $qty){
+				$orderitems->bindValue(":productNo", $psn);
+				$orderitems->bindValue(":quantity", $qty);
+				$orderitems->execute();
+			}
+			$pdo->commit();
+			unset($_SESSION["pname"]);
+			unset($_SESSION["price"]);
+			unset($_SESSION["qty"]);;
+			$msg = "訂購成功, 您的訂單編號為 {$orderNo} ";
+		} catch (PDOException $e) {
+			$pdo->rollBack();
+			$errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
+			$errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+		} //try...catch
+	  }//有購物資料嗎
+}//有登入
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +110,10 @@
 
     <div class="container" style="padding-bottom: 3rem;">
         <div class="row whitebg">
-            <div class="container title dn c3 itemList">
+			<center><?php echo $msg; ?></center>
+			<center><?php echo $errMsg; ?></center>
+
+            <!-- <div class="container title dn c3 itemList">
                 <div class="row">
                     <div class="col-8 offset-3 list_border">
                         <div class="row">
@@ -73,58 +134,6 @@
                 </div>
             </div>
 
-            <?php
-                // $total = 0;
-                // if( isset($_SESSION["pname"]) === false){
-                // $msg = "<center> 尚無購物資料</center>";
-                // }else{
-                //     foreach($_SESSION["pname"] as $psn => $pname) {
-                //             $subTotal = $_SESSION["price"][$psn] * $_SESSION["qty"][$psn];
-                //             $total += $subTotal;
-            ?>
-
-            <!-- <div class="container products">
-                <div class="row">
-                    <div class="col-5 col-md-3">
-                        <img class="img" src="images/mall/<?php //echo $_SESSION["pimage"][$psn];?>" alt="">
-                    </div>
-                    <div class="col-6 list_border col-md-8">
-                        <div class="row">
-                            <div class="col-9 col-md-3">
-                                <h3><?php //echo $_SESSION["pname"][$psn];?></h3>
-                                <p>毒針</p>
-                                <p>錄音</p>
-                            </div>
-                            <div class="col-9 col-md-3">
-                                <p><?php //echo $_SESSION["price"][$psn];?></p>
-                            </div>
-                            <div class="col-9 col-md-3 quantity">
-                                <span class="g-c">
-                                    <i class="fas fa-minus"></i>
-                                </span>
-                                <div class="product_num"><?php //echo $_SESSION["qty"][$psn];?></div>
-                                <span class="g-c">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                            </div>
-                            <div class="col-md-2 dn">
-                                <p class="subTotal"><?php //echo $subTotal; ?></p>
-                                <input type="hidden" name="psn[]" value="<?php echo $prodRow->psn;?>">
-                                <input type="hidden" name="pname[]" value="<?php echo $prodRow->pname;?>">
-                                <input type="hidden" name="price[]" value="<?php echo $prodRow->price;?>">
-                            </div>
-                            <div class="col-1 col-md-1 drop">
-                                <span class="g-c">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-                <?php //} ?>
-
             <div class="container total c3">
                 <div class="row">
                     <div class="col-5 offset-1 col-md-2 offset-md-8">
@@ -134,19 +143,13 @@
                         <p class="totalprice"><?php //echo number_format($total); ?></p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <?php //} ?>
 
             <div class="container finbtn">
                 <div class="row">
                     <div class="col-8 offset-4 col-md-4 offset-md-7">
                         <a href="mall.php" class="cart1-btn">繼續購物</a>
-                        <?php if(is_login()){ ?>
-                        <a href="#" class="cart1-btn next">下一步</a>
-                        <?php }else{ ?>
-                        <a href="javascript:$.login();" class="cart1-btn">下一步</a>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -176,5 +179,3 @@
     <?php require_once 'template/common_js.php';?>
 
 </body>
-
-</html>

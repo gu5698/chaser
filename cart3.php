@@ -1,4 +1,5 @@
 <?php include_once 'function/member.php'; ?>
+<?php is_login();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +48,8 @@
         </div>
     </div>
 
-    <div class="whitebg">
-
+    <div class="container" style="padding-bottom: 3rem;">
+        <div class="row whitebg">
         <div class="container title c3 dn">
             <div class="row">
                 <div class="col-10 offset-1 list_border">
@@ -72,6 +73,14 @@
 
         <div class="container c3">
             <div class="row">
+
+                <?php
+                $total = 0;
+                foreach($_SESSION["pname"] as $psn => $pname) {
+                    $subTotal = $_SESSION["price"][$psn] * $_SESSION["qty"][$psn];
+                    $total += $subTotal;
+                ?>
+
                 <div class="col-5 offset-1 col-md-12 mddn list_border">
                     <div class="row">
                         <div class="col-md-3 offset-md-1 pb">
@@ -91,21 +100,24 @@
                 <div class="col-5 col-md-10 offset-md-1 list_border">
                     <div class="row">
                         <div class="col-md-3 offset-md-1">
-                            <h3>特製鋼筆</h3>
+                            <h3><?php echo $_SESSION["pname"][$psn];?></h3>
                             <p>毒針</p>
                             <p>錄音</p>
                         </div>
                         <div class="col-md-3">
-                            <p>2000</p>
+                            <p><?php echo $_SESSION["price"][$psn];?></p>
                         </div>
                         <div class="col-md-3">
-                            <p>1</p>
+                            <p><?php echo $_SESSION["qty"][$psn];?></p>
                         </div>
                         <div class="col-md-2">
-                            <p>2000</p>
+                            <p><?php echo $subTotal;?></p>
                         </div>
                     </div>
                 </div>
+
+                <?php } ?>
+
             </div>
         </div>
 
@@ -157,13 +169,13 @@
                             <p>商品小計</p>
                         </div>
                         <div class="col-6 col-md-2">
-                            <p>4000</p>
+                            <p><?php echo $total; ?></p>
                         </div>
                         <div class="col-6 col-md-5 offset-md-1">
                             <h3>使用折價券號碼</h3>
                         </div>
                         <div class="col-6 col-md-4">
-                            <p>001</p>
+                            <p><?php echo $_SESSION["coupon"];?></p>
                         </div>
                         <div class="col-6 mddn">
                             <h3>優惠方式</h3>
@@ -175,13 +187,13 @@
                             <p>折扣後價格</p>
                         </div>
                         <div class="col-6 col-md-2">
-                            <p>3800</p>
+                            <p><?php echo $total; ?></p>
                         </div>
                         <div class="col-5 offset-1 col-md-2 offset-md-8">
                             <p>總計</p>
                         </div>
                         <div class="col-6 col-md-2">
-                            <p>3800</p>
+                            <p><?php echo $total; ?></p>
                         </div>
                     </div>
                 </div>
@@ -196,41 +208,42 @@
                             <h3>接頭人</h3>
                         </div>
                         <div class="col-6 col-md-5">
-                            <p>Sara</p>
+                            <p><?php echo $_SESSION["rcvname"]?></p>
                         </div>
                         <div class="col-6 col-md-5 offset-md-1">
                             <h3>電話</h3>
                         </div>
                         <div class="col-6 col-md-5">
-                            <p>0800092000</p>
+                            <p><?php echo $_SESSION["rcvtel"]?></p>
                         </div>
                         <div class="col-6 col-md-5 offset-md-1">
                             <h3>電郵</h3>
                         </div>
                         <div class="col-6 col-md-5">
-                            <p>iii@gmail.com</p>
+                            <p><?php echo $_SESSION["rcvemail"]?></p>
+                        </div>
+                        <div class="col-6 col-md-5 offset-md-1">
+                            <h3>交貨地點座標</h3>
+                        </div>
+                        <div class="col-6 col-md-5">
+                            <p><?php echo $_SESSION["locnum"]?></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <div class="container finbtn">
-        <div class="row">
-            <div class="col-4 offset-1 col-md-5 offset-md-1">
-                <a href="cart2.php" class="cart1-btn">
-                    <i class="fas fa-caret-left"></i>上一步
-                </a>
-            </div>
-            <div class="col-7 col-md-5">
-                <a href="#" class="cart1-btn">確認送出訂單
-                    <i class="fas fa-box"></i>
-                </a>
+        <div class="container finbtn">
+            <div class="row">
+                <div class="col-9 offset-3 col-md-4 offset-md-7">
+                    <a href="cart2.php" class="cart1-btn">上一步</a>
+                    <a href="cartToDb.php" class="cart1-btn">確認送出訂單</a>
+                </div>
             </div>
         </div>
+        </div>
     </div>
+
+
 
     <?php include_once 'chatbot.php'; ?>
     <!-- start footer -->

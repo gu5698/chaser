@@ -11,7 +11,8 @@
     <?php require_once 'template/common_css.php';?>
     <!-- 個人CSS START -->
     <link rel="stylesheet" href="css/productDesign_watch.css">
-    <script src="js/Chart.min.js"></script>
+    <script src="js/Chart.bundle.js"></script>
+    <script src="js/utils.js"></script>
     <!-- 個人CSS END -->
 
 </head>
@@ -62,10 +63,10 @@
                             <p class="fz-4">款式</p><i class="fas fa-angle-down fz-4"></i>
                         </div>
                         <div class="item_content_wrap">
-                            <div class="item_content">
-                                <button class="item_content_row01 item_content_option item_content_option01 active" onclick="designItem01(event)">
+                            <div id="chartgroup01" class="item_content">
+                                <button id="chartbtn01" class="item_content_row01 item_content_option item_content_option01 active" >
                                 </button>
-                                <button class="item_content_row01 item_content_option item_content_option02" onclick="designItem01(event)"></button>
+                                <button id="chartbtn02" class="item_content_row01 item_content_option item_content_option02" ></button>
                             </div>
                         </div>
                     </div>
@@ -75,10 +76,10 @@
                             <p class="fz-4">錶帶</p><i class="fas fa-angle-down fz-4"></i>
                         </div>
                         <div class="item_content_wrap">
-                            <div class="item_content">
-                                <button class="item_content_row02 item_content_option item_content_option03 active" onclick="designItem02(event)"></button>
-                                <button class="item_content_row02 item_content_option item_content_option04" onclick="designItem02(event)"></button>
-                                <button class="item_content_row02 item_content_option item_content_option05" onclick="designItem02(event)"></button>
+                            <div id="chartgroup02" class="item_content">
+                                <button id="chartbtn03" obj="obj3" class="item_content_row02 item_content_option item_content_option03 active" ></button>
+                                <button id="chartbtn04" obj="obj4" class="item_content_row02 item_content_option item_content_option04" ></button>
+                                <button id="chartbtn05" obj="obj5" class="item_content_row02 item_content_option item_content_option05" ></button>
                             </div>
                         </div>
                     </div>
@@ -88,9 +89,9 @@
                             <p class="fz-4">內置武器</p><i class="fas fa-angle-down fz-4"></i>
                         </div>
                         <div class="item_content_wrap">
-                            <div class="item_content">
-                                <button class="item_content_row03 item_content_option item_content_option06 active" onclick="designItem03(event)"></button>
-                                <button class="item_content_row03 item_content_option item_content_option07" onclick="designItem03(event)"></button>
+                            <div id="chartgroup03" class="item_content">
+                                <button id="chartbtn06" class="item_content_row03 item_content_option item_content_option06 active" ></button>
+                                <button id="chartbtn07" class="item_content_row03 item_content_option item_content_option07" ></button>
                             </div>
                         </div>
                     </div>
@@ -127,7 +128,7 @@
                                     </div>
                                     
                                     <label class="upload_pic">
-                                        <input type="file" accept=".png,.jpg" class="upload_pic" />
+                                        <input type="file" accept=".png,.jpg" class="upload_pic" id="uploadPic" onclick="this.value=null"/>
                                         <p class="fz-small">上傳圖片<span class="fz-small">(png/jpg)</span></p>
                                     </label>
 
@@ -142,10 +143,19 @@
                         上一步
                         <!-- <p class="fz-6">上一步</p> -->
                     </a>
-                    <a href="fill_info.php" class="btnCustomize fz-6">
-                        下一步
-                        <!-- <p class="fz-6">下一步</p> -->
+
+                    <!-- 傳奠資料給productTempImages -->
+                    <form method="post" accept-charset="utf-8" name="form1">
+                        <input name="hidden_data" id='hidden_data' type="hidden"/>
+                    </form>
+                    <a href="fill_info.php" class="btnCustomize fz-6" onclick="saveImage()">
+                    下一步
+                    <!-- <p class="fz-6">下一步</p> -->
                     </a>
+
+                    <!-- 測試用button -->
+                    <!-- <button href="fill_info.html#1" class="btnCustomize fz-6" onclick="saveImage()">下一步</button> -->
+
                 </div>
 
 
@@ -154,27 +164,38 @@
                 <div class="tech_circle_wrap">
                     <img class="tecCircle01" src="images/customize/tech_circle.png" alt="tech_circle">
                     <img class="tecCircle02" src="images/customize/tech_circle_2.png" alt="tech_circle_2">
-                    <div class="cuProduct">
-                        <img src="images/customize/watch/watch12/png/killy_y_blk.png" alt="">
+                    <div class="cuProduct" id="cuProduct">
+                        <img src="images/customize/watch/watch12/png/killy_y_blk.png" alt="" id="cuShow">
                         <div id="pic_dropPostion"></div>
                     </div>
                 </div>
 
+                <!-- canvas start uploadimgs Start  -->
+                <canvas id="myCanvas" style="display:none"></canvas>
+                <!-- style="display:none" -->
+                <!-- canvas start uploadimgs end   -->
+
             </div>
             <div class="right_part">
                 <div class="name_wrap">
-                    <p class="name fz-3">射擊手錶</p>
-                    <p class="price fz-4">7,600 USD</p>
+                    <p class="name fz-5">射擊手錶</p>
+                    <p class="price fz-5">7,600 USD</p>
                     <div class="name_wrap_line"></div>
                     <div class="name_wrap_line-circle"></div>
                 </div>
                 <div class="cu_chart">
                     <canvas id="ability" ></canvas>
+                    <input type="hidden" id="atk" class="txt" name="" value="7" />
+                    <input type="hidden" id="def" class="txt" name="" value="4" />
+                    <input type="hidden" id="dex" class="txt" name="" value="7" />
+                    <input type="hidden" id="dur" class="txt" name="" value="5" />
+                    <input type="hidden" id="hide" class="txt" name="" value="7" />
                 </div>
             </div>
 
         </div>
     </div>
+
 
 
 
@@ -193,12 +214,15 @@
 <?php require_once 'template/common_js.php';?>
 
 <!-- 個人js START -->
-<script src="js/chatbot.js"></script>
-<script src="js/chart.js"></script>
-<script src="js/cuShowItem.js"></script>
-<script src="js/dragdrop.js"></script>
-<script src="js/scale.js"></script>
-<script src="js/del_pic.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/cuShowItem.js"></script>
+    <script src="js/chartChange_watch.js"></script>
+    <script src="js/dragdrop.js"></script>
+    <script src="js/scale.js"></script>
+    <script src="js/del_pic.js"></script>
+    <script src="js/cuWatch.js"></script>
+    <script src="js/productUploadImg.js"></script>
+    <script src="js/productlLoadSaveImg.js"></script>
 <!-- 個人js END -->
 
 </body>

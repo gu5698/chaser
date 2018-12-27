@@ -1662,88 +1662,6 @@ body {
     .btn-next:hover {
       color: white; } }
 
-.get-coupon {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: .5s; }
-  .get-coupon .coupon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 100px;
-    background: rgba(0, 250, 252, 0.4) repeating-linear-gradient(to bottom, black, black 1px, transparent 1px, transparent 3px);
-    box-shadow: 0 0 3px rgba(0, 250, 252, 0.5);
-    color: #fff; }
-    .get-coupon .coupon .title {
-      margin-bottom: 10px; }
-    .get-coupon .coupon .coupon-number {
-      position: relative;
-      background-color: rgba(0, 0, 0, 0.5);
-      margin-bottom: 10px;
-      padding: 2px 8px;
-      overflow: hidden; }
-      .get-coupon .coupon .coupon-number .flash {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 200%;
-        background-color: #000; }
-    .get-coupon .coupon .coupon-timer .coupon-timer-sec {
-      display: inline-block;
-      padding: 0 10px;
-      width: 55px; }
-    .get-coupon .coupon .corner-decor-l,
-    .get-coupon .coupon .corner-decor-r {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      pointer-events: none; }
-      .get-coupon .coupon .corner-decor-l::before, .get-coupon .coupon .corner-decor-l::after,
-      .get-coupon .coupon .corner-decor-r::before,
-      .get-coupon .coupon .corner-decor-r::after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8)); }
-    .get-coupon .coupon .corner-decor-l::before {
-      top: 0;
-      left: 0;
-      border-top: 1px solid rgba(0, 250, 252, 0.8);
-      border-left: 1px solid rgba(0, 250, 252, 0.8); }
-    .get-coupon .coupon .corner-decor-l::after {
-      bottom: 0;
-      left: 0;
-      border-bottom: 1px solid rgba(0, 250, 252, 0.8);
-      border-left: 1px solid rgba(0, 250, 252, 0.8); }
-    .get-coupon .coupon .corner-decor-r::before {
-      top: 0;
-      right: 0;
-      border-top: 1px solid rgba(0, 250, 252, 0.8);
-      border-right: 1px solid rgba(0, 250, 252, 0.8); }
-    .get-coupon .coupon .corner-decor-r::after {
-      bottom: 0;
-      right: 0;
-      border-bottom: 1px solid rgba(0, 250, 252, 0.8);
-      border-right: 1px solid rgba(0, 250, 252, 0.8); }
 
 .sec-mission {
   position: relative;
@@ -2152,26 +2070,46 @@ body {
               display: flex;
               flex-direction: column;
               align-items: center; } }
-          .sec-customize .wrapper .row .col-left .title-group .customize-no span {
-            display: inline-block; }
-          .sec-customize .wrapper .row .col-left .title-group .customize-no .now-no {
-            width: 50px; }
-          .sec-customize .wrapper .row .col-left .title-group .customize-no .progress {
+          .sec-customize .wrapper .row .col-left .title-group .customize-no {
+            display: flex; }
+            .sec-customize .wrapper .row .col-left .title-group .customize-no .now-no {
+              position: relative;
+              width: 50px;
+              overflow: hidden; }
+              .sec-customize .wrapper .row .col-left .title-group .customize-no .now-no .flash {
+                position: absolute;
+                top: 0;
+                right: 100%;
+                width: 300%;
+                height: 100%;
+                background-color: #fdd084; }
+            .sec-customize .wrapper .row .col-left .title-group .customize-no .progress {
+              position: relative;
+              top: 18px;
+              height: 2px;
+              width: 60px;
+              margin: 0 8px 0 6px;
+              background-color: #fff;
+              box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
+              .sec-customize .wrapper .row .col-left .title-group .customize-no .progress .progress-running {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0%;
+                background-color: #fdd084; }
+          .sec-customize .wrapper .row .col-left .title-group .customize-name {
             position: relative;
-            bottom: 4px;
-            height: 2px;
-            width: 60px;
-            background-color: #fff;
-            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
-            .sec-customize .wrapper .row .col-left .title-group .customize-no .progress .progress-running {
+            width: fit-content;
+            margin-bottom: 8px;
+            overflow: hidden; }
+            .sec-customize .wrapper .row .col-left .title-group .customize-name .flash {
               position: absolute;
               top: 0;
-              left: 0;
+              right: 100%;
+              width: 300%;
               height: 100%;
-              width: 0%;
               background-color: #fdd084; }
-          .sec-customize .wrapper .row .col-left .title-group .customize-name {
-            margin-bottom: 8px; }
       .sec-customize .wrapper .row .col-middle {
         display: flex;
         flex-direction: column;
@@ -2197,6 +2135,7 @@ body {
             .sec-customize .wrapper .row .col-middle .closet-block-group {
               overflow: hidden; } }
           .sec-customize .wrapper .row .col-middle .closet-block-group .closet-block {
+            display: block;
             padding: 20px;
             background: linear-gradient(rgba(0, 0, 0, 0.2), transparent 5%, transparent 95%, rgba(0, 0, 0, 0.1)), linear-gradient(120deg, #FDD084, #E9A967);
             border: 1vw ridge #5D3A2D;
@@ -2245,6 +2184,8 @@ body {
           @media (max-width: 768px) {
             .sec-customize .wrapper .row .col-right .chart-wrapper {
               padding: initial; } }
+         
+              
 
 .sec-market {
   position: relative;
@@ -2461,6 +2402,14 @@ body {
           margin-bottom: 8px;
           text-align: left; }
 
+
+          
+.scrollmagic-pin-spacer{
+  pointer-events: none;
+}
+.scrollmagic-pin-spacer > section{
+  pointer-events: initial;
+}
 .sec-gallery {
   position: relative;
   height: 100vh; }

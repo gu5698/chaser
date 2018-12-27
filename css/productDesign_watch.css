@@ -49,7 +49,7 @@ body {
           #fullscreen .step_wrap .step .circle_1 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_2 {
@@ -69,7 +69,7 @@ body {
           #fullscreen .step_wrap .step .circle_2 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_3 {
@@ -83,7 +83,7 @@ body {
           #fullscreen .step_wrap .step .circle_3 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_4 {
@@ -97,7 +97,7 @@ body {
           #fullscreen .step_wrap .step .circle_4 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
     #fullscreen .content {
@@ -343,7 +343,7 @@ body {
           #fullscreen .content .mid_part .tech_circle_wrap .tecCircle02 {
             display: none; }
           #fullscreen .content .mid_part .tech_circle_wrap .cuProduct {
-            width: 65%;
+            width: 70%;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -362,20 +362,18 @@ body {
               display: flex;
               justify-content: center; }
               #fullscreen .content .mid_part .tech_circle_wrap .cuProduct #pic_dropPostion img {
-                height: 100%; }
+                height: 100%;
+                width: auto; }
       #fullscreen .content .right_part {
         width: 100%;
         position: relative;
-        overflow: hidden;
         display: flex;
         order: 1;
         padding-bottom: 3%;
         margin-top: -5%; }
         #fullscreen .content .right_part .name_wrap {
-          width: 50%;
-          padding-left: 15%;
-          text-align: left;
-          padding-top: 5%;
+          width: 60%;
+          text-align: center;
           position: relative; }
           #fullscreen .content .right_part .name_wrap p {
             color: #00fafc;
@@ -386,7 +384,11 @@ body {
           #fullscreen .content .right_part .name_wrap .name_wrap_line-circle {
             display: none; }
         #fullscreen .content .right_part .cu_chart {
-          width: 50%; } }
+          position: absolute;
+          right: 0;
+          top: -135%;
+          width: 55%;
+          z-index: 9999999; } }
 
 @media screen and (min-width: 768px) {
   #fullscreen {
@@ -481,6 +483,7 @@ body {
       padding-bottom: 15%; }
       #fullscreen .content .left_part {
         width: 25%;
+        z-index: 10;
         position: relative; }
         #fullscreen .content .left_part .item_wrap {
           width: 100%;
@@ -764,7 +767,8 @@ body {
               display: flex;
               justify-content: center; }
               #fullscreen .content .mid_part .tech_circle_wrap .cuProduct #pic_dropPostion img {
-                height: 100%; }
+                height: 100%;
+                width: auto; }
       #fullscreen .content .right_part {
         width: 30%;
         position: relative;

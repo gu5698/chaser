@@ -23,6 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->
@@ -43,6 +44,10 @@
         .number::before{
             counter-increment: num;
             content: counter(num);
+        }
+        .uploadImg{
+            width: 100%;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -75,7 +80,7 @@
                             <th class="text-center" scope="col" width="80">編號</th>
                             <th class="text-center" scope="col" width="100">任務代號</th>
                             <th class="text-center" scope="col">任務內容</th>
-                            <th class="text-center" scope="col" width="150">任務圖片</th>
+                            <th class="text-center" scope="col" width="180">任務圖片</th>
                             <th class="text-center" scope="col" width="100">攻擊<br>(0-10)</th>
                             <th class="text-center" scope="col" width="100">防禦<br>(0-10)</th>
                             <th class="text-center" scope="col" width="100">敏捷<br>(0-10)</th>
@@ -95,7 +100,10 @@
                             <td class="number text-center align-middle"></td>
                             <td class="align-middle"><textarea disabled class="mission-code w-100"><?php echo $missions->mission_code; ?></textarea></td>
                             <td class="align-middle"><textarea disabled rows="5" class="mission-content w-100"><?php echo $missions->content; ?></textarea></td>
-                            <td class="align-middle"><textarea disabled class="mission-img w-100"><?php echo $missions->img; ?></textarea></td>
+                            <td class="align-middle">
+                                <textarea disabled class="mission-img w-100"><?php echo $missions->img; ?></textarea>
+                                <input disabled class="uploadImg" type="file" accept="image/*">
+                            </td>
                             <td class="align-middle"><input disabled type="number" min="0" max="10" class="text-center mission-atk" value="<?php echo $missions->atk; ?>"></td>
                             <td class="align-middle"><input disabled type="number" min="0" max="10" class="text-center mission-def" value="<?php echo $missions->def; ?>"></td>
                             <td class="align-middle"><input disabled type="number" min="0" max="10" class="text-center mission-dex" value="<?php echo $missions->dex; ?>"></td>
@@ -159,8 +167,26 @@
         }
         // colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis);
         // ====================================================
-        
 
+        // input file
+        let uploadImgs = document.querySelectorAll('.uploadImg');
+        let uploadImgLen = uploadImgs.length;
+        let formData = new FormData();
+        
+        for(let i=0; i<uploadImgLen; i++){
+            uploadImgs[i].addEventListener('change', function(e){
+                // console.log(e.target.files[0].name);
+                // console.log(e.target.parentNode.querySelector('.mission-img'));
+
+                e.target.parentNode.querySelector('.mission-img').value = e.target.files[0].name;
+                
+                formData.append("missionImgFile[]", e.target.files[0]);
+
+                // console.log(...formData);           
+            });
+        }
+
+        
         function btnEdit(e){
             let missionCode = e.target.parentNode.parentNode.querySelector('.mission-code');
             let missionContent = e.target.parentNode.parentNode.querySelector('.mission-content');
@@ -172,21 +198,21 @@
             let missionHide = e.target.parentNode.parentNode.querySelector('.mission-hide');
             let missionXaxis = e.target.parentNode.parentNode.querySelector('.mission-x-axis');
             let missionYaxis = e.target.parentNode.parentNode.querySelector('.mission-y-axis');
+            let uploadImg = e.target.parentNode.parentNode.querySelector('.uploadImg');
             
             if(e.target.innerText == '編輯'){ //開始編輯
-                colEnabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis);
+                colEnabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis,uploadImg);
                 e.target.classList.toggle('btn-outline-warning');
                 e.target.classList.toggle('btn-warning');
                 e.target.innerText = '完成'
                 e.target.nextElementSibling.innerText = '取消';
             }else if(e.target.innerText == '完成'){ //編輯完成
                 if(missionCode.value != '' && missionContent.value != '' && missionImg.value != '' && missionAtk.value != '' && missionDef.value != '' && missionDex.value != '' && missionDur.value != '' && missionHide.value != '' && missionXaxis.value != '' && missionYaxis.value != ''){
-                    colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis);
+                    colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis,uploadImg);
                     e.target.classList.toggle('btn-outline-warning');
                     e.target.classList.toggle('btn-warning');
                     e.target.innerText = '編輯'
                     e.target.nextElementSibling.innerText = '刪除';
-
 
                     let xhr = new XMLHttpRequest(); //ok
 
@@ -201,12 +227,26 @@
                     
                     let url = 'mission_update.php';
                     xhr.open('post', url, true);
-                    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");  
-                    
-                    let sending = `mission_id=${e.target.dataset.no}&missionCode=${missionCode.value}&missionContent=${missionContent.value}&missionImg=${missionImg.value}&missionAtk=${missionAtk.value}&missionDef=${missionDef.value}&missionDex=${missionDex.value}&missionDur=${missionDur.value}&missionHide=${missionHide.value}&missionXaxis=${missionXaxis.value}&missionYaxis=${missionYaxis.value}`;
+
+                    // xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");  
+                    // let sending = `mission_id=${e.target.dataset.no}&missionCode=${missionCode.value}&missionContent=${missionContent.value}&missionImg=${missionImg.value}&missionAtk=${missionAtk.value}&missionDef=${missionDef.value}&missionDex=${missionDex.value}&missionDur=${missionDur.value}&missionHide=${missionHide.value}&missionXaxis=${missionXaxis.value}&missionYaxis=${missionYaxis.value}`;
                     // console.log(sending);
 
-                    xhr.send(sending);
+                    formData.append("mission_id", e.target.dataset.no);
+                    formData.append("missionCode", missionCode.value);
+                    formData.append("missionContent", missionContent.value);
+                    formData.append("missionImg", missionImg.value);
+                    formData.append("missionAtk", missionAtk.value);
+                    formData.append("missionDef", missionDef.value);
+                    formData.append("missionDex", missionDex.value);
+                    formData.append("missionDur", missionDur.value);
+                    formData.append("missionHide", missionHide.value);
+                    formData.append("missionXaxis", missionXaxis.value);
+                    formData.append("missionYaxis", missionYaxis.value);
+                    // console.log(...formData);             
+
+                    xhr.send(formData);
+
                 }else{
                     alert('尚有空白欄位!');
                 }
@@ -221,7 +261,7 @@
                         if(xhr.responseText.trim().split(',')[0] == 'ok'){
                             alert('新增成功!');
                             // window.location.reload();
-                            colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis);
+                            colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis,uploadImg);
                             e.target.classList.remove('btn-success');
                             e.target.classList.add('btn-outline-warning');
                             e.target.innerText = '編輯'
@@ -234,12 +274,23 @@
                     
                     let url = 'mission_insert.php';
                     xhr.open('post', url, true);
-                    xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");  
-
-                    let sending = `missionCode=${missionCode.value}&missionContent=${missionContent.value}&missionImg=${missionImg.value}&missionAtk=${missionAtk.value}&missionDef=${missionDef.value}&missionDex=${missionDex.value}&missionDur=${missionDur.value}&missionHide=${missionHide.value}&missionXaxis=${missionXaxis.value}&missionYaxis=${missionYaxis.value}`;
+                    // xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");  
+                    // let sending = `missionCode=${missionCode.value}&missionContent=${missionContent.value}&missionImg=${missionImg.value}&missionAtk=${missionAtk.value}&missionDef=${missionDef.value}&missionDex=${missionDex.value}&missionDur=${missionDur.value}&missionHide=${missionHide.value}&missionXaxis=${missionXaxis.value}&missionYaxis=${missionYaxis.value}`;
                     // console.log(sending);
 
-                    xhr.send(sending);
+                    formData.append("missionCode", missionCode.value);
+                    formData.append("missionContent", missionContent.value);
+                    formData.append("missionImg", missionImg.value);
+                    formData.append("missionAtk", missionAtk.value);
+                    formData.append("missionDef", missionDef.value);
+                    formData.append("missionDex", missionDex.value);
+                    formData.append("missionDur", missionDur.value);
+                    formData.append("missionHide", missionHide.value);
+                    formData.append("missionXaxis", missionXaxis.value);
+                    formData.append("missionYaxis", missionYaxis.value);
+
+
+                    xhr.send(formData);
                 }else{
                     alert('尚有空白欄位!');
                 }
@@ -298,7 +349,8 @@
                 let missionHide = e.target.parentNode.parentNode.querySelector('.mission-hide');
                 let missionXaxis = e.target.parentNode.parentNode.querySelector('.mission-x-axis');
                 let missionYaxis = e.target.parentNode.parentNode.querySelector('.mission-y-axis');
-                colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis);
+                let uploadImg = e.target.parentNode.parentNode.querySelector('.uploadImg');
+                colDisabled(missionCode,missionContent,missionImg,missionAtk,missionDef,missionDex,missionDur,missionHide,missionXaxis,missionYaxis,uploadImg);
 
                
                 e.target.innerText = '刪除'
@@ -322,7 +374,10 @@
                     <td class="number text-center align-middle"></td>
                     <td class="align-middle"><textarea class="mission-code w-100"></textarea></td>
                     <td class="align-middle"><textarea rows="5" class="mission-content w-100"></textarea></td>
-                    <td class="align-middle"><textarea class="mission-img w-100"></textarea></td>
+                    <td class="align-middle">
+                        <textarea class="mission-img w-100"></textarea>
+                        <input class="uploadImg" type="file" accept="image/*">
+                    </td>
                     <td class="align-middle"><input type="number" min="0" max="10" value="5" class="text-center mission-atk"></td>
                     <td class="align-middle"><input type="number" min="0" max="10" value="5" class="text-center mission-def"></td>
                     <td class="align-middle"><input type="number" min="0" max="10" value="5" class="text-center mission-dex"></td>
@@ -351,8 +406,24 @@
             // console.log(document.documentElement.scrollHeight);
             
             window.scrollTo(0, document.documentElement.scrollHeight);
+
+
+            let uploadImgs = document.querySelectorAll('.uploadImg');
+            let uploadImgLen = uploadImgs.length;
+            
+            for(let i=0; i<uploadImgLen; i++){
+                uploadImgs[i].addEventListener('change', function(e){
+
+                    e.target.parentNode.querySelector('.mission-img').value = e.target.files[0].name;                    
+                    formData.append("missionImgFile[]", e.target.files[0]);
+
+                    console.log(...formData);
+                    
+                });
+            }
         });
 
+        
     </script>
 
 </body>

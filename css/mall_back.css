@@ -1,0 +1,74 @@
+/*mall_backstage.php*/
+#tbody td{
+	text-align: center;
+	vertical-align: middle;
+}
+#tbody img{
+	width: 150px;
+}
+#mall_control{
+	margin-left:30px;
+}
+.mall_change{
+	box-sizing: border;
+	border:1px solid #f00;
+	border-radius: 5px;
+	color:#f00;
+	padding: 3px 7px;
+}
+/*mall_back_item.php*/
+.mall_item{
+	width: 100%;
+	padding: 30px 0;
+	margin: auto;
+	box-sizing: border-box;
+	border:3px solid #fdd084;
+}
+.mall_item .item{
+	width: 60%;
+	margin: auto;
+}
+.mall_item .item img{
+	width: 60%;
+	vertical-align: top;
+}
+.mall_item .context{
+	width: 60%;
+	margin: auto;
+}
+.mall_item .context #text{
+	width: 100%;
+	height: 200px;
+}
+.mall_item .context h5{
+	padding: 15px 0 10px 0;
+	width: 100%;
+	border-bottom:3px solid #ccc;
+}
+.mall_item .context .ability{
+	display: flex;
+}
+.btn{
+	background-color:#fdd084;
+}
+#gogo{
+	position: relative;
+	left:90%;
+}
+#go{
+	position: fixed;
+	top:40%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 300px;
+	height: 200px;
+	background-color:#ddd;
+	display: none;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #000;
+	text-align: center;
+	padding: 50px 0 0 0;
+}
+#go .btn{
+	margin-top: 40px;
+}

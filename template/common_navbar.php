@@ -47,7 +47,7 @@
         <li class="navbar-item navbar-icon icon-cart">
             <a href="#"><i class="fas fa-shopping-cart"></i></a>
             <ol class="sub-menu fz-5">
-                <li class="shoplist">
+                <!-- <li class="shoplist">
                     <img class="product-img" src="images/mall/item4.png" alt="shoplist">
                     <div class="product-name">防彈傘</div>
                     <div class="product-price">200000000000</div>
@@ -58,10 +58,10 @@
                     <div class="product-name">防彈傘</div>
                     <div class="product-price">2000</div>
                     <i class="far fa-trash-alt icon-delete"></i>
-                </li>
+                </li> -->
                <a href="cart1.php" class="cart-btn btn-solid">結帳</a>
             </ol>
-            <div class="list-counter">2</div>
+            <div class="list-counter">0</div>
         </li>
     </ul>
     <?php if (is_login()): ?>

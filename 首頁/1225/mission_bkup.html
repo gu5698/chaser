@@ -1,0 +1,30 @@
+<?php
+for($missions_i=0; $missions_i<$missionsLen; $missions_i++){
+?>
+    <div class="mission mission-<?php echo $missions[$missions_i]['mission_id']; ?> mission-hover" style="left:<?php echo $missions[$missions_i]['x_axis']; ?>%;top:<?php echo $missions[$missions_i]['y_axis']; ?>%;">
+        <div class="wave"></div>
+        <div class="stripes">
+            <div class="stripes-running"></div>
+        </div>
+        <img src="images/index/<?php echo $missions[$missions_i]['img']; ?>" alt="<?php echo $missions[$missions_i]['img']; ?>">
+        <div class="bg"></div>
+        <div class="mission-code fz-6">
+            MISSION CODE:<span class="d-block"><?php echo $missions[$missions_i]['mission_code']; ?></span>
+            <div class="corner-decor-l"></div>
+            <div class="corner-decor-r"></div>
+        </div>
+        <i class="fas fa-exclamation icon-exclamation"></i>
+        <i class="fas fa-backspace mission-close"></i>
+        <p class="mission-content fz-p"><?php echo $missions[$missions_i]['content']; ?></p>
+        <div class="chart-wrapper">
+            <canvas class="attr-chart" data-attr="<?php echo $missions[$missions_i]['atk'].','.$missions[$missions_i]['def'].','.$missions[$missions_i]['hide'].','.$missions[$missions_i]['dur'].','.$missions[$missions_i]['dex']; ?>"></canvas>
+        </div>
+        <div class="link-group">
+            <a href="#" class="btn btn-border">添購裝備</a>
+            <a href="#" class="btn btn-solid">前往客製</a>
+        </div>
+        <div class="dashed-circle"></div>
+    </div>
+<?php
+}
+?>

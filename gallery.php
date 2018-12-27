@@ -1,24 +1,5 @@
 <?php include_once 'function/member.php'; ?>
-<?php
-try {
-    require_once "connection.php";
 
-    $pdo->beginTransaction();
-
-    $sql = "select picid, positionno,imgname from gallery where upordown=1 order by positionno;";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-
-    $sql2 = "select couponid from coupon where caniuse=1 order by couponid DESC;";
-    $stmt2 = $pdo->prepare($sql2);
-    $stmt2->execute();
-    $row2 = $stmt2->fetch();
-
-} catch (PDOException $e) {
-    $pdo->rollBack();
-    exit('資料庫連結失敗，錯誤訊息為:' . $e->getMessage());
-}
-?>
 
 <!DOCTYPE html>
 <html lang="zh-tw">
@@ -49,6 +30,28 @@ try {
             </div>
         </header>
         <?php require_once 'template/common_navbar.php'; ?>
+
+        <?php
+        try {
+            require_once "connection.php";
+
+            $pdo->beginTransaction();
+
+            $sql = "select picid, positionno,imgname from gallery where upordown=1 order by positionno;";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            $sql2 = "select couponid from coupon where caniuse=1 order by couponid DESC;";
+            $stmt2 = $pdo->prepare($sql2);
+            $stmt2->execute();
+            $row2 = $stmt2->fetch();
+
+        } catch (PDOException $e) {
+            $pdo->rollBack();
+            exit('資料庫連結失敗，錯誤訊息為:' . $e->getMessage());
+        }
+        ?>
+        
         <!-- /anl -->
         <div class="nothing-box"></div>
         <div class="wrapper">

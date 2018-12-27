@@ -27,6 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->
@@ -92,7 +93,6 @@
                     <!-- ================================== -->
                     <tbody id="tbody">
                     <?php
-                    $mem_status=['N'=>'停權','Y'=>'正常'];
                     while ($responses = $pdostmMember->fetch()) {
                     ?>
                         <tr>
@@ -100,7 +100,7 @@
                             <td class="align-middle"><?php echo $responses['mem_name'];?></td>
                             <td class="align-middle"><?php echo $responses['mem_email'];?></td>
                             <td class="align-middle"><img src="images/mem_images/<?php echo $responses['mem_image'];?>" alt=""></td>
-                            <td class="align-middle"><?php echo $mem_status[$responses['status']];?></td>
+                            <td class="align-middle"><?php echo $responses['status']=='Y'? '正常':'停權' ;?></td>
                             <td class="align-middle text-center">
                                 <a href="member_update.php?id=<?php echo $responses['mem_id']?>" class="btn btn-outline-warning btn-edit">編輯</a>
                                 <?php if($responses['status'] =='Y'){?>

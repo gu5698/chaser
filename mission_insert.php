@@ -17,6 +17,29 @@
         $pdostmMissionInsert -> bindValue(":missionYaxis", $_POST["missionYaxis"]);
         $pdostmMissionInsert -> execute();
 
+        if($_FILES){
+            // echo count($_FILES["missionImgFile"]["name"]);
+
+            for($i=0; $i<count($_FILES["missionImgFile"]["name"]); $i++){
+                if($_FILES["missionImgFile"]["error"][$i] == 0){
+
+                    $from = $_FILES["missionImgFile"]["tmp_name"][$i];
+                    $to = "images/index/{$_FILES["missionImgFile"]["name"][$i]}";
+                    //$path_parts = pathinfo( $to );
+                    // echo "dirname : ", $path_parts['dirname'], "<br>";
+                    // echo "basename : ", $path_parts['basename'], "<br>";
+                    // echo "extension : ", $path_parts['extension'], "<br>";
+                    // echo "filename : ", $path_parts['filename'], "<br>";
+                    //exit( $to );
+                    //$to = "images/" . time(). "." . $path_parts['extension'] ;  //8
+
+                    copy($from, $to);	
+                    // echo "上傳成功";
+                }
+            }
+        }
+
+
         $lastId = $pdo->lastInsertId();
         echo "ok,".$lastId;
     } catch (PDOException $e) {

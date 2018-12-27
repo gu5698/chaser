@@ -73,6 +73,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->
@@ -142,7 +143,7 @@
                         <tr>
                         <tr>
                             <td>管理員帳號:</td>
-                            <td><input type="text" name="man_account" disabled value="<?php echo $responses['man_account']?>"/></td>
+                            <td><input type="text" name="man_account" value="<?php echo $responses['man_account']?>"/></td>
                         <tr>
                         </tr>
                             <td>管理員密碼:</td>

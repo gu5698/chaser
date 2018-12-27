@@ -41,6 +41,13 @@ function chatbotEvent() {
     }
 
 
+    let chatbotHead = document.getElementById('chatbot-head');
+    // console.log(window.location.href.includes('gallery.php'));
+    if(window.location.href.includes('gallery.php')){
+        chatbotHead.src = 'images/common/chatbot-head-2.svg';
+        greeting.querySelector('.message').innerText = '特別任務 : 尋找鋼琴 (提示 : 小蜜蜂)';
+    }
+
 
     // 移到最下方
     // console.log(messageBody.clientHeight, messageBody.scrollHeight, messageBody.offsetHeight);

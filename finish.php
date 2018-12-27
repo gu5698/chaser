@@ -58,8 +58,8 @@
                 </div>
                 <div class="part02">
                     <p class="fz-3">訂貨成功，感謝您的購買!!!</p>
-                    <a href="#" class="gotomall fz-6">前往裝備商城</a>
-                    <a href="#" class="gotogallery fz-6">參觀傳奇特務藝廊</a>
+                    <a href="mall.php" class="gotomall fz-6">前往裝備商城</a>
+                    <a href="gallery.php" class="gotogallery fz-6">參觀傳奇特務藝廊</a>
                 </div>
             </div>
         </div>

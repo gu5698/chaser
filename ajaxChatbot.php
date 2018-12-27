@@ -2,16 +2,21 @@
     try {
         require_once "connect.php";
 
-        $sqlChatbot = "SELECT * FROM chatbot WHERE keyword LIKE :sendUserMsg"; //OK
+        // $sqlChatbot = "SELECT * FROM chatbot WHERE keyword LIKE :sendUserMsg"; //OK
         // $sqlChatbot = "SELECT * FROM chatbot WHERE keyword LIKE %:sendUserMsg%"; //NO
         // $sqlChatbot = "SELECT * FROM chatbot WHERE keyword LIKE '%':sendUserMsg'%'"; //NO
         // $sqlChatbot = 'SELECT * FROM chatbot WHERE keyword LIKE %:sendUserMsg%'; //NO
         // $sqlChatbot = 'SELECT * FROM chatbot WHERE keyword LIKE "%":sendUserMsg"%"'; //OK
         // $sqlChatbot = "SELECT * FROM chatbot WHERE keyword LIKE %" . ":sendUserMsg" . "%"; //NO
 
+
+
+        $sqlChatbot = "SELECT * FROM chatbot WHERE LOCATE(keyword, :sendUserMsg);"; //OK
+        
+
         $pdostmChatbot = $pdo -> prepare($sqlChatbot);
-        $pdostmChatbot -> bindValue(":sendUserMsg", '%'.$_POST["sendUserMsg"]."%");
-        // $pdostmChatbot -> bindValue(":sendUserMsg", $_POST["sendUserMsg"]);
+        // $pdostmChatbot -> bindValue(":sendUserMsg", '%'.$_POST["sendUserMsg"]."%");
+        $pdostmChatbot -> bindValue(":sendUserMsg", $_POST["sendUserMsg"]);
         $pdostmChatbot -> execute();
 
 

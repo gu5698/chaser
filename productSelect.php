@@ -23,6 +23,7 @@
 <!-- 內容開始 -->
 <div id="fullscreen">
 
+        <!-- 內容開始 -->
         <div class="step_wrap">
             <div class="step">
                 <div class="circle circle_1">

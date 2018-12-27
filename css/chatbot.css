@@ -46,6 +46,7 @@
     width: 300%;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: .3s; }
     .chatbot .greeting .message {
       padding: 10px 32px 10px 16px;
@@ -59,6 +60,7 @@
       padding: 12px 10px 5px 5px;
       font-size: 16px;
       border-radius: 50%;
+      pointer-events: initial;
       cursor: pointer; }
   .chatbot .message-window {
     display: flex;

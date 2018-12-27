@@ -1,4 +1,5 @@
 <?php
+include_once 'function/member.php';
 // $psn ;
 $order_id = $_GET['order_id'];
 $errMsg = "";
@@ -24,18 +25,45 @@ try{
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- common -->
+    <link rel="stylesheet" href="css/backstage/backstage_common.css">
+    <style>
+        textarea{
+            resize: none;
+        }
+        textarea:disabled,
+        input:disabled{
+            background: #ddd;
+        }
+        .table{
+            counter-reset: num;
+        }
+        .number::before{
+            counter-increment: num;
+            content: counter(num);
+        }
+    </style>
 
     <title>Chaser</title>
   </head>
   <body>
     <?php include_once 'backstage_navbar.php'; ?>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-2">
+                <ul class="list-group text-center">
+                    <a href="cart_orders.php"><li class="list-group-item active">訂單管理</li></a>
+                </ul>
+            </div>
+            <div class="col-10">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="cart_orders.php">訂單<?php echo $order_id; ?></a></li>
+                        <li class="breadcrumb-item">
+                            <a href="cart_orders.php">訂單<?php echo $order_id; ?></a>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">訂單細項</li>
                     </ol>
                 </nav>
@@ -74,6 +102,9 @@ try{
             </div>
         </div>
     </div>
+    <!-- start footer -->
+    <footer class="footer">© 2018 Chaser. All Rights Reserved.</footer>
+    <!-- end footer -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,3 +1,4 @@
+
 .footer {
   position: absolute;
   width: 100%;
@@ -53,7 +54,7 @@ body {
           #fullscreen .step_wrap .step .circle_1 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_2 {
@@ -67,7 +68,7 @@ body {
           #fullscreen .step_wrap .step .circle_2 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_3 {
@@ -81,7 +82,7 @@ body {
           #fullscreen .step_wrap .step .circle_3 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_4 {
@@ -95,7 +96,7 @@ body {
           #fullscreen .step_wrap .step .circle_4 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
     #fullscreen .cu_select {

@@ -10,7 +10,7 @@
                 <a id="mission" class="nav-link" href="mission_backstage.php">任務管理</a>
             </li>
             <li class="nav-item">
-                <a id="mall" class="nav-link" href="#">商品管理</a>
+                <a id="mall" class="nav-link" href="mall_backstage.php">商品管理</a>
             </li>
             <li class="nav-item">
                 <a id="gallery" class="nav-link" href="gallery_backstage_1.php">藝廊管理</a>
@@ -19,16 +19,16 @@
                 <a id="chatbot" class="nav-link" href="chatbot_backstage.php">客服問答管理</a>
             </li>
             <li class="nav-item">
-                <a id="coupon" class="nav-link" href="#">優惠卷管理</a>
+                <a id="coupon" class="nav-link" href="coupon-backstage.php">優惠卷管理</a>
             </li>
             <li class="nav-item">
-                <a id="order" class="nav-link" href="#">訂單管理</a>
+                <a id="order" class="nav-link" href="cart_orders.php">訂單管理</a>
             </li> 
             <li class="nav-item">
-                <a id="member" class="nav-link" href="#">會員管理</a>
+                <a id="member" class="nav-link" href="member_backstage.php">會員管理</a>
             </li> 
             <li class="nav-item">
-                <a id="management" class="nav-link" href="#">後台管理</a>
+                <a id="management" class="nav-link" href="manager_backstage.php">後台管理</a>
             </li>
         </ul>
     </div>

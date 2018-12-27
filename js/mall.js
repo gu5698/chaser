@@ -39,6 +39,11 @@
      document.onmousewheel = scrollFun;
  }
 
+
+//滾輪index
+// var index = scrollFun(event);
+// console.log(scrollFun());
+
  //滾動事件處理
  function scrollFun(event) {
      startTime = new Date().getTime();
@@ -50,6 +55,7 @@
              //向下滾動
              index++;
              toPage(index);
+             return index;
             //  //滾動向下搭配bar
             //  var bar = document.getElementById('bar');
             //  var imgs = bar.getElementsByClassName('pageimg');
@@ -60,6 +66,7 @@
              //向上滾動
              index--;
              toPage(index);
+             return index;
             //  //向上滾動搭配bar
             //  var bar = document.getElementById('bar');
             //  var imgs = bar.getElementsByClassName('pageimg');
@@ -72,6 +79,7 @@
          event.preventDefault();
      }
  }
+
 
  function toPage(index) {
      //jquery動畫效果
@@ -151,6 +159,12 @@
       });
   });
 
+//獲得id值
+var iid;
+$('.barimg').click(function(){
+  iid = $(this).data("iid");
+  console.log(iid);
+});
 
 var capa_attr = [30,40,70,50,90];
 genChart();
@@ -182,7 +196,7 @@ for(var i = 0;i<barcount;i++){
             xhr.open("POST", url, true);
             
             //送出資料
-            var id = `index=${index}`;
+            var id = `index=${iid}`;
             xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
             xhr.send(id);
     }
@@ -196,9 +210,6 @@ for(var i = 0;i<barcount;i++){
 function genChart(){
   Chart.defaults.global.defaultFontColor = '#fdd084'; 
   Chart.defaults.global.defaultFontSize = 0;
-  // var mallMychart = document.getElementById('mall_mychart');
-  // var capability = mallMychart.dataset.capability;
-  // var capa_attr = xhr.responseText.split(",");
   var ctx = document.getElementById('mall_mychart').getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -356,43 +367,36 @@ $(document).ready(function(){
       var newamount = parseInt(oldamount) + 1;
     }else{
       newamount = 99;
-      $(this).siblings('.fa-plus').css('color','#ccc');
     }
     $(this).siblings('.mall_amount').val(newamount);
+
+    if(newamount != 1){
+      $(this).siblings('.fa-minus').css('color','#fdd084');
+    }
   });
 
   $('.fa-minus').click(function(){
     var oldamount = $(this).siblings('.mall_amount').val();
     if(oldamount>1){
-      var newamount = parseInt(oldamount) - 1;
+      var amount = parseInt(oldamount) - 1;
     }else{
-      newamount = 1;
-      $(this).siblings('.fa-minus').css('color','#ccc');
+      amount = 1;
     }
-    $(this).siblings('.mall_amount').val(newamount);
+    $(this).siblings('.mall_amount').val(amount);
+
+    if(amount == 1){
+      $(this).css('color','#ccc');
+    }
   });
 
-
+  $('.mall_amount').keyup(function(){
+     if(parseInt($(this).val()) < 1){
+        $(this).val(1);
+    }else if(parseInt($(this).val()) > 99){
+        $(this).val(99);
+    }
+  });
 })
-
-$('.mall_amount').change(function(){
-  var val =  $('.mall_amount').val();
-  console.log(val);
-})
-
-
-// //ajax
-// $.ajax = ({
-//     url:'../mall.php',
-//     dataType:'JSON',
-//     type:'POST',
-//     data:{index:index},
-//     success:function(msg) {
-//       console.log(msg);
-//     },
-//     error:function(){alert('Ajax request 發生錯誤');},
-// });
-
 
 //RWD
 if($(window).width()<768){

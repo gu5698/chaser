@@ -10,7 +10,7 @@
         // print_r($missions);
         $missionsLen = count($missions);
         // echo "missionsLen:", $missionsLen;
-        $missionsJson = json_encode($missions); //!!!
+        // $missionsJson = json_encode($missions); //!!!
 
         //======================================================
         $sqlProduct = "SELECT * FROM product";
@@ -21,7 +21,7 @@
         // print_r($products);
         $productsLen = count($products);
         // echo "productsLen:", $productsLen;
-        $productsJson = json_encode($products); //!!!
+        //$productsJson = json_encode($products); //!!!
  
         //======================================================
         
@@ -52,8 +52,11 @@
     <link rel="stylesheet" href="css/scroll.css">
     <link rel="stylesheet" href="css/index.css">
     <script>
-        let missionsJson = JSON.parse(`<?php echo $missionsJson; ?>`);
-        let productsJson = JSON.parse(`<?php echo $productsJson; ?>`);
+        
+        // let missionsJson = JSON.parse(`<?php //echo $missionsJson; ?>`);
+        let missionsJson = <?php echo json_encode($missions); ?>;
+        // let productsJson = JSON.parse(`<?php //echo $productsJson; ?>`);
+        let productsJson = <?php echo json_encode($products); ?>;
     </script>
 </head>
 <body>
@@ -128,31 +131,37 @@
                 <div class="col-left col-md-4">
                     <div class="title-group">
                         <div class="customize-no fz-4">
-                            <span id="now-no" class="now-no">no. 1</span>
-                            <span class="progress">
+                            <div class="now-no">
+                                <div id="now-no">no. 1</div>
+                                <div class="flash"></div>
+                            </div>
+                            <div class="progress">
                                 <div id="progress-running" class="progress-running"></div>
-                            </span>
-                            <span>3</span>
+                            </div>
+                            <div>3</div>
                         </div>
-                        <div class="customize-name fz-4">特務腕錶</div>
-                        <a href="#" class="btn btn-solid">立即客製</a>
+                        <div class="customize-name fz-4">
+                            <div id="customize-name"></div>
+                            <div class="flash"></div>
+                        </div>
+                        <a href="productSelect.php" class="btn btn-solid">立即客製</a>
                     </div>
                 </div>
                 <div class="col-middle col-md-4">
                     <div class="slogan fz-4">立即客製您的裝備</div>
                     <div class="closet-block-group">
                         <!-- =================== -->
-                        <div id="closet-block-1" class="closet-block closet-block-1">
+                        <a href="productDesign_watch.php" id="closet-block-1" class="closet-block closet-block-1">
                             <img src="images\customize\watch\watch12/png/killy_b_blk.png" alt="custom-watch">
-                        </div>
+                        </a>
                         <!-- =================== -->
-                        <div id="closet-block-2" class="closet-block closet-block-2">
+                        <a href="productDesign_glasses.php" id="closet-block-2" class="closet-block closet-block-2">
                             <img src="images/customize/glasses/sq-black-scan.gif" alt="custom-glasses">
-                        </div>
+                        </a>
                         <!-- =================== -->
-                        <div id="closet-block-3" class="closet-block closet-block-3">
+                        <a href="productDesign_suit.php" id="closet-block-3" class="closet-block closet-block-3">
                             <img src="images/customize/suit/png/double-b-a.png" alt="custom-suit">
-                        </div>
+                        </a>
                         <!-- =================== -->
                     </div>
                     <div id="btn-prev" class="btn-prev"><i class="fas fa-chevron-circle-left"></i></div>
@@ -203,7 +212,7 @@
                         <div id="prev-product" class="prev-product"><i class="fas fa-caret-left"></i></i></div>
                         <div id="next-product" class="next-product"><i class="fas fa-caret-right"></i></div>
                         <div class="title">
-                            <div class="btn btn-border btn-add-cart">加入購物車</div>
+                            <div id="btn-add-cart" class="btn btn-border btn-add-cart">加入購物車</div>
                             <div id="product-name" class="product-name fz-5"></div>
                             <div id="product-price" class="product-price fz-5"></div>
                             <div class="flash"></div>
@@ -214,7 +223,7 @@
                     <div class="wrapper">
                         <div class="fz-4">裝備商城</div>
                         <p class="fz-p">CHASER 提供優良的裝備，以應付各種任務。</p>
-                        <a href="#" class="btn btn-solid">前往商城</a>
+                        <a href="mall.php" class="btn btn-solid">前往商城</a>
                     </div>
                 </div>
             </div>
@@ -250,8 +259,8 @@
                         <div class="fz-4">傳奇特務藝廊</div>
                         <p class="fz-p">展示傳說中的特務使用過之經典裝備，有線上及線下實體展覽，百聞不如一見，歡迎參觀。</p>
                         <div class="link-group">
-                            <a href="#" class="btn btn-border">線上展覽</a>
-                            <a href="#" class="btn btn-solid">實體展覽購票</a>
+                            <a href="gallery.php" class="btn btn-solid">線上展覽</a>
+                            <!-- <a href="#" class="btn btn-solid">實體展覽購票</a> -->
                         </div>
                     </div>
                 </div>
@@ -318,7 +327,8 @@
     <script src="https://unpkg.com/three@0.83.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
     <script src="https://cdn.rawgit.com/felixturner/bad-tv-shader/master/BadTVShader.js"></script>
     <!-- custom -->
-    <!-- <script src="js/common.js"></script> -->
+    <script src="node_modules\jquery\dist\jquery.min.js"></script>
+    <script src="js/cart/addItem.js"></script>
     <script src="js/chatbot.js"></script>
     <script src="js/index.js"></script>
 

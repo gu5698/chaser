@@ -52,7 +52,7 @@ body {
           #fullscreen .step_wrap .step .circle_1 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_2 {
@@ -66,7 +66,7 @@ body {
           #fullscreen .step_wrap .step .circle_2 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_3 {
@@ -86,7 +86,7 @@ body {
           #fullscreen .step_wrap .step .circle_3 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
         #fullscreen .step_wrap .step .circle_4 {
@@ -100,7 +100,7 @@ body {
           #fullscreen .step_wrap .step .circle_4 .number {
             color: #3e3a39;
             position: absolute;
-            top: 50%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -52%); }
     #fullscreen .content {
@@ -353,7 +353,7 @@ body {
                   height: 1px;
                   left: 0;
                   bottom: 0;
-                  background-color: red; }
+                  background-color: #FDD084; }
                 #fullscreen .content .info_fill_wrap .info_board .info_content .form_content_wrap .info_data_wrap span {
                   width: 85px;
                   padding-left: 3%;

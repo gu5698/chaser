@@ -45,12 +45,19 @@
                 <span class="statement_03 fz-5">確認訂單</span>
                 <span class="number fz-4">3</span>
             </div>
+            <div class="line"></div>
+
+            <div class="circle circle_4">
+                <img src="images/customize/circle_2.png" alt="circle2">
+                <span class="statement_04 fz-5">訂購成功</span>
+                <span class="number fz-4">4</span>
+            </div>
         </div>
     </div>
 
-    <form method="GET" action="cartAddToSession.php" id="form">
+    <form method="GET" action="cart1AddToSession.php" id="form">
 
-    <div class="container" style="padding-bottom: 3rem;">
+    <div class="container" id="container">
         <div class="row whitebg">
             <div class="container title dn c3 itemList">
                 <div class="row">
@@ -76,10 +83,51 @@
             <div class="container total c3">
                 <div class="row">
                     <div class="col-5 offset-1 col-md-2 offset-md-8">
-                        <p>總計</p>
+                        <p>小計</p>
                     </div>
                     <div class="col-6 col-md-2">
                         <p class="totalprice"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container coupon">
+                <div class="row">
+                    <div class="col-12 col-md-11">
+                        <div class="row">
+                            <div class="col-12 col-md-8">
+                                <div class="cart-table">
+                                    <h2>優惠券</h2>
+                                    <div class="cart-form-group lastfg">
+                                        <label for="coupon">優惠券編號</label>
+                                        <input type="text" name="coupon" required="required" class="form-control" id="coupon">
+                                        <div class="bottom-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <?php if(is_login()){ ?>
+                                    <a href="#" class="cart1-btn couponbtn">使用優惠券</a>
+                                <?php }else{ ?>
+                                    <a href="javascript:$.login();" class="cart1-btn">使用優惠券</a>
+                                <?php } ?>
+                            </div>
+                            <div class="col-6 col-md-1">
+                                <div class="discount"></div>
+                                <input class="discount" name="discount" type="hidden" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container total c3">
+                <div class="row">
+                    <div class="col-5 offset-1 col-md-2 offset-md-8">
+                        <p>總計</p>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <p class="totalprice couponprice"></p>
                     </div>
                 </div>
             </div>
@@ -89,9 +137,9 @@
                     <div class="col-8 offset-4 col-md-4 offset-md-7">
                         <a href="mall.php" class="cart1-btn">繼續購物</a>
                         <?php if(is_login()){ ?>
-                        <a href="#" class="cart1-btn next">下一步</a>
+                            <a href="#" class="cart1-btn next">下一步</a>
                         <?php }else{ ?>
-                        <a href="javascript:$.login();" class="cart1-btn">下一步</a>
+                            <a href="javascript:$.login();" class="cart1-btn">下一步</a>
                         <?php } ?>
                     </div>
                 </div>
@@ -115,9 +163,9 @@
     <script src="js/common.js"></script>
     <!-- custom -->
 
-    <script src="js/submenu.js"></script>
-    <script src="js/createCartList.js"></script>
-    <script src="js/cart.js"></script>
+    <script src="js/cart/submenu.js"></script>
+    <script src="js/cart/createCartList.js"></script>
+    <script src="js/cart/cart.js"></script>
     <script src="js/chatbot.js"></script>
     <?php require_once 'template/common_js.php';?>
 

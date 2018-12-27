@@ -6,7 +6,10 @@
          $imageFile=$_FILES['mem_image'];
          $image='';
          if(!empty($imageFile) && 0==$imageFile['error']){
-             $image=time().'_'.md5($imageFile['tmp_name']).'.'.end(explode('.',$imageFile['name']));
+             // $image=time().'_'.md5($imageFile['tmp_name']).'.'.end(explode('.',$imageFile['name']));
+            $tmpfileArray=explode('.',$imageFile['name']);
+            $image=time().'_'.md5($imageFile['tmp_name']).'.'.end($tmpfileArray);
+             // 定義上傳路徑
              // 定義上傳路徑
             $uploadPath = 'images/mem_images/';  
     
@@ -57,6 +60,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->

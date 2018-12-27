@@ -27,6 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->

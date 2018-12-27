@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+        }
+        .wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            /* display: inline-block; */
+            font-size: 0;
+            border-top: 15px solid #71564B;
+            border-right: 15px solid #5D3A2D;
+            border-bottom: 15px solid #5D3A2D;
+            border-left: 15px solid #71564B;
+        }
+        .wardrobe{
+            /* display: inline-block; */
+            flex-grow: 1;
+            /* flex-shrink: 0; */
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(120deg, #FDD084, #E9A967);
+            border-top: 8px solid #71564B;
+            border-right: 8px solid #5D3A2D;
+            border-bottom: 8px solid #5D3A2D;
+            border-left: 8px solid #71564B;
+            box-shadow: 0 0 10px rgba(0,0,0,.5), 0 0 20px rgba(0,0,0,.5) inset, 0 0 8px rgba(0,0,0,.5);
+        }
+        .wardrobe::before{
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,.2), transparent 5%,transparent 95%, rgba(0,0,0,.1));
+        }
+        .wardrobe1 .img-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        .wardrobe1 img{
+            height: 90%;
+            filter: drop-shadow(3px 3px 10px rgba(0,0,0,.5));
+            cursor: pointer;
+        }
+        .wardrobe1 :first-child{
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <div class="wrapper">
+        <div class="wardrobe wardrobe1">
+            <div class="img-wrapper">
+                <img src="images/umbrella.png">
+                <img src="images/umbrella.png">
+            </div>
+        </div>
+        <div class="wardrobe"></div>
+        <div class="wardrobe"></div>
+        <div class="wardrobe"></div>
+        <div class="wardrobe"></div>
+        <div class="wardrobe"></div>
+        <div class="wardrobe"></div>
+        <div class="wardrobe"></div>
+    </div>
+    
+</body>
+</html>

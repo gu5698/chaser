@@ -3,8 +3,8 @@ window.addEventListener('load', init);
 function init(){
     // console.log('init');
         
-    // console.log(missionsJson);
-    // console.log(productsJson);
+    console.log(missionsJson);
+    console.log(productsJson);
     // =======================================================missions
 
     let missionGroup = document.getElementById('mission-group');
@@ -47,6 +47,7 @@ function init(){
     let nextProduct = document.getElementById('next-product');
     let productName = document.getElementById('product-name');
     let productPrice = document.getElementById('product-price');
+    let btnAddCart = document.querySelector('.btn-add-cart');
 
 
     let productsJsonLen = productsJson.length;
@@ -56,6 +57,11 @@ function init(){
     let imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
     // console.log(imgSrc);
     prodChangeInfo();
+
+    // addbtn 黯然銷魂筆|item1.png|1688|1
+    btnAddCart.id = `P${curImgNo + 1}`;
+    btnAddCart.dataset.id = `${productsJson[curImgNo]['product_name']}|item${curImgNo + 1}.png|${productsJson[curImgNo]['product_price']}|1`;
+
 
     function prodChangeInfo() {
         productName.innerText = `${productsJson[curImgNo]['product_name']}`;
@@ -76,7 +82,7 @@ function init(){
         tmotNo = setTimeout(holographicProjection, 200, imgSrc)
     });
     // ====================
-    // 點擊換圖
+    // 點擊換圖 1222改
     prevProduct.addEventListener('click', ()=>{
         marketCanvas = document.getElementById('sec-market').querySelector('canvas');
         marketCanvas.classList.remove('op1');
@@ -88,7 +94,10 @@ function init(){
                 holographicProjection(imgSrc);
                 prodChangeInfo();
             }, 200);
-            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '100%'}, {right: '-300%'});
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '-300%'}, {right: '100%'});
+            // =====================addbtn
+            btnAddCart.id = `P${curImgNo + 1}`;
+            btnAddCart.dataset.id = `${productsJson[curImgNo]['product_name']}|item${curImgNo + 1}.png|${productsJson[curImgNo]['product_price']}|1`;
         }else{
             curImgNo = productsJsonLen - 1;
             imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
@@ -96,7 +105,10 @@ function init(){
                 holographicProjection(imgSrc);
                 prodChangeInfo();
             }, 200);
-            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '100%'}, {right: '-300%'});
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '-300%'}, {right: '100%'});
+            // =====================addbtn
+            btnAddCart.id = `P${curImgNo + 1}`;
+            btnAddCart.dataset.id = `${productsJson[curImgNo]['product_name']}|item${curImgNo + 1}.png|${productsJson[curImgNo]['product_price']}|1`;
         }
     });
     nextProduct.addEventListener('click', ()=>{
@@ -110,7 +122,10 @@ function init(){
                 holographicProjection(imgSrc);
                 prodChangeInfo();
             }, 200);
-            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '-300%'}, {right: '100%'});
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '100%'}, {right: '-300%'});
+            // =====================addbtn
+            btnAddCart.id = `P${curImgNo + 1}`;
+            btnAddCart.dataset.id = `${productsJson[curImgNo]['product_name']}|item${curImgNo + 1}.png|${productsJson[curImgNo]['product_price']}|1`;
         }else{
             curImgNo = 0;
             imgSrc = `images/mall/${productsJson[curImgNo]['product_image']}`;
@@ -118,7 +133,10 @@ function init(){
                 holographicProjection(imgSrc);
                 prodChangeInfo();
             }, 200);
-            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '-300%'}, {right: '100%'});
+            TweenMax.fromTo('.product-bg .flash', 0.5, {right: '100%'}, {right: '-300%'});
+            // =====================addbtn
+            btnAddCart.id = `P${curImgNo + 1}`;
+            btnAddCart.dataset.id = `${productsJson[curImgNo]['product_name']}|item${curImgNo + 1}.png|${productsJson[curImgNo]['product_price']}|1`;
         }
     });
     // =======================================================end sec-market
@@ -133,6 +151,12 @@ function init(){
         enterAbout.querySelector('.access').innerText = 'ACCESS DENIED';
     });
 
+
+    enterAbout.addEventListener('click', ()=>{
+        setTimeout(() => {
+            window.location.href = 'about.php';
+        }, 300);
+    });
 
     // ====================
     // getCoupon(); //拆出來
@@ -309,13 +333,18 @@ function missionEvent(){
 
 function customizeEvent(){
     // =======================================================chart
+    let attrWatch = [7, 4, 7, 5, 7];
+    let attrSuit = [2, 9, 3, 7, 4];
+    let attrGlasses = [7, 6, 6, 7, 8];
+    let arrAttr = [attrWatch, attrSuit, attrGlasses];
+
     let ctx = document.getElementById('mall_mychart').getContext('2d');
-    let myBarChart = new Chart(ctx, {
+    let customizeChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
             labels: ["攻擊", "防禦", "隱匿", "耐久", "速度"],
             datasets: [{
-                data: [8, 1, 3, 5, 10],
+                data: arrAttr[0],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)',
                     'rgba(54, 162, 235, 0.5)',
@@ -353,6 +382,8 @@ function customizeEvent(){
             }
         }
     });
+
+
     // =======================================================closetBlockCarousel
     let closetBlock1 = document.getElementById('closet-block-1');
     let closetBlock2 = document.getElementById('closet-block-2');
@@ -388,6 +419,12 @@ function customizeEvent(){
     
     let prevCustomize = document.getElementById('btn-prev');
     let nextCustomize = document.getElementById('btn-next');
+    let nowArrAttr = 0;
+    let customizeName = document.getElementById('customize-name');
+    let arrCustomizeName = ['射擊手錶', '防彈西裝', '科技眼鏡'];
+    let nowArrCustomizeName = 0;
+    customizeName.innerText = arrCustomizeName[nowArrCustomizeName];
+
     prevCustomize.addEventListener('click', ()=>{
         for(let i=0; i<arrClosetBlockLen; i++){
             arrDegClosetBlock[i] += 120;
@@ -397,6 +434,16 @@ function customizeEvent(){
         changeNowNoNum();
         clearInterval(widthTimer);
         nextTimer();
+        // 更新 chart
+        nowArrAttr++;
+        // console.log(Math.abs(nowArrAttr % 3));
+        customizeChart.data.datasets[0].data = arrAttr[Math.abs(nowArrAttr % 3)];
+        customizeChart.update();
+        // 換名字
+        nowArrCustomizeName ++;
+        customizeName.innerText = arrCustomizeName[Math.abs(nowArrCustomizeName % 3)];
+        TweenMax.fromTo('.now-no .flash', 0.5, {right: '-300%'}, {right: '100%'});
+        TweenMax.fromTo('.customize-name .flash', 0.5, {right: '-300%'}, {right: '100%'});
     });
     nextCustomize.addEventListener('click', ()=>{
         for(let i=0; i<arrClosetBlockLen; i++){
@@ -407,6 +454,16 @@ function customizeEvent(){
         changeNowNoNum();
         clearInterval(widthTimer);
         nextTimer();
+        // 更新 chart
+        nowArrAttr--;
+        // console.log(Math.abs(nowArrAttr % 3));
+        customizeChart.data.datasets[0].data = arrAttr[Math.abs(nowArrAttr % 3)];
+        customizeChart.update();
+        // 換名字
+        nowArrCustomizeName --;
+        customizeName.innerText = arrCustomizeName[Math.abs(nowArrCustomizeName % 3)];        
+        TweenMax.fromTo('.now-no .flash', 0.5, {right: '100%'}, {right: '-300%'});
+        TweenMax.fromTo('.customize-name .flash', 0.5, {right: '100%'}, {right: '-300%'});
     });
 
 

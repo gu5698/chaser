@@ -419,9 +419,10 @@ function edit()
     // $image2 = '';
     if(!empty($imageFile) && 0==$imageFile['error']){   // 必須先判斷檔案是否是空的，再判斷是否有錯誤訊息
         // image1=要存入的檔案名稱，
+        $tmpFileArray=explode('.', $imageFile['name']);
         $image1 = time().
                     '_'.md5($imageFile['tmp_name']).    // 將檔案路徑以md5編碼
-                    '.'.end(explode('.', $imageFile['name']));   // 將檔名以.分割字串，再取最後一個字串(即 副檔名)
+                    '.'.end($tmpFileArray);   // 將檔名以.分割字串，再取最後一個字串(即 副檔名)
         
         // 定義上傳路徑
         $uploadPath = 'images/mem_images/';  

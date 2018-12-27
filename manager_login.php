@@ -15,9 +15,11 @@ if(!empty($_POST)){
             $msg="帳號不存在";
         }elseif($responses['man_password']!= md5($_POST['man_password'])){
             $msg="密碼錯誤";
+        }elseif($responses['man_admin']==0){
+            $msg="此管理員權限已停用";
         }else{
             $msg="登入成功";
-            $url="member_backstage.php";
+            $url="manager_backstage.php";
             @session_start();
             $_SESSION['manager_isLogin']=$_POST["man_account"];
         }
@@ -49,6 +51,7 @@ if(!empty($_POST)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->

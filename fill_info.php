@@ -11,7 +11,7 @@
     <?php require_once 'template/common_css.php';?>
 <!-- 個人CSS START -->
 <link rel="stylesheet" href="css/fill_info.css">
-
+<script src="js/jquery-3.3.1.min.js"></script>
 <!-- 個人CSS END -->
 
 </head>
@@ -57,7 +57,9 @@
         <div class="content">
             <div class="product_img_wrap">
                 <div class="product_img">
-                    <img src="images/customize/watch/watch12/png/killy_y_blk.png" alt="">
+                    <!-- <img src="images/customize/watch/watch12/png/killy_y_blk.png" alt=""> -->
+                    <!-- 載入canvas的客製商品圖片 -->
+                    <img src="productTempImages/productdesign.png" alt="productdesign.png">
                 </div>
             </div>
             <div class="info_fill_wrap">
@@ -147,6 +149,7 @@
 
 <!-- 個人js START -->
 <script src="js\chatbot.js"></script>
+<script src="js/cu_fill_info.js"></script>
 
 <!-- 個人js END -->
 

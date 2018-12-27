@@ -4,7 +4,7 @@
     $errorMsg = '';
     try{
         require_once("connect.php");
-        $sql = "select * from product";
+        $sql = "select * from product where control = 1";
         $products = $pdo->query($sql);
     }catch(PDOException $e){
         echo "error reason : ",$e->getMessage(),"<br>";
@@ -82,9 +82,10 @@
                                 <a class="buy" href="#">
                                     直接購買
                                 </a>
-                                <a class="addcart" href="#">
+                                <a class="addcart" href="#" id="P<?php echo $prodrow->product_id ?>">
                                     加入購物車
                                 </a>
+                                <input type="hidden" value="<?php echo "$prodrow->product_name|"."$prodrow->product_image|"."$prodrow->product_price" ?>">
                             </div>
                         </div>
                     </div>
@@ -107,7 +108,7 @@
     $errorMsg = '';
     try{
         require_once("connect.php");
-        $sql = "select * from product";
+        $sql = "select * from product where control = 1";
         $products = $pdo->query($sql);
     }catch(PDOException $e){
         echo "error reason : ",$e->getMessage(),"<br>";
@@ -117,7 +118,7 @@
     }else{
         while($prodimg = $products->fetchObject()){
 ?>
-                        <li class="barimg">
+                        <li class="barimg" data-iid="<?php echo $prodimg->product_id ?>">
                              <img src="images/pageImg/<?php echo $prodimg->product_image; ?>" alt="">
                         </li>
 <?php
@@ -156,6 +157,9 @@
 <!-- end footer -->
 </body>
 <script src="js/mall.js"></script>
+<script src="js/cart/addItem.js"></script>
+
+
 <!-- 主內容 END -->
 
 <?php require_once 'template/common_js.php'; ?>

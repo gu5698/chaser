@@ -29,7 +29,9 @@ if (!empty($_POST)) {
     $imageFile = $_FILES['mem_image'];
     $image = '';
     if (!empty($imageFile) && 0 == $imageFile['error']) {
-        $image = time() . '_' . md5($imageFile['tmp_name']) . '.' . end(explode('.', $imageFile['name']));
+        // $image = time() . '_' . md5($imageFile['tmp_name']) . '.' . end(explode('.', $imageFile['name']));
+        $tmpfileArray=explode('.',$imageFile['name']);
+        $image=time().'_'.md5($imageFile['tmp_name']).'.'.end($tmpfileArray);
         // 定義上傳路徑
         $uploadPath = 'images/mem_images/';
 
@@ -82,6 +84,7 @@ if (!empty($_POST)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Chaser</title>
     <!-- favicon -->
+    <link rel="shortcut icon" href="images/common/favicon.ico" type="image/x-icon">
     <!-- Bootstarp4 CSS -->
     <link rel="stylesheet" href="css\bootstrap-scss\bootstrap.css" />
     <!-- Font Awesome CSS -->
@@ -171,8 +174,8 @@ if (!empty($_POST)) {
                         </tr>
                             <td>管理員狀態:</td>
                             <td>
-                                <label><input type="radio" name="status" value="N" <?php if ($responses['status' == 'N']) {echo 'checked';}?>/> 停權</label>
-                                <label><input type="radio" name="status" value="Y" <?php if ($responses['status' == 'Y']) {echo 'checked';}?>/> 正常</label>
+                                <label><input type="radio" name="status" value="N" <?php if ($responses['status'] == 'N') {echo 'checked';}?>/> 停權</label>
+                                <label><input type="radio" name="status" value="Y" <?php if ($responses['status'] == 'Y') {echo 'checked';}?>/> 正常</label>
 
                             </td>
                         </tr>
